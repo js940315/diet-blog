@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-05",
+  "slot": 2,
+  "celeb": "채시라",
+  "richness": "thin",
+  "sources": 51,
+  "title": {
+    "title": "\"위가 1자냐\" 소리 들은 57세 여배우, 다이어트 없이 유지한 법",
+    "score": 86,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 67,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
