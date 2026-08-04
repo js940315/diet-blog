@@ -1,24 +1,48 @@
 {
   "date": "2026-08-04",
-  "celeb": "김희선",
+  "celeb": "고소영",
   "richness": "thin",
-  "sources": 152,
+  "sources": 103,
   "title": {
-    "title": "복귀 앞두고 식단을 다시 짠 50세 여배우 근황",
-    "score": 90,
+    "title": "두 달 동안 3kg 감량한 50대 여배우의 냉장고 속 비결",
+    "score": 86,
     "reasons": [
       "앞20자 숫자 +30",
       "앞20자 다이어트 신호어 +22",
       "앞20자 인물 특정 +14",
-      "인생 사건 +10",
       "단정형 종결 +8",
-      "숫자 1개 +6"
+      "숫자 2개 +12"
     ]
   },
-  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
-  "content_lines": 63,
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 59,
   "polished": false,
   "route": "agent",
   "final_problems": [],
-  "images": []
+  "images": [
+    {
+      "slot": 1,
+      "category": "샐러드",
+      "photo": "샐러드_0w_1.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "운동홈트",
+      "photo": "운동홈트_0s_pexels_2.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "공간주방",
+      "photo": "공간주방_0s_unsplash_1.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "셀럽감량",
+      "photo": "셀럽감량_0s_unsplash_1.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
 }
