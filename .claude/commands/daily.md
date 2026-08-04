@@ -21,7 +21,7 @@ description: 오늘자 다이어트 포스팅 1편 생성 (수집 → 제목 확
 .\run.ps1 --stage crawl
 ```
 
-`output/<오늘날짜>/_작업/1_팩트시트_지시서.md` 를 **전부 읽고** 그 폴더(`_작업`)에 두 파일을 써라.
+`state/work/<오늘날짜>/1_팩트시트_지시서.md` 를 **전부 읽고** 그 폴더에 두 파일을 써라.
 
 - `factsheet.json` — 지시서의 스키마 그대로
 - `title_candidates.json` — `{"titles": [...]}`, 정확히 10개
@@ -38,14 +38,14 @@ description: 오늘자 다이어트 포스팅 1편 생성 (수집 → 제목 확
 ```
 
 제목은 **점수 함수가 고른다. 네가 고르지 마라.**
-`output/<오늘날짜>/_작업/2_본문_지시서.md` 를 전부 읽어라.
+`state/work/<오늘날짜>/2_본문_지시서.md` 를 전부 읽어라.
 
 ## 3단계 — 본문
 
-`_작업` 폴더에 `draft.txt` 를 **평문으로** 써라. 점자 빈칸은 손으로 넣지 마라 — 반드시 빠진다.
+`state/work/<오늘날짜>/` 에 `draft.txt` 를 **평문으로** 써라. 점자 빈칸은 손으로 넣지 마라 — 반드시 빠진다.
 
 ```
-python draft_to_body.py output\<오늘날짜>\_작업\draft.txt output\<오늘날짜>\_작업\body.txt
+python draft_to_body.py state\work\<오늘날짜>\draft.txt state\work\<오늘날짜>\body.txt
 ```
 
 이 명령이 점자를 붙이고 길이·단락 위반을 알려준다. 위반이 있으면 `draft.txt` 를 고쳐서 다시 돌려라.

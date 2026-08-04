@@ -139,7 +139,7 @@ python build_photo_library.py --register
    # 에이전트가 factsheet.json + title_candidates.json 작성
 .\run.ps1 --stage title       # 제목 확정 → 2_본문_지시서.md
    # 에이전트가 draft.txt 작성
-python draft_to_body.py output\<날짜>\_작업\draft.txt output\<날짜>\_작업\body.txt
+python draft_to_body.py state\work\<날짜>\draft.txt state\work\<날짜>\body.txt
 .\run.ps1 --stage finish      # 검증 → 0번 본문.txt + 사진
 ```
 
@@ -156,7 +156,7 @@ python draft_to_body.py output\<날짜>\_작업\draft.txt output\<날짜>\_작�
 ```
 output/날짜/0번 본문.txt     ← 이것만 복사하면 끝
 output/날짜/1번 사진.jpg …   ← 음식 컷 (최대 4장)
-output/날짜/_작업/           ← 팩트시트·제목점수·소스 등 중간 산출물
+state/work/날짜/             ← 팩트시트·제목점수·소스 등 (output 밖)
 ```
 
 ## 자체 테스트 (키 없이 실행 가능)
