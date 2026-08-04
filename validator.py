@@ -142,8 +142,12 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
     if len(cl) > C.CONTENT_LINES_MAX:
         problems.append(f"내용 줄 {len(cl)}개 — {C.CONTENT_LINES_MAX}개 이하여야 함")
 
-    # 6. 공백 제외 글자 수
+    # 6. 공백 제외 글자 수 — 해시태그 포함 850~950자
     chars = sum(len(re.sub(r"\s", "", visible(ln))) for ln in cl)
+    chars += sum(len(re.sub(r"\s", "", visible(t))) for t in tags)
+    lo_chars = C.THIN_CHARS_MIN if richness == "thin" else C.BODY_CHARS_MIN
+    if chars < lo_chars:
+        problems.append(f"공백제외 {chars}자 — {lo_chars}자 이상이어야 함 (분량 미달)")
     if chars > C.BODY_CHARS_MAX:
         problems.append(f"공백제외 {chars}자 — {C.BODY_CHARS_MAX}자 이하여야 함")
 

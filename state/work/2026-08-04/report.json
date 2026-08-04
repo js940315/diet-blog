@@ -15,7 +15,7 @@
     ]
   },
   "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
-  "content_lines": 62,
+  "content_lines": 85,
   "polished": false,
   "route": "agent",
   "final_problems": [],
@@ -23,25 +23,25 @@
     {
       "slot": 1,
       "category": "샐러드",
-      "photo": "샐러드_0s_unsplash_1.jpg",
+      "photo": "샐러드_0w_0.jpg",
       "file": "1번 사진.jpg"
     },
     {
       "slot": 2,
       "category": "그릭요거트",
-      "photo": "그릭요거트_0s_pexels_2.jpg",
+      "photo": "그릭요거트_0s_pexels_0.jpg",
       "file": "2번 사진.jpg"
     },
     {
       "slot": 3,
       "category": "두부",
-      "photo": "두부_0s_pexels_2.jpg",
+      "photo": "두부_0s_unsplash_1.jpg",
       "file": "3번 사진.jpg"
     },
     {
       "slot": 4,
       "category": "오트밀",
-      "photo": "오트밀_0s_unsplash_1.jpg",
+      "photo": "오트밀_0s_pexels_2.jpg",
       "file": "4번 사진.jpg"
     }
   ]

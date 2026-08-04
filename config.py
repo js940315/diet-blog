@@ -74,12 +74,18 @@ PHOTO_VIGNETTE = False       # 가장자리 어둡게
 # ── 본문 형식 ───────────────────────────────────────────────────────────
 BRAILLE = "⠀"           # 점자 빈칸. 일반 공백은 네이버 복붙 때 사라진다
 BLANK_LINE = BRAILLE * 3     # 빈 줄의 정체
-LINE_MIN, LINE_MAX = 9, 19   # 한 줄 글자 수 (U+2800 제외)
+LINE_MIN, LINE_MAX = 9, 19   # 한 줄 글자 수 (U+2800 제외). 권장 13~17
 PARA_MAX_LINES = 3           # 한 단락 최대 줄 수
-CONTENT_LINES_MIN = 64       # 내용 줄 하한
-CONTENT_LINES_MAX = 76       # 내용 줄 상한
-THIN_SOURCE_LINES_MIN = 48   # richness=thin 판정 시 완화되는 하한
-BODY_CHARS_MAX = 1000        # 공백 제외 글자 수 상한
+CONTENT_LINES_MIN = 66       # 내용 줄 하한 (해시태그 제외)
+CONTENT_LINES_MAX = 86       # 내용 줄 상한
+THIN_SOURCE_LINES_MIN = 50   # richness=thin 판정 시 완화되는 하한
+
+# 분량 목표: 공백 제외 850~950자 (해시태그 포함해서 센다).
+# 850 미만은 부실, 950 초과는 장황 — 2026-08-04 사용자 확정.
+# 짧은 줄로만 채우면 줄 수가 폭증하니 한 줄 13~17자 밀도가 전제다.
+BODY_CHARS_MIN = 850         # 공백 제외 하한 (normal)
+THIN_CHARS_MIN = 650         # thin 판정 시 하한 — 창작 금지가 분량보다 우선
+BODY_CHARS_MAX = 950         # 공백 제외 상한
 HASHTAG_COUNT = 8
 REPAIR_ROUNDS = 3            # 검증 실패 시 재작성 횟수
 
