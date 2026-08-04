@@ -25,6 +25,9 @@ _DROP = re.compile(
     r"\d+\s*(?:kg|KG|킬로|키로)?\s*(?:대)?\s*(?:에서|부터|→|->)\s*\d+"
 )
 _QUOTE = re.compile(r'["“”‘’\']')
+# 이슈 선행형: 제목이 짧은 인용/이슈로 시작하고 따옴표가 17자 안에 닫힌다.
+# 길게 늘어지는 인용은 앞 20자를 다 먹어서 오히려 감점 대상이다.
+_ISSUE_LEAD = re.compile(r'^["“]([^"“”]{4,17})["”]')
 _HEIGHT = re.compile(r"(\d{2,3})\s*(?:cm|CM|센치|센티)")
 _KG = re.compile(r"(\d{2,3})\s*(?:kg|KG|킬로|키로)")
 _QUESTION_END = re.compile(r"(?:\?|까|까요|나요|을까|ㄹ까|일까|는지)\s*$")
@@ -103,7 +106,10 @@ def score(title: str):
         total += w["drop_form"]
         reasons.append(f"감량 낙차형 +{w['drop_form']}")
 
-    if _QUOTE.search(title):
+    if _ISSUE_LEAD.match(title):
+        total += w["issue_lead"]
+        reasons.append(f"이슈 선행형(짧은 인용 선두) +{w['issue_lead']}")
+    elif _QUOTE.search(title):
         total += w["quote"]
         reasons.append(f"본인 발언 인용 +{w['quote']}")
 
@@ -160,7 +166,9 @@ def pick(candidates):
 KNOWN = [
     ("37년째 53kg 유지한다는 58세 여배우의 아침 식탁", 110),
     ("58kg에서 44kg으로, 이혼 후 달라진 44세 여배우 근황", 104),
-    ('"165cm 43kg" 유지한다는 62세 여배우의 아침 식탁', 30),
+    # 이슈 선행형 도입(2026-08-04) 후 30 → 40. 짧은 인용 선두가 +22를 받지만
+    # 저체중 스펙 -60이 여전히 눌러서 상위로는 못 올라온다. 가드는 그대로다.
+    ('"165cm 43kg" 유지한다는 62세 여배우의 아침 식탁', 40),
     ("뼈말라 몸매로 화제된 40대 여배우 다이어트", C.DISQUALIFIED),
 ]
 
