@@ -142,14 +142,15 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
     if len(cl) > C.CONTENT_LINES_MAX:
         problems.append(f"내용 줄 {len(cl)}개 — {C.CONTENT_LINES_MAX}개 이하여야 함")
 
-    # 6. 공백 제외 글자 수 — 해시태그 포함 850~950자
+    # 6. 분량 — 네이버 글자수세기 공백제외 기준 (본문만, 제목·해시태그 제외)
+    #    네이버는 점자 빈칸을 글자로 세므로 점자 개수를 더해야 실측과 맞는다.
     chars = sum(len(re.sub(r"\s", "", visible(ln))) for ln in cl)
-    chars += sum(len(re.sub(r"\s", "", visible(t))) for t in tags)
+    chars += sum(ln.count(BR) for ln in body)
     lo_chars = C.THIN_CHARS_MIN if richness == "thin" else C.BODY_CHARS_MIN
     if chars < lo_chars:
-        problems.append(f"공백제외 {chars}자 — {lo_chars}자 이상이어야 함 (분량 미달)")
+        problems.append(f"네이버기준 {chars}자 — {lo_chars}자 이상이어야 함 (분량 미달)")
     if chars > C.BODY_CHARS_MAX:
-        problems.append(f"공백제외 {chars}자 — {C.BODY_CHARS_MAX}자 이하여야 함")
+        problems.append(f"네이버기준 {chars}자 — {C.BODY_CHARS_MAX}자 이하여야 함 (장황)")
 
     # 7. 불릿 금지 (네이버는 마크다운을 해석하지 않는다)
     for ln in cl:

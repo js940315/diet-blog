@@ -16,9 +16,34 @@
     ]
   },
   "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
-  "content_lines": 85,
+  "content_lines": 75,
   "polished": false,
   "route": "agent",
   "final_problems": [],
-  "images": []
+  "images": [
+    {
+      "slot": 1,
+      "category": "샐러드",
+      "photo": "샐러드_0s_pexels_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "두부",
+      "photo": "두부_0s_pexels_2.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "오트밀",
+      "photo": "오트밀_0s_pexels_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_2.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
 }

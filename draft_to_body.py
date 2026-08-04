@@ -58,8 +58,12 @@ def convert(raw_text: str):
         out.pop()
 
     body = "\n".join(out)
+    # 네이버 글자수세기 공백제외 기준: 본문 글자 + 점자 빈칸 (해시태그 제외)
     chars = sum(len(validator.visible(l).replace(" ", ""))
-                for l in out if not validator.is_blank(l))
+                for l in out if not validator.is_blank(l)
+                and not validator.visible(l).startswith("#"))
+    chars += sum(l.count(C.BRAILLE)
+                 for l in out if not validator.visible(l).startswith("#"))
     return body, problems, content, chars
 
 
@@ -78,7 +82,7 @@ def main():
     print(f"→ {sys.argv[2]}")
     print(f"   내용 줄 {content}개 (허용 {C.THIN_SOURCE_LINES_MIN}~{C.CONTENT_LINES_MAX}, "
           f"소스가 두꺼우면 {C.CONTENT_LINES_MIN} 이상)")
-    print(f"   공백 제외 {chars}자 (해시태그 포함, "
+    print(f"   네이버 공백제외 {chars}자 (점자 포함·해시태그 제외, "
           f"목표 {C.BODY_CHARS_MIN}~{C.BODY_CHARS_MAX} / thin은 {C.THIN_CHARS_MIN} 이상)")
     if problems:
         print(f"   손볼 줄 {len(problems)}개:")
