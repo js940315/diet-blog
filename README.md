@@ -1,7 +1,7 @@
 # 네이버 다이어트 블로그 자동화
 
 매일 여자 연예인 다이어트 소스를 크롤링 → **제목 1개 자동 확정** → 본문 완성 →
-`output/날짜/post.txt` 에 대기. 아침에 열어서 네이버에 복붙만 하면 끝.
+`output/날짜/0번 본문.txt` 에 대기. 아침에 열어서 네이버에 복붙만 하면 끝.
 
 ```
 run.ps1 (윈도우) / run.sh → main.py
@@ -53,7 +53,8 @@ run.ps1 (윈도우) / run.sh → main.py
 
 검사 항목: 줄 끝 U+2800 부착 / 빈 줄 U+2800×3 / 한 줄 9~19자 / 한 단락 ≤3줄 /
 내용 줄 64~76 / 공백제외 ≤1000자 / 불릿 0개 / 해시태그 정확히 8개 /
-소제목 `**"제목"**` 형식 / 실명·과잉높임·지침용어 누출 0
+소제목 형식(마크다운 기호 노출 0) / CTA 포함 / 수치 아라비아 숫자 /
+실명·과잉높임·지침용어 누출 0
 
 > ⚠️ **버그 주의**: 파이썬 `strip()`은 U+2800을 공백으로 인식하지 않는다.
 > 빈 줄 판정은 반드시 `line.replace('⠀','').strip() == ''` 로 해야 한다.
@@ -84,11 +85,10 @@ cp .env.example .env    # 키를 채운다
 
 네이버 키는 developers.naver.com/apps 에서 "검색" API 선택, 무료 25,000회/일.
 
-**사진용 키도 사실상 필수**: `PEXELS_API_KEY` 또는 `UNSPLASH_ACCESS_KEY`.
+**사진 키는 라이브러리를 새로 채울 때만 필요하다**: `PEXELS_API_KEY` 또는 `UNSPLASH_ACCESS_KEY`.
+매일 쓰는 사진은 이미 받아둔 `assets/photos` 에서 꺼내므로 평소엔 키가 없어도 된다.
 Wikimedia/Openverse만으로는 다이어트 소재가 거의 안 나온다 — 실측했더니
-"셀럽감량"에 1921년 신문 스캔본이, "닭가슴살"에 튀김옷 입힌 치킨이,
-"필라테스"에 90도 돌아간 어두운 헬스장 사진이 왔다. 4장 중 0장 사용 가능이었다.
-음식·운동 컷은 스톡 사이트가 압도적으로 낫다.
+"닭가슴살"에 튀김옷 입힌 치킨이 왔다. 음식 컷은 스톡 사이트가 압도적으로 낫다.
 
 ## 사진 라이브러리 구축 (첫 실행 전 1회)
 
@@ -110,6 +110,8 @@ python build_photo_library.py --register
 ```
 
 버킷 목록은 `build_photo_library.py`의 `CATEGORIES` — 테마 8 + 소재 18 + 공간 6 = 32개.
+다만 **본문에 실제로 쓰이는 건 `config.FOOD_BUCKETS_ONLY` 의 음식 10개뿐**이다.
+나머지는 라이브러리에 남아 있어도 선택되지 않는다.
 
 ## 운영 — 경로 A: API (`ANTHROPIC_API_KEY` 있을 때)
 
@@ -137,7 +139,7 @@ python build_photo_library.py --register
    # 에이전트가 factsheet.json + title_candidates.json 작성
 .\run.ps1 --stage title       # 제목 확정 → 2_본문_지시서.md
    # 에이전트가 draft.txt 작성
-python draft_to_body.py output\<날짜>\draft.txt output\<날짜>\body.txt
+python draft_to_body.py output\<날짜>\_작업\draft.txt output\<날짜>\_작업\body.txt
 .\run.ps1 --stage finish      # 검증 → post.txt + 사진
 ```
 

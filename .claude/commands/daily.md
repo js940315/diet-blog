@@ -45,7 +45,7 @@ description: 오늘자 다이어트 포스팅 1편 생성 (수집 → 제목 확
 `_작업` 폴더에 `draft.txt` 를 **평문으로** 써라. 점자 빈칸은 손으로 넣지 마라 — 반드시 빠진다.
 
 ```
-python draft_to_body.py output\<오늘날짜>\draft.txt output\<오늘날짜>\body.txt
+python draft_to_body.py output\<오늘날짜>\_작업\draft.txt output\<오늘날짜>\_작업\body.txt
 ```
 
 이 명령이 점자를 붙이고 길이·단락 위반을 알려준다. 위반이 있으면 `draft.txt` 를 고쳐서 다시 돌려라.
