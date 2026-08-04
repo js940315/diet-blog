@@ -140,7 +140,7 @@ python build_photo_library.py --register
 .\run.ps1 --stage title       # 제목 확정 → 2_본문_지시서.md
    # 에이전트가 draft.txt 작성
 python draft_to_body.py output\<날짜>\_작업\draft.txt output\<날짜>\_작업\body.txt
-.\run.ps1 --stage finish      # 검증 → post.txt + 사진
+.\run.ps1 --stage finish      # 검증 → 0번 본문.txt + 사진
 ```
 
 `--stage finish` 는 위반이 남으면 **종료 코드 4**로 끝나고 `위반목록.md` 를 남긴다.
