@@ -80,13 +80,6 @@ def _load_text(path, what):
         return f.read()
 
 
-def _fs_text(fs):
-    """writer를 import하지 않고 팩트시트를 펴는 경로.
-
-    writer는 anthropic SDK를 끌고 오므로, 키 없는 에이전트 경로에서는 건드리지 않는다.
-    """
-    import writer
-    return writer.factsheet_text(fs)
 
 
 def _finalize(d, body, richness, meta, chosen, polish_ok):
@@ -255,7 +248,7 @@ def stage_title(args):
     for why in chosen["reasons"]:
         print(f"      - {why}")
 
-    path = brief.body_brief(d, chosen["title"], _fs_text(fs),
+    path = brief.body_brief(d, chosen["title"], brief.factsheet_text(fs),
                             meta["richness"], meta["cta"],
                             bool(fs.get("has_exercise_detail")))
     print(f"■ 2단계 지시서 → {path}")

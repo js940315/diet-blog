@@ -9,6 +9,7 @@ import json
 
 import anthropic
 
+import brief
 import config as C
 import prompts
 import validator
@@ -78,31 +79,8 @@ def build_factsheet(celeb: str, sources: str) -> dict:
     return json.loads(raw)
 
 
-def factsheet_text(fs: dict) -> str:
-    """프롬프트에 넣기 좋은 형태로 편다."""
-    lines = ["[팩트시트]"]
-    label = {
-        "age": "나이", "job": "직업", "weight_before": "이전 체중",
-        "weight_after": "현재 체중", "height": "키", "duration": "기간",
-        "notes": "비고",
-    }
-    for k, ko in label.items():
-        v = (fs.get(k) or "").strip()
-        if v:
-            lines.append(f"- {ko}: {v}")
-    for k, ko in (("foods", "식단"), ("exercises", "운동"),
-                  ("habits", "습관"), ("life_events", "인생 사건")):
-        v = [x for x in (fs.get(k) or []) if x]
-        if v:
-            lines.append(f"- {ko}: {', '.join(v)}")
-    q = [x for x in (fs.get("quotes") or []) if x]
-    src = fs.get("quote_sources") or []
-    if q:
-        lines.append("- 본인 발언 (출처를 본문에 밝힐 것):")
-        for i, x in enumerate(q):
-            where = src[i] if i < len(src) and src[i] else "출처 불명 — 쓰지 말 것"
-            lines.append(f'    "{x}"  [{where}]')
-    return "\n".join(lines)
+# 팩트시트 정리는 brief.py 에 있다. SDK 없이도 써야 하는 함수라서 거기 뒀다.
+factsheet_text = brief.factsheet_text
 
 
 # ── 2. 제목 ─────────────────────────────────────────────────────────────
