@@ -113,7 +113,7 @@ richness: {richness}   {"(근거가 얇다. 억지로 채우지 말 것)" if ric
     return _w(os.path.join(workdir(outdir), "1_팩트시트_지시서.md"), text)
 
 
-def body_brief(outdir, title, fs_text, richness, cta, has_exercise):
+def body_brief(outdir, title, fs_text, richness, cta, has_exercise, celeb, heart):
     """3단계 산출물. 확정된 제목으로 본문을 써달라는 지시서."""
     text = f"""\
 # 2단계 지시서 — 본문
@@ -134,7 +134,7 @@ def body_brief(outdir, title, fs_text, richness, cta, has_exercise):
 
 ---
 
-{prompts.body_user(title, fs_text, richness, cta, has_exercise)}
+{prompts.body_user(title, fs_text, richness, cta, has_exercise, celeb, heart)}
 """
     return _w(os.path.join(workdir(outdir), "2_본문_지시서.md"), text)
 

@@ -98,7 +98,7 @@ def content_lines(body):
     return [ln for ln in body if not is_blank(ln)]
 
 
-def validate(text: str, richness: str = "normal", cta: str = None):
+def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = None):
     """위반 목록을 반환한다. 빈 리스트면 통과."""
     problems = []
     body, tags, notices = split_sections(text)
@@ -153,9 +153,18 @@ def validate(text: str, richness: str = "normal", cta: str = None):
             problems.append(f"불릿 사용: {visible(ln)[:20]}")
 
     # 8. 해시태그 정확히 8개
-    n_tags = len(_HASHTAG.findall(" ".join(visible(t) for t in tags)))
+    tag_text = " ".join(visible(t) for t in tags)
+    n_tags = len(_HASHTAG.findall(tag_text))
     if n_tags != C.HASHTAG_COUNT:
         problems.append(f"해시태그 {n_tags}개 — 정확히 {C.HASHTAG_COUNT}개여야 함")
+    if celeb:
+        for ft in C.FIXED_HASHTAGS:
+            if ft not in tag_text:
+                problems.append(f"고정 해시태그 누락: {ft}")
+        if f"#{celeb}" not in tag_text:
+            problems.append(f"인물 해시태그 누락: #{celeb}")
+        if "❤" not in text:
+            problems.append("하트 CTA 없음 — 해시태그 앞에 ❤ 한 줄")
 
     # 9. 소제목 형식 / 마크다운 노출
     #    네이버는 마크다운을 해석하지 않는다. **가 있으면 화면에 별표가 그대로 보인다.
@@ -181,9 +190,18 @@ def validate(text: str, richness: str = "normal", cta: str = None):
 
     # 12. 누출 검사
     full = " ".join(visible(ln) for ln in body)
-    for name in C.CELEB_POOL:
-        if name in full:
-            problems.append(f"여자 실명 노출: {name}")
+    # 실명 규칙: 제목은 블라인드(titles.py가 잡는다), 본문은 도입부에서 공개한다.
+    if celeb:
+        if celeb not in full:
+            problems.append(f"실명 리빌 없음: 도입부에서 {celeb} 이름을 밝혀야 함")
+        for name in C.CELEB_POOL:
+            if name != celeb and name in full:
+                problems.append(f"다른 여자 연예인 실명 노출: {name}")
+    else:
+        # 인물 없이 호출된 경우(자체 테스트)는 예전처럼 전부 잡는다
+        for name in C.CELEB_POOL:
+            if name in full:
+                problems.append(f"여자 실명 노출: {name}")
     for term in C.OVERPOLITE_TERMS:
         if term in full:
             problems.append(f"과잉 높임: {term}")
@@ -370,6 +388,10 @@ if __name__ == "__main__":
     got = ensure_notices(clean)
     for ln in got.split("\n"):
         print("  ", ln)
-    assert "※ " + C.HEALTH_DISCLAIMER_TEXT in got, "면책 문구 누락"
-    assert ensure_notices(got) == got, "안내문이 두 번 붙음"
-    print("  → 면책 삽입 OK / 중복 삽입 없음 OK")
+    if C.AD_DISCLOSURE or C.HEALTH_DISCLAIMER:
+        assert "※" in got, "안내문 누락"
+        assert ensure_notices(got) == got, "안내문이 두 번 붙음"
+        print("  → 안내문 삽입 OK / 중복 없음 OK")
+    else:
+        assert got == clean, "안내문이 꺼져 있는데 뭔가 붙음"
+        print("  → 안내문 OFF (config) — 아무것도 안 붙음 OK")

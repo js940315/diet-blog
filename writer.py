@@ -97,13 +97,13 @@ def generate_titles(fs_text: str):
 
 # ── 3. 본문 + 수리 루프 ─────────────────────────────────────────────────
 
-def generate_body(title, fs_text, richness, cta, has_exercise):
-    user = prompts.body_user(title, fs_text, richness, cta, has_exercise)
+def generate_body(title, fs_text, richness, cta, has_exercise, celeb, heart):
+    user = prompts.body_user(title, fs_text, richness, cta, has_exercise, celeb, heart)
     body = _call(prompts.BODY_SYSTEM, user, C.MAX_TOKENS_BODY)
 
     history = []
     for attempt in range(1, C.REPAIR_ROUNDS + 1):
-        problems = validator.validate(body, richness, cta)
+        problems = validator.validate(body, richness, cta, celeb)
         history.append({"attempt": attempt, "problems": problems})
         if not problems:
             return body, history, False
@@ -123,7 +123,7 @@ def generate_body(title, fs_text, richness, cta, has_exercise):
 
     # 재작성으로도 안 되면 기계적 강제 복구
     final = validator.polish(body)
-    remaining = validator.validate(final, richness, cta)
+    remaining = validator.validate(final, richness, cta, celeb)
     history.append({"attempt": "polish", "problems": remaining})
     if remaining:
         print(f"  [polish] 강제 복구 후에도 {len(remaining)}건 남음")

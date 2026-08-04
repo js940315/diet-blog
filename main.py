@@ -96,12 +96,13 @@ def _load_text(path, what):
 def _finalize(d, body, richness, meta, chosen, polish_ok):
     """검증 → 0번 본문.txt → 사진 → report.json. 두 경로가 공유한다."""
     cta = meta.get("cta")
-    problems = validator.validate(body, richness, cta)
+    celeb = meta.get("celeb")
+    problems = validator.validate(body, richness, cta, celeb)
     polished = False
     if problems and polish_ok:
         body = validator.polish(body)
         polished = True
-        problems = validator.validate(body, richness, cta)
+        problems = validator.validate(body, richness, cta, celeb)
 
     # 제휴 표시·건강 면책은 polish를 안 거쳐도 반드시 붙어야 한다
     body = validator.ensure_notices(body)
@@ -179,12 +180,13 @@ def run_api(args):
 
     cta = store.next_cta()
     print(f"■ 본문 생성... (CTA: {cta[:24]}...)")
+    heart = C.HEART_CTA_POOL[int(date_str.replace("-", "")) % len(C.HEART_CTA_POOL)]
     body, history, polished = writer.generate_body(
         chosen["title"], fs_text, richness, cta,
-        bool(fs.get("has_exercise_detail")),
+        bool(fs.get("has_exercise_detail")), celeb, heart,
     )
 
-    meta = {"date": date_str, "cta": cta, "no_images": args.no_images}
+    meta = {"date": date_str, "celeb": celeb, "cta": cta, "no_images": args.no_images}
     post, problems, extra_polish, made, cl = _finalize(
         d, body, richness, meta, chosen, polish_ok=False)
 
@@ -242,9 +244,11 @@ def stage_crawl(args):
     print(f"   {len(items)}건 수집 / richness={richness}")
 
     _dump(wpath(d, "sources.json"), items)
+    heart = C.HEART_CTA_POOL[int(date_str.replace("-", "")) % len(C.HEART_CTA_POOL)]
     _dump(wpath(d, "meta.json"), {
         "date": date_str, "celeb": celeb, "richness": richness,
-        "sources": len(items), "cta": cta, "no_images": args.no_images,
+        "sources": len(items), "cta": cta, "heart": heart,
+        "no_images": args.no_images,
     })
     path = brief.factsheet_brief(d, celeb, richness,
                                  crawler.summarize(items), len(items))
@@ -278,9 +282,12 @@ def stage_title(args):
     for why in chosen["reasons"]:
         print(f"      - {why}")
 
+    heart = meta.get("heart") or C.HEART_CTA_POOL[
+        int(date_str.replace("-", "")) % len(C.HEART_CTA_POOL)]
     path = brief.body_brief(d, chosen["title"], brief.factsheet_text(fs),
                             meta["richness"], meta["cta"],
-                            bool(fs.get("has_exercise_detail")))
+                            bool(fs.get("has_exercise_detail")),
+                            meta["celeb"], heart)
     print(f"■ 2단계 지시서 → {path}")
     print("   에이전트가 할 일: body.txt 작성")
     print("   그 다음: python main.py --stage finish")
