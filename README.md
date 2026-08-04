@@ -156,9 +156,12 @@ python draft_to_body.py state\work\<날짜>\draft.txt state\work\<날짜>\body.t
 산출물 — 아침에 폴더를 열면 복붙할 것만 보인다:
 
 ```
-output/날짜/0번 본문.txt     ← 이것만 복사하면 끝
-output/날짜/1번 사진.jpg …   ← 음식 컷 (최대 4장)
-state/work/날짜/             ← 팩트시트·제목점수·소스 등 (output 밖)
+output/날짜/1/0번 본문.txt   ← 슬롯 1~10, 슬롯당 본문 1 + 음식 사진 최대 4장
+output/날짜/2/ … 10/
+state/work/날짜/슬롯/         ← 팩트시트·제목점수·소스 등 (output 밖)
+
+하루 최대 10편(config.DAILY_SLOTS). 지속 조건 = 인물 풀 ÷ 쿨다운 ≥ 10
+(현재 180명 ÷ 15일 = 12). 소스 10건 미만 인물은 자동 스킵·쿨다운 처리.
 ```
 
 ## 자체 테스트 (키 없이 실행 가능)
