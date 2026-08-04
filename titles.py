@@ -17,6 +17,9 @@ _JOB = re.compile(
     r"여배우|배우|가수|모델|아나운서|방송인|개그우먼|코미디언|트로트|"
     r"여신|스타|아이돌|디바|MC|셀럽"
 )
+# 정답이 너무 쉬운 조합: 유명 남자 실명 + 혼인 관계어.
+# "장동건과 16년째 부부"는 누가 봐도 답이 나와서 클릭베이트가 죽는다.
+_MARRIAGE = re.compile(r"남편|부부|아내|와이프|배우자|결혼|재혼")
 # 유지 기간형: 37년째 / 20년간 / 15년 동안
 _DURATION = re.compile(r"\d+\s*년\s*(?:째|간|동안|넘게|째로)")
 _WEIGHT_TOKEN = re.compile(r"\d+\s*(?:kg|KG|킬로|키로)|\d+\s*사이즈|몸무게|체중")
@@ -27,7 +30,9 @@ _DROP = re.compile(
 _QUOTE = re.compile(r'["“”‘’\']')
 # 이슈 선행형: 제목이 짧은 인용/이슈로 시작하고 따옴표가 17자 안에 닫힌다.
 # 길게 늘어지는 인용은 앞 20자를 다 먹어서 오히려 감점 대상이다.
-_ISSUE_LEAD = re.compile(r'^["“]([^"“”]{4,17})["”]')
+_ISSUE_LEAD = re.compile(r'^["“]([^"“”]{4,20})["”]')
+# 선두 인용이 ..으로 끝나며 여운을 남기는 형태.  "어제도 했다는.."
+_TEASE = re.compile(r'^["“][^"“”]{4,20}(?:\.\.|…)["”]?')
 _HEIGHT = re.compile(r"(\d{2,3})\s*(?:cm|CM|센치|센티)")
 _KG = re.compile(r"(\d{2,3})\s*(?:kg|KG|킬로|키로)")
 _QUESTION_END = re.compile(r"(?:\?|까|까요|나요|을까|ㄹ까|일까|는지)\s*$")
@@ -109,6 +114,9 @@ def score(title: str):
     if _ISSUE_LEAD.match(title):
         total += w["issue_lead"]
         reasons.append(f"이슈 선행형(짧은 인용 선두) +{w['issue_lead']}")
+        if _TEASE.match(title):
+            total += w["tease"]
+            reasons.append(f"말줄임 여운 +{w['tease']}")
     elif _QUOTE.search(title):
         total += w["quote"]
         reasons.append(f"본인 발언 인용 +{w['quote']}")
@@ -118,8 +126,12 @@ def score(title: str):
         reasons.append(f"인생 사건 +{w['life_event']}")
 
     if any(n in title for n in C.MALE_CELEB_NAMES):
-        total += w["male_celeb"]
-        reasons.append(f"관계 남자 연예인 +{w['male_celeb']}")
+        if _MARRIAGE.search(title):
+            total += w["too_obvious"]
+            reasons.append(f"남편 실명+혼인어 = 정답 노출 {w['too_obvious']}")
+        else:
+            total += w["male_celeb"]
+            reasons.append(f"관계 남자 연예인 +{w['male_celeb']}")
 
     if _OPEN_END.search(title):
         pass  # 말줄임 종결은 단정형도 질문형도 아니다
