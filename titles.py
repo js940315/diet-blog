@@ -36,6 +36,9 @@ _TEASE = re.compile(r'^["“][^"“”]{4,20}(?:\.\.|…)["”]?')
 _HEIGHT = re.compile(r"(\d{2,3})\s*(?:cm|CM|센치|센티)")
 _KG = re.compile(r"(\d{2,3})\s*(?:kg|KG|킬로|키로)")
 _QUESTION_END = re.compile(r"(?:\?|까|까요|나요|을까|ㄹ까|일까|는지)\s*$")
+# 모순 구조: 지위·스펙과 어긋나는 행동을 한 문장에 붙인 형태.
+# "아이돌인데 뚱뚱하다고" / "32kg 뺐는데도 실패" / "평판 1위인데 돌연 사라진"
+_CONTRAST = re.compile(r"인데|는데도|은데도|았는데|었는데|고도 ")
 _OPEN_END = re.compile(r"(?:\.\.\.|…)\s*$")
 
 
@@ -132,6 +135,10 @@ def score(title: str):
         else:
             total += w["male_celeb"]
             reasons.append(f"관계 남자 연예인 +{w['male_celeb']}")
+
+    if _CONTRAST.search(title):
+        total += w["contrast"]
+        reasons.append(f"모순 구조(~인데 ~했다) +{w['contrast']}")
 
     if _OPEN_END.search(title):
         pass  # 말줄임 종결은 단정형도 질문형도 아니다
