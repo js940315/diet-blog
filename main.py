@@ -64,15 +64,9 @@ def outdir(date_str):
     return d
 
 
-def workdir(d):
-    """중간 산출물 폴더. 아침에 눈에 안 띄게 한 겹 내린다."""
-    w = os.path.join(d, C.WORK_SUBDIR)
-    os.makedirs(w, exist_ok=True)
-    return w
-
-
 def wpath(d, name):
-    return os.path.join(workdir(d), name)
+    """중간 산출물 경로. output 폴더에는 본문과 사진만 남긴다."""
+    return os.path.join(brief.workdir(d), name)
 
 
 def _dump(path, obj):

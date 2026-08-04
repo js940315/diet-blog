@@ -204,10 +204,13 @@ CTA_POOL = (
 # 아침에 폴더를 열면 복붙할 것만 보여야 한다.
 # 본문 1개 + 사진 몇 장. 나머지 중간 산출물은 한 겹 아래로 내린다.
 POST_FILENAME = "0번 본문.txt"
-WORK_SUBDIR = "_작업"
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(ROOT, "output")
+# 중간 산출물은 output 밖에 둔다.
+# output 안에 숨김 폴더로 두면, 클라우드가 만든 걸 Fetch 받을 때
+# 숨김 속성이 따라오지 않아 탐색기에 그대로 보인다.
+WORK_DIR = os.path.join(ROOT, "state", "work")
 STATE_DB = os.path.join(ROOT, "state", "store.db")
 LOG_DIR = os.path.join(ROOT, "logs")
 

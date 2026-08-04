@@ -21,6 +21,13 @@ import config as C
 import prompts
 
 
+def workdir(outdir):
+    """그 날짜의 중간 산출물 폴더. output 밖에 있다."""
+    w = os.path.join(C.WORK_DIR, os.path.basename(outdir.rstrip("/\\")))
+    os.makedirs(w, exist_ok=True)
+    return w
+
+
 def _w(path, text):
     with open(path, "w", encoding="utf-8") as f:
         f.write(text)
@@ -103,7 +110,7 @@ richness: {richness}   {"(근거가 얇다. 억지로 채우지 말 것)" if ric
 
 {sources_text}
 """
-    return _w(os.path.join(outdir, C.WORK_SUBDIR, "1_팩트시트_지시서.md"), text)
+    return _w(os.path.join(workdir(outdir), "1_팩트시트_지시서.md"), text)
 
 
 def body_brief(outdir, title, fs_text, richness, cta, has_exercise):
@@ -129,7 +136,7 @@ def body_brief(outdir, title, fs_text, richness, cta, has_exercise):
 
 {prompts.body_user(title, fs_text, richness, cta, has_exercise)}
 """
-    return _w(os.path.join(outdir, C.WORK_SUBDIR, "2_본문_지시서.md"), text)
+    return _w(os.path.join(workdir(outdir), "2_본문_지시서.md"), text)
 
 
 def repair_note(outdir, problems):
@@ -145,4 +152,4 @@ def repair_note(outdir, problems):
 - 그래도 안 맞으면 `--stage finish --polish` 로 기계적 강제 복구를 걸 수 있다.
   단 polish는 문장을 어절 단위로 자르므로 읽는 맛이 떨어진다. 최후 수단이다.
 """
-    return _w(os.path.join(outdir, C.WORK_SUBDIR, "위반목록.md"), text)
+    return _w(os.path.join(workdir(outdir), "위반목록.md"), text)
