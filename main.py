@@ -294,6 +294,12 @@ def stage_finish(args):
         print("   body.txt 를 고쳐서 --stage finish 를 다시 실행하세요.")
         sys.exit(4)
 
+    # 통과했으면 지난 회차의 위반 목록을 남겨두지 않는다.
+    # 고쳐서 통과했는데 파일이 그대로 있으면 아침에 아직 문제가 있는 줄 안다.
+    stale = os.path.join(d, "위반목록.md")
+    if os.path.exists(stale):
+        os.remove(stale)
+
     items = []
     if os.path.exists(os.path.join(d, "sources.json")):
         items = _load(os.path.join(d, "sources.json"), "sources.json")
