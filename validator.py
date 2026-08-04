@@ -34,6 +34,30 @@ def subhead(text: str) -> str:
     return f"{C.SUBHEAD_OPEN}{text}{C.SUBHEAD_CLOSE}"
 
 
+def subhead_flags(body):
+    """줄마다 '이게 소제목인가'를 판정한다. body 순서 그대로 반환.
+
+    큰따옴표로만 이뤄졌다고 다 소제목이 아니다. 본문에서 남의 말을 한 줄로
+    인용해도 모양이 똑같다. 실제로 클라우드 루틴이 그렇게 썼다:
+
+        뉴시스와의 인터뷰에서
+        "야식 땡길 때 콜라비"     ← 인용이지 소제목이 아니다
+        라고 밝혔더라고요.
+
+    구분은 위치로 한다. 소제목은 앞뒤가 빈 줄인 자기 단락이고, 인용은 문장
+    한가운데다. 이걸 안 가리면 인용 줄이 길이 검사를 통째로 빠져나간다.
+    """
+    flags = []
+    for i, ln in enumerate(body):
+        if is_blank(ln) or not _SUBHEAD.match(visible(ln)):
+            flags.append(False)
+            continue
+        before = all(is_blank(x) for x in body[:i][::-1][:1]) if i else True
+        after = all(is_blank(x) for x in body[i + 1:][:1]) if i + 1 < len(body) else True
+        flags.append(before and after)
+    return flags
+
+
 def is_blank(line: str) -> bool:
     """빈 줄인가. U+2800을 제거한 뒤에 판정해야 한다 — 이게 그 버그다."""
     return line.replace(BR, "").strip() == ""
@@ -90,11 +114,14 @@ def validate(text: str, richness: str = "normal", cta: str = None):
         if not is_blank(ln) and not ln.endswith(BR):
             problems.append(f"{i}번째 줄 끝에 점자빈칸 없음: {visible(ln)[:20]}")
 
-    # 3. 한 줄 9~19자
-    for ln in cl:
+    # 3. 한 줄 9~19자 (소제목만 예외. 인용은 예외가 아니다)
+    flags = subhead_flags(body)
+    for i, ln in enumerate(body):
+        if is_blank(ln):
+            continue
+        if flags[i]:
+            continue
         n = visible_len(ln)
-        if _SUBHEAD.match(visible(ln)):
-            continue  # 소제목은 길이 예외
         if n < C.LINE_MIN or n > C.LINE_MAX:
             problems.append(f"줄 길이 {n}자 (허용 {C.LINE_MIN}~{C.LINE_MAX}): {visible(ln)[:24]}")
 
@@ -136,8 +163,8 @@ def validate(text: str, richness: str = "normal", cta: str = None):
         v = visible(ln)
         if _MARKDOWN.search(v):
             problems.append(f"마크다운 기호 노출 (네이버는 해석 못 함): {v[:24]}")
-    if not any(_SUBHEAD.match(visible(ln)) for ln in cl):
-        problems.append(f"소제목이 하나도 없음 ({subhead('소제목')} 형식)")
+    if not any(flags):
+        problems.append(f"소제목이 하나도 없음 ({subhead('소제목')} 형식, 앞뒤가 빈 줄이어야 함)")
 
     # 10. CTA — 코드가 로테이션시킨 문장이 실제로 들어갔는지.
     #     한 줄 상한(19자)보다 CTA가 기니 줄 나눔은 허용하고, 공백을 지운 뒤 비교한다.
