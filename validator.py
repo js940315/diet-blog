@@ -19,6 +19,14 @@ _SUBHEAD = re.compile(
 # 마크다운은 네이버에서 해석되지 않고 기호가 그대로 노출된다
 _MARKDOWN = re.compile(r"\*\*|^#{1,6}\s|`")
 _HASHTAG = re.compile(r"#[^\s#]+")
+# 한글로 풀어쓴 한자어 수치. "육 년" → "6년", "오 센티미터" → "5cm"
+# 앞에 한글이 붙은 경우(근육 세포, 수십 년, 교육 센터)는 수사가 아니므로 제외한다.
+#   뒤쪽 조사·접미사("육 년을", "백 그램만")까지 걸러내면 정작 잡을 걸 놓친다.
+#   앞쪽 검사만으로 오탐은 이미 0이다(실측).
+_SPELLED_NUM = re.compile(
+    r"(?<![가-힣])(" + "|".join(C.SINO_NUMERALS) + r")\s?("
+    + "|".join(C.NUMERAL_UNITS) + r")"
+)
 
 
 def subhead(text: str) -> str:
@@ -138,7 +146,13 @@ def validate(text: str, richness: str = "normal", cta: str = None):
         if re.sub(r"\s", "", cta) not in flat:
             problems.append(f"CTA 문장이 본문에 없음: {cta}")
 
-    # 11. 누출 검사
+    # 11. 수치는 아라비아 숫자로
+    for ln in cl:
+        v = visible(ln)
+        for m in _SPELLED_NUM.finditer(v):
+            problems.append(f"수치를 한글로 풀어씀 (숫자로 쓸 것): {m.group(0)}")
+
+    # 12. 누출 검사
     full = " ".join(visible(ln) for ln in body)
     for name in C.CELEB_POOL:
         if name in full:
