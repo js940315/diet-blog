@@ -174,18 +174,30 @@ def collect(celeb: str, sort: str = None, display: int = None, mode: str = None)
     display = display or C.NAVER_DISPLAY
     mode = mode or C.SOURCE_MODE
 
-    if mode == "auto":
-        mode = "naver" if naver_ready() else "google"
-        if mode == "google":
-            print("  [알림] 네이버 키가 없어 Google News RSS로 수집합니다. "
-                  "헤드라인만 얻으므로 근거가 얇습니다(글이 짧게 나갑니다).")
-
     seen_links = set()
+
     if mode == "naver":
         return _collect_naver(celeb, sort, display, seen_links)
     if mode == "google":
         return _collect_google(celeb, seen_links)
-    raise ValueError(f"알 수 없는 수집 경로: {mode}")
+    if mode != "auto":
+        raise ValueError(f"알 수 없는 수집 경로: {mode}")
+
+    # auto — 네이버를 먼저 시도하되, 한 건도 못 받으면 구글로 넘어간다.
+    # 키가 있다고 되는 게 아니다. 검색 API는 스코프가 따로 있어서 앱에 그 권한이
+    # 없으면 401 "Scope Status Invalid"가 난다(실측). 키 만료·한도 초과도 마찬가지다.
+    # 여기서 안 넘어가면 그날 글이 통째로 안 나온다.
+    if naver_ready():
+        items = _collect_naver(celeb, sort, display, seen_links)
+        if items:
+            return items
+        print("  [알림] 네이버에서 한 건도 못 받았습니다 (키·스코프·한도를 확인하세요). "
+              "Google News RSS로 전환합니다.")
+        seen_links.clear()
+    else:
+        print("  [알림] 네이버 키가 없어 Google News RSS로 수집합니다. "
+              "헤드라인만 얻으므로 근거가 얇습니다(글이 짧게 나갑니다).")
+    return _collect_google(celeb, seen_links)
 
 
 def assess_richness(items) -> str:
