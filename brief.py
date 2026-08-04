@@ -8,7 +8,10 @@ ANTHROPIC_API_KEY가 없어도 파이프라인이 돌게 하는 경로다.
   2단계  에이전트가 factsheet.json + title_candidates.json 을 쓴다
   3단계  main.py --stage title   → titles.json + 2_본문_지시서.md  (제목은 파이썬이 확정)
   4단계  에이전트가 body.txt 를 쓴다
-  5단계  main.py --stage finish  → 검증 → post.txt + 사진 + report.json
+  5단계  main.py --stage finish  → 검증 → 0번 본문.txt + 사진
+
+지시서와 중간 산출물은 전부 output/날짜/_작업/ 에 둔다.
+아침에 폴더를 열면 본문과 사진만 보여야 한다.
 """
 
 import json
@@ -100,7 +103,7 @@ richness: {richness}   {"(근거가 얇다. 억지로 채우지 말 것)" if ric
 
 {sources_text}
 """
-    return _w(os.path.join(outdir, "1_팩트시트_지시서.md"), text)
+    return _w(os.path.join(outdir, C.WORK_SUBDIR, "1_팩트시트_지시서.md"), text)
 
 
 def body_brief(outdir, title, fs_text, richness, cta, has_exercise):
@@ -126,7 +129,7 @@ def body_brief(outdir, title, fs_text, richness, cta, has_exercise):
 
 {prompts.body_user(title, fs_text, richness, cta, has_exercise)}
 """
-    return _w(os.path.join(outdir, "2_본문_지시서.md"), text)
+    return _w(os.path.join(outdir, C.WORK_SUBDIR, "2_본문_지시서.md"), text)
 
 
 def repair_note(outdir, problems):
@@ -142,4 +145,4 @@ def repair_note(outdir, problems):
 - 그래도 안 맞으면 `--stage finish --polish` 로 기계적 강제 복구를 걸 수 있다.
   단 polish는 문장을 어절 단위로 자르므로 읽는 맛이 떨어진다. 최후 수단이다.
 """
-    return _w(os.path.join(outdir, "위반목록.md"), text)
+    return _w(os.path.join(outdir, C.WORK_SUBDIR, "위반목록.md"), text)

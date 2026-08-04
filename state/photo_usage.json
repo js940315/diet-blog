@@ -9,7 +9,9 @@
     "샐러드_0w_0.jpg",
     "샐러드_0s_unsplash_1.jpg",
     "샐러드_0s_pexels_2.jpg",
-    "샐러드_0w_1.jpg"
+    "샐러드_0w_1.jpg",
+    "샐러드_0w_0.jpg",
+    "샐러드_0s_pexels_0.jpg"
   ],
   "식단레시피": [
     "식단레시피_0s_pexels_0.jpg",
@@ -56,5 +58,19 @@
     "공간주방_0s_pexels_0.jpg",
     "공간주방_1s_pexels_2.jpg",
     "공간주방_0s_unsplash_1.jpg"
+  ],
+  "그릭요거트": [
+    "그릭요거트_0s_pexels_0.jpg"
+  ],
+  "두부": [
+    "두부_0s_unsplash_1.jpg",
+    "두부_0o_0.jpg"
+  ],
+  "오트밀": [
+    "오트밀_0s_unsplash_1.jpg",
+    "오트밀_0s_pexels_0.jpg"
+  ],
+  "닭가슴살": [
+    "닭가슴살_0s_pexels_0.jpg"
   ]
 }

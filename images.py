@@ -26,45 +26,34 @@ FOOD_BUCKETS = {
     "도시락": ("도시락", "밀프렙"),
 }
 
-EXERCISE_BUCKETS = {
-    "필라테스": ("필라테스",),
-    "요가": ("요가",),
-    "러닝": ("러닝", "달리기", "조깅", "마라톤"),
-    "웨이트": ("웨이트", "근력", "덤벨", "헬스", "무산소"),
-    "홈트": ("홈트", "홈트레이닝", "집에서"),
-    "수영": ("수영", "아쿠아"),
-    "스트레칭": ("스트레칭", "유연"),
-    "사이클": ("사이클", "자전거", "스피닝", "실내자전거"),
-    "걷기": ("걷기", "산책", "만보", "워킹"),
-}
-
-SPACE_FOR = {
-    "홈트": "공간홈트", "웨이트": "공간헬스장", "필라테스": "공간필라테스",
-    "요가": "공간필라테스", "러닝": "공간야외", "걷기": "공간야외",
-    "사이클": "공간헬스장", "수영": "공간헬스장", "스트레칭": "공간홈트",
-}
-
-
-def _match_bucket(texts, table):
+def _match_buckets(texts, table):
+    """팩트시트에 언급된 식품과 맞는 버킷을 언급 순서대로."""
     joined = " ".join(t for t in texts if t)
-    for bucket, keys in table.items():
-        if any(k in joined for k in keys):
-            return bucket
-    return None
+    return [b for b, keys in table.items() if any(k in joined for k in keys)]
 
 
-def choose_buckets(fs: dict):
-    """슬롯별 photo_category. 1번이 대표 사진(홈판 썸네일로 쓰인다)."""
-    food = _match_bucket(fs.get("foods") or [], FOOD_BUCKETS)
-    ex = _match_bucket(fs.get("exercises") or [], EXERCISE_BUCKETS)
+def choose_buckets(fs: dict, date_tag: str = ""):
+    """슬롯별 photo_category. 1번이 대표 사진(홈판 썸네일로 쓰인다).
 
-    # 1번은 음식 컷을 앞세운다. 다이어트 글에서 가장 잘 눌리는 소재고,
-    # 인물 없이도 주제가 한눈에 읽힌다.
-    slots = [food or "식단레시피"]
-    slots.append(ex or "운동홈트")
-    slots.append(SPACE_FOR.get(ex, "공간주방" if food else "요요관리"))
-    slots.append("셀럽감량" if food else "뷰티바디")
-    return slots[: C.IMAGE_COUNT]
+    ⚠️ 음식 버킷만 쓴다. 운동·공간·인물 컷은 사람이 크게 나와서 글과 따로 놀고,
+       남의 몸 사진을 다이어트 글에 붙이는 모양새가 된다.
+       팩트시트에 식품 언급이 없으면 기본 버킷을 날짜에 따라 돌려 쓴다.
+    """
+    picked = [b for b in _match_buckets(fs.get("foods") or [], FOOD_BUCKETS)
+              if b in C.FOOD_BUCKETS_ONLY]
+
+    # 남는 슬롯은 기본 음식 버킷에서 채운다. 날짜로 시작점을 밀어
+    # 매일 같은 조합이 나오지 않게 한다.
+    pool = list(C.FOOD_BUCKETS_ONLY)
+    if pool:
+        offset = sum(ord(c) for c in date_tag) % len(pool)
+        pool = pool[offset:] + pool[:offset]
+    for b in pool:
+        if len(picked) >= C.IMAGE_COUNT:
+            break
+        if b not in picked:
+            picked.append(b)
+    return picked[: C.IMAGE_COUNT]
 
 
 def _focus_from(align: str) -> str:
@@ -78,7 +67,7 @@ def _focus_from(align: str) -> str:
 
 def render(title, fs, date_tag, outdir):
     """실물 사진 세트를 만든다. 반환: [{slot, category, photo, file}]"""
-    buckets = choose_buckets(fs)
+    buckets = choose_buckets(fs, date_tag)
     used, made = set(), []
 
     for seq, category in enumerate(buckets, 1):
@@ -107,9 +96,11 @@ def render(title, fs, date_tag, outdir):
                      "photo": fname, "file": os.path.basename(dst)})
         print(f"  {seq}번 사진.jpg  [{category}] {fname}")
 
+    if len(made) < C.IMAGE_COUNT:
+        print(f"  [알림] 음식 사진 {len(made)}장 (목표 {C.IMAGE_COUNT}장). "
+              "모자라면 모자란 대로 나갑니다.")
     if not made:
-        print("  [주의] 사진이 한 장도 없습니다. 먼저 소싱하세요:")
-        print("         python build_photo_library.py --per 3")
+        print("         버킷을 채우려면: python build_photo_library.py --per 3")
     return made
 
 
@@ -118,8 +109,9 @@ if __name__ == "__main__":
 
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
-    print("슬롯 버킷:", choose_buckets({
-        "foods": ["고구마", "닭가슴살 샐러드"],
-        "exercises": ["필라테스", "아침 산책"],
-    }))
-    print("빈 팩트시트:", choose_buckets({"foods": [], "exercises": []}))
+    print("식품 언급 있음:", choose_buckets(
+        {"foods": ["고구마", "닭가슴살 샐러드"], "exercises": ["필라테스"]}, "0804"))
+    print("식품 언급 없음:", choose_buckets({"foods": [], "exercises": []}, "0804"))
+    print("다른 날짜   :", choose_buckets({"foods": [], "exercises": []}, "0806"))
+    print("\n운동 버킷이 섞이지 않는지 확인 — 위 결과에 아래 단어가 없어야 한다:")
+    print("  운동홈트 공간주방 공간홈트 셀럽감량 뷰티바디 스트레칭 필라테스")

@@ -23,25 +23,25 @@
     {
       "slot": 1,
       "category": "샐러드",
-      "photo": "샐러드_0w_1.jpg",
+      "photo": "샐러드_0w_0.jpg",
       "file": "1번 사진.jpg"
     },
     {
       "slot": 2,
-      "category": "운동홈트",
-      "photo": "운동홈트_0s_pexels_2.jpg",
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_pexels_0.jpg",
       "file": "2번 사진.jpg"
     },
     {
       "slot": 3,
-      "category": "공간주방",
-      "photo": "공간주방_0s_unsplash_1.jpg",
+      "category": "두부",
+      "photo": "두부_0s_unsplash_1.jpg",
       "file": "3번 사진.jpg"
     },
     {
       "slot": 4,
-      "category": "셀럽감량",
-      "photo": "셀럽감량_0s_unsplash_1.jpg",
+      "category": "오트밀",
+      "photo": "오트밀_0s_unsplash_1.jpg",
       "file": "4번 사진.jpg"
     }
   ]

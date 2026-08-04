@@ -1,5 +1,10 @@
 """매일 한 편. 크롤링 → 팩트시트 → 제목 확정 → 본문 → output/날짜/
 
+산출물 폴더는 아침에 열었을 때 복붙할 것만 보이게 둔다.
+  output/날짜/0번 본문.txt   ← 이것만 복사하면 된다
+  output/날짜/1번 사진.jpg …
+  output/날짜/_작업/          ← 팩트시트·제목점수·소스 등 중간 산출물
+
 경로는 두 개다.
 
 A) API 경로 — ANTHROPIC_API_KEY 가 있을 때. 한 번에 끝난다.
@@ -13,7 +18,7 @@ B) 에이전트 경로 — 키가 없을 때. 클로드 코드가 LLM 단계를 
        (에이전트가 factsheet.json + title_candidates.json 을 쓴다)
      python main.py --stage title    제목 확정 → 2_본문_지시서.md
        (에이전트가 body.txt 를 쓴다)
-     python main.py --stage finish   검증 → post.txt + 사진 + report.json
+     python main.py --stage finish   검증 → 0번 본문.txt + 사진
 
 어느 쪽이든 수집·제목 점수·형식 검증은 파이썬이 한다. LLM은 글만 쓴다.
 """
@@ -53,9 +58,21 @@ def pick_celeb(explicit=None):
 
 
 def outdir(date_str):
+    """복붙할 것만 놓는 폴더. 본문 1개 + 사진 몇 장."""
     d = os.path.join(C.OUTPUT_DIR, date_str)
     os.makedirs(d, exist_ok=True)
     return d
+
+
+def workdir(d):
+    """중간 산출물 폴더. 아침에 눈에 안 띄게 한 겹 내린다."""
+    w = os.path.join(d, C.WORK_SUBDIR)
+    os.makedirs(w, exist_ok=True)
+    return w
+
+
+def wpath(d, name):
+    return os.path.join(workdir(d), name)
 
 
 def _dump(path, obj):
@@ -83,7 +100,7 @@ def _load_text(path, what):
 
 
 def _finalize(d, body, richness, meta, chosen, polish_ok):
-    """검증 → post.txt → 사진 → report.json. 두 경로가 공유한다."""
+    """검증 → 0번 본문.txt → 사진 → report.json. 두 경로가 공유한다."""
     cta = meta.get("cta")
     problems = validator.validate(body, richness, cta)
     polished = False
@@ -96,14 +113,14 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
     body = validator.ensure_notices(body)
 
     post = chosen["title"] + "\n" + C.BLANK_LINE + "\n" + body
-    _dump(os.path.join(d, "post.txt"), post)
+    _dump(os.path.join(d, C.POST_FILENAME), post)
 
     made = []
     if not meta.get("no_images"):
         print("■ 사진 준비...")
         try:
             import images
-            fs = _load(os.path.join(d, "factsheet.json"), "팩트시트")
+            fs = _load(wpath(d, "factsheet.json"), "팩트시트")
             made = images.render(chosen["title"], fs,
                                  meta["date"].replace("-", "")[4:], d)
         except Exception as e:
@@ -138,14 +155,14 @@ def run_api(args):
     print("■ 팩트시트 추출...")
     fs = writer.build_factsheet(celeb, crawler.summarize(items))
     fs_text = writer.factsheet_text(fs)
-    _dump(os.path.join(d, "factsheet.json"), fs)
+    _dump(wpath(d, "factsheet.json"), fs)
     print(f"   식단 {len(fs.get('foods') or [])}개 / 운동 {len(fs.get('exercises') or [])}개 "
           f"/ 발언 {len(fs.get('quotes') or [])}개")
 
     print("■ 제목 후보 생성...")
     candidates = writer.generate_titles(fs_text)
     ranked = T.pick(candidates)
-    _dump(os.path.join(d, "titles.json"), ranked)
+    _dump(wpath(d, "titles.json"), ranked)
 
     print(f"■ 제목 점수 ({len(ranked)}개)")
     for r in ranked:
@@ -160,7 +177,7 @@ def run_api(args):
 
     if args.dry_run:
         print("\n(--dry-run 이므로 본문은 만들지 않습니다)")
-        _dump(os.path.join(d, "report.json"), {
+        _dump(wpath(d, "report.json"), {
             "date": date_str, "celeb": celeb, "richness": richness,
             "sources": len(items), "title": chosen, "dry_run": True,
         })
@@ -177,7 +194,7 @@ def run_api(args):
     post, problems, extra_polish, made, cl = _finalize(
         d, body, richness, meta, chosen, polish_ok=False)
 
-    _dump(os.path.join(d, "report.json"), {
+    _dump(wpath(d, "report.json"), {
         "date": date_str, "celeb": celeb, "richness": richness,
         "sources": len(items), "title": chosen, "cta": cta,
         "content_lines": cl, "polished": polished or extra_polish,
@@ -189,7 +206,7 @@ def run_api(args):
     store.mark_articles(items)
     store.record_post(date_str, celeb, chosen["title"], cta)
 
-    print(f"■ 완료 → {os.path.join(d, 'post.txt')}")
+    print(f"■ 완료 → {os.path.join(d, C.POST_FILENAME)}")
     print(f"   내용 줄 {cl}개 / 사진 {len(made)}장 / 남은 위반 {len(problems)}건"
           + ("  (polish 강제복구 적용)" if polished else ""))
     for p in problems:
@@ -204,7 +221,7 @@ def already_done(d, force):
     루틴이 매일 같은 날짜 폴더에 쓰는데, 사람이 미리 만들어둔 글이 있으면
     말없이 덮어쓴다. 손으로 다듬은 원고가 새벽에 사라지는 사고가 난다.
     """
-    post = os.path.join(d, "post.txt")
+    post = os.path.join(d, C.POST_FILENAME)
     if force or not os.path.exists(post):
         return False
     print(f"■ 이미 오늘자 글이 있습니다 → {post}")
@@ -230,8 +247,8 @@ def stage_crawl(args):
     cta = store.next_cta()
     print(f"   {len(items)}건 수집 / richness={richness}")
 
-    _dump(os.path.join(d, "sources.json"), items)
-    _dump(os.path.join(d, "meta.json"), {
+    _dump(wpath(d, "sources.json"), items)
+    _dump(wpath(d, "meta.json"), {
         "date": date_str, "celeb": celeb, "richness": richness,
         "sources": len(items), "cta": cta, "no_images": args.no_images,
     })
@@ -248,13 +265,13 @@ def stage_title(args):
     date_str = args.date or store.today_str()
     d = outdir(date_str)
 
-    meta = _load(os.path.join(d, "meta.json"), "meta.json (--stage crawl 먼저)")
-    fs = _load(os.path.join(d, "factsheet.json"), "factsheet.json (에이전트가 써야 합니다)")
-    cand = _load(os.path.join(d, "title_candidates.json"), "title_candidates.json")
+    meta = _load(wpath(d, "meta.json"), "meta.json (--stage crawl 먼저)")
+    fs = _load(wpath(d, "factsheet.json"), "factsheet.json (에이전트가 써야 합니다)")
+    cand = _load(wpath(d, "title_candidates.json"), "title_candidates.json")
     candidates = cand.get("titles") if isinstance(cand, dict) else cand
 
     ranked = T.pick(candidates or [])
-    _dump(os.path.join(d, "titles.json"), ranked)
+    _dump(wpath(d, "titles.json"), ranked)
 
     print(f"■ 제목 점수 ({len(ranked)}개)")
     for r in ranked:
@@ -280,9 +297,9 @@ def stage_finish(args):
     date_str = args.date or store.today_str()
     d = outdir(date_str)
 
-    meta = _load(os.path.join(d, "meta.json"), "meta.json (--stage crawl 먼저)")
-    ranked = _load(os.path.join(d, "titles.json"), "titles.json (--stage title 먼저)")
-    body = _load_text(os.path.join(d, "body.txt"), "body.txt (에이전트가 써야 합니다)")
+    meta = _load(wpath(d, "meta.json"), "meta.json (--stage crawl 먼저)")
+    ranked = _load(wpath(d, "titles.json"), "titles.json (--stage title 먼저)")
+    body = _load_text(wpath(d, "body.txt"), "body.txt (에이전트가 써야 합니다)")
     chosen = ranked[0]
     if args.no_images:
         meta["no_images"] = True
@@ -290,7 +307,7 @@ def stage_finish(args):
     post, problems, polished, made, cl = _finalize(
         d, body, meta["richness"], meta, chosen, polish_ok=args.polish)
 
-    _dump(os.path.join(d, "report.json"), {
+    _dump(wpath(d, "report.json"), {
         "date": meta["date"], "celeb": meta["celeb"], "richness": meta["richness"],
         "sources": meta["sources"], "title": chosen, "cta": meta["cta"],
         "content_lines": cl, "polished": polished,
@@ -299,7 +316,7 @@ def stage_finish(args):
 
     if problems:
         note = brief.repair_note(d, problems)
-        print(f"■ 형식 위반 {len(problems)}건 — post.txt는 만들었지만 아직 복붙하면 안 됩니다.")
+        print(f"■ 형식 위반 {len(problems)}건 — 본문 파일은 만들었지만 아직 복붙하면 안 됩니다.")
         for p in problems[:12]:
             print(f"      · {p}")
         print(f"   위반 목록 → {note}")
@@ -308,18 +325,18 @@ def stage_finish(args):
 
     # 통과했으면 지난 회차의 위반 목록을 남겨두지 않는다.
     # 고쳐서 통과했는데 파일이 그대로 있으면 아침에 아직 문제가 있는 줄 안다.
-    stale = os.path.join(d, "위반목록.md")
+    stale = wpath(d, "위반목록.md")
     if os.path.exists(stale):
         os.remove(stale)
 
     items = []
-    if os.path.exists(os.path.join(d, "sources.json")):
-        items = _load(os.path.join(d, "sources.json"), "sources.json")
+    if os.path.exists(wpath(d, "sources.json")):
+        items = _load(wpath(d, "sources.json"), "sources.json")
     store.mark_celeb(meta["celeb"])
     store.mark_articles(items)
     store.record_post(meta["date"], meta["celeb"], chosen["title"], meta["cta"])
 
-    print(f"■ 완료 → {os.path.join(d, 'post.txt')}")
+    print(f"■ 완료 → {os.path.join(d, C.POST_FILENAME)}")
     print(f"   내용 줄 {cl}개 / 사진 {len(made)}장 / 위반 0건"
           + ("  (polish 강제복구 적용)" if polished else ""))
 
@@ -340,7 +357,7 @@ def main():
                     help="finish에서 형식 위반을 기계적으로 강제 복구 (최후 수단)")
     ap.add_argument("--date", help="작업 폴더 날짜 지정 (YYYY-MM-DD). 기본은 오늘")
     ap.add_argument("--force", action="store_true",
-                    help="그 날짜에 완성된 post.txt 가 있어도 새로 만든다")
+                    help="그 날짜에 완성된 본문이 있어도 새로 만든다")
     args = ap.parse_args()
 
     try:
