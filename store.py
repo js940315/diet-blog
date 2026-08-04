@@ -133,7 +133,13 @@ def next_cta() -> str:
 # ── 발행 기록 ───────────────────────────────────────────────────────────
 
 def record_post(date: str, celeb: str, title: str, cta: str):
+    """하루 한 편이 원칙이라 같은 날짜는 덮어쓴다.
+
+    --stage finish 는 형식 위반을 고치며 여러 번 돌린다. 그때마다 행이 쌓이면
+    recent_ctas()가 오염돼 CTA 로테이션이 헛돈다(실제로 하루에 4행이 쌓였다).
+    """
     with _connect() as conn:
+        conn.execute("DELETE FROM posts WHERE date = ?", (date,))
         conn.execute(
             "INSERT INTO posts(date, celeb, title, cta, created_at) VALUES(?,?,?,?,?)",
             (date, celeb, title, cta, now_kst().isoformat()),
