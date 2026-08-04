@@ -76,7 +76,8 @@ def disqualify_reason(title: str):
         if w in title:
             return f"금지선: {w}"
     for name in C.CELEB_POOL:
-        if name in title:
+        # 2글자 이름은 일반 단어와 겹친다 (조이는/수지타산/슬기롭게). 3글자만 자동검사.
+        if len(name) >= 3 and name in title:
             return f"여자 실명 노출: {name}"
     return None
 

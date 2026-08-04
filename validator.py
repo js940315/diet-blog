@@ -230,7 +230,8 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
         if celeb not in full:
             problems.append(f"실명 리빌 없음: 도입부에서 {celeb} 이름을 밝혀야 함")
         for name in C.CELEB_POOL:
-            if name != celeb and name in full:
+            # 2글자 이름은 일반 단어와 겹쳐 오탐 (조이는/슬기롭게). 3글자만.
+            if len(name) >= 3 and name != celeb and name in full:
                 problems.append(f"다른 여자 연예인 실명 노출: {name}")
     else:
         # 인물 없이 호출된 경우(자체 테스트)는 예전처럼 전부 잡는다

@@ -121,25 +121,29 @@ def recent_ctas(n=None):
     return [r["cta"] for r in rows]
 
 
-def next_cta() -> str:
-    """직전 글들과 다른 CTA를 코드가 강제로 고른다."""
+def next_cta(offset: int = 0) -> str:
+    """직전 글들과 다른 CTA를 코드가 강제로 고른다.
+
+    offset: 같은 날 여러 슬롯이 동시에 만들어질 때 슬롯 번호를 넘긴다.
+    수집 시점에는 아직 아무것도 기록되지 않아서, offset 없이는
+    10개 슬롯이 전부 같은 CTA를 받는다.
+    """
     used = set(recent_ctas())
-    for cta in C.CTA_POOL:
-        if cta not in used:
-            return cta
-    return C.CTA_POOL[0]  # 풀을 다 돌았으면 처음부터
+    pool = [c for c in C.CTA_POOL if c not in used] or list(C.CTA_POOL)
+    return pool[offset % len(pool)]
 
 
 # ── 발행 기록 ───────────────────────────────────────────────────────────
 
 def record_post(date: str, celeb: str, title: str, cta: str):
-    """하루 한 편이 원칙이라 같은 날짜는 덮어쓴다.
+    """같은 날짜+인물은 덮어쓴다 (슬롯당 한 행).
 
     --stage finish 는 형식 위반을 고치며 여러 번 돌린다. 그때마다 행이 쌓이면
     recent_ctas()가 오염돼 CTA 로테이션이 헛돈다(실제로 하루에 4행이 쌓였다).
+    하루 여러 슬롯 체제라 날짜 전체가 아니라 날짜+인물 단위로 갈아끼운다.
     """
     with _connect() as conn:
-        conn.execute("DELETE FROM posts WHERE date = ?", (date,))
+        conn.execute("DELETE FROM posts WHERE date = ? AND celeb = ?", (date, celeb))
         conn.execute(
             "INSERT INTO posts(date, celeb, title, cta, created_at) VALUES(?,?,?,?,?)",
             (date, celeb, title, cta, now_kst().isoformat()),

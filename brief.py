@@ -22,8 +22,13 @@ import prompts
 
 
 def workdir(outdir):
-    """그 날짜의 중간 산출물 폴더. output 밖에 있다."""
-    w = os.path.join(C.WORK_DIR, os.path.basename(outdir.rstrip("/\\")))
+    """그 날짜(/슬롯)의 중간 산출물 폴더. output 밖에 있다.
+
+    output/2026-08-07/3 -> state/work/2026-08-07/3
+    basename 만 쓰면 슬롯 번호끼리 날짜를 넘어 충돌하므로 상대 경로로 잡는다.
+    """
+    rel = os.path.relpath(os.path.abspath(outdir), C.OUTPUT_DIR)
+    w = os.path.join(C.WORK_DIR, rel)
     os.makedirs(w, exist_ok=True)
     return w
 

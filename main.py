@@ -1,24 +1,21 @@
-"""매일 한 편. 크롤링 → 팩트시트 → 제목 확정 → 본문 → output/날짜/
+"""매일 최대 10편. 크롤링 → 팩트시트 → 제목 확정 → 본문 → output/날짜/슬롯/
 
 산출물 폴더는 아침에 열었을 때 복붙할 것만 보이게 둔다.
-  output/날짜/0번 본문.txt   ← 이것만 복사하면 된다
-  output/날짜/1번 사진.jpg …
-  output/날짜/_작업/          ← 팩트시트·제목점수·소스 등 중간 산출물
+  output/날짜/1/0번 본문.txt   ← 슬롯마다 본문 1 + 사진
+  output/날짜/1/1번 사진.jpg …
+  output/날짜/2/ … output/날짜/10/
+  state/work/날짜/슬롯/         ← 팩트시트·제목점수·소스 등 중간 산출물
 
-경로는 두 개다.
+하루 발행량은 상한이다. 소스가 되는 인물이 부족하면 적게 나오는 게 정상 —
+억지로 채우면 유사문서 위험만 커진다.
 
-A) API 경로 — ANTHROPIC_API_KEY 가 있을 때. 한 번에 끝난다.
-     python main.py --dry-run        제목까지만 (첫 실행 권장)
-     python main.py                  풀 생성
-     python main.py --celeb 김희선   인물 지정
-     python main.py --sort date      최신 기사 위주
+A) API 경로 — ANTHROPIC_API_KEY 가 있을 때 (슬롯 1만, 백업용)
+     python main.py --dry-run / python main.py --celeb 김희선
 
-B) 에이전트 경로 — 키가 없을 때. 클로드 코드가 LLM 단계를 맡는다.
-     python main.py --stage crawl    수집 → 1_팩트시트_지시서.md
-       (에이전트가 factsheet.json + title_candidates.json 을 쓴다)
-     python main.py --stage title    제목 확정 → 2_본문_지시서.md
-       (에이전트가 body.txt 를 쓴다)
-     python main.py --stage finish   검증 → 0번 본문.txt + 사진
+B) 에이전트 경로 — 키가 없을 때. 클로드 코드가 글만 쓴다.
+     python main.py --stage crawl            10개 슬롯 수집 + 지시서
+     python main.py --stage title            전 슬롯 제목 확정 (또는 --slot N)
+     python main.py --stage finish           전 슬롯 검증·마감 (또는 --slot N)
 
 어느 쪽이든 수집·제목 점수·형식 검증은 파이썬이 한다. LLM은 글만 쓴다.
 """
@@ -42,24 +39,9 @@ def _utf8_stdout():
         sys.stdout.reconfigure(encoding="utf-8")
 
 
-def pick_celeb(explicit=None):
-    if explicit:
-        if store.celeb_on_cooldown(explicit):
-            print(f"[주의] {explicit}은(는) 쿨다운 중입니다 "
-                  f"({C.CELEB_COOLDOWN_DAYS}일). 지정했으니 그대로 진행합니다.")
-        return explicit
-    pool = store.available_celebs()
-    if not pool:
-        raise SystemExit(
-            f"사용 가능한 인물이 없습니다. 전원 {C.CELEB_COOLDOWN_DAYS}일 쿨다운 중입니다.\n"
-            "config.py의 CELEB_POOL을 늘리거나 CELEB_COOLDOWN_DAYS를 줄이세요."
-        )
-    return pool[0]
-
-
-def outdir(date_str):
-    """복붙할 것만 놓는 폴더. 본문 1개 + 사진 몇 장."""
-    d = os.path.join(C.OUTPUT_DIR, date_str)
+def outdir(date_str, slot):
+    """복붙할 것만 놓는 폴더. 슬롯당 본문 1개 + 사진 몇 장."""
+    d = os.path.join(C.OUTPUT_DIR, date_str, str(slot))
     os.makedirs(d, exist_ok=True)
     return d
 
@@ -91,6 +73,38 @@ def _load_text(path, what):
         return f.read()
 
 
+def _slots(args):
+    return [args.slot] if args.slot else list(range(1, C.DAILY_SLOTS + 1))
+
+
+def _slot_meta(date_str, slot):
+    p = os.path.join(C.WORK_DIR, date_str, str(slot), "meta.json")
+    if not os.path.exists(p):
+        return None
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _todays_celebs(date_str):
+    """오늘 다른 슬롯이 이미 잡아둔 인물들. 같은 날 중복 방지."""
+    used = set()
+    for s in range(1, C.DAILY_SLOTS + 1):
+        m = _slot_meta(date_str, s)
+        if m and m.get("celeb"):
+            used.add(m["celeb"])
+    return used
+
+
+def already_done(d, force):
+    """완성된 글이 이미 있으면 건드리지 않는다.
+
+    사람이 미리 만들어둔 원고를 새벽 루틴이 말없이 덮어쓰는 사고 방지.
+    """
+    post = os.path.join(d, C.POST_FILENAME)
+    if force or not os.path.exists(post):
+        return False
+    print(f"■ 이미 완성된 글이 있습니다 → {post} (건너뜀. 재생성은 --force)")
+    return True
 
 
 def _finalize(d, body, richness, meta, chosen, polish_ok):
@@ -104,7 +118,6 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
         polished = True
         problems = validator.validate(body, richness, cta, celeb, chosen["title"])
 
-    # 제휴 표시·건강 면책은 polish를 안 거쳐도 반드시 붙어야 한다
     body = validator.ensure_notices(body)
 
     post = chosen["title"] + "\n" + C.BLANK_LINE + "\n" + body
@@ -112,7 +125,6 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
 
     made = []
     if not meta.get("no_images"):
-        print("■ 사진 준비...")
         try:
             import images
             fs = _load(wpath(d, "factsheet.json"), "팩트시트")
@@ -125,20 +137,204 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
     return post, problems, polished, made, cl
 
 
-# ── A) API 경로 ─────────────────────────────────────────────────────────
+# ── B) 에이전트 경로 ────────────────────────────────────────────────────
+
+def _crawl_one_slot(date_str, slot, args):
+    """슬롯 하나에 인물을 배정하고 소스를 모은다.
+
+    소스가 10건 미만인 인물은 글이 얇아지므로 쿨다운 처리하고 다음 인물로
+    넘어간다. 억지로 얇은 인물을 붙잡는 것보다 풀을 순환시키는 게 낫다.
+    """
+    d = outdir(date_str, slot)
+    if already_done(d, args.force):
+        return "skip"
+    if _slot_meta(date_str, slot) and not args.force:
+        print(f"■ 슬롯 {slot}: 이미 수집돼 있음 (건너뜀)")
+        return "skip"
+
+    tried = set(_todays_celebs(date_str))
+    celeb, items = None, []
+    for _ in range(6):
+        if args.celeb and args.celeb not in tried:
+            cand = args.celeb
+        else:
+            cand = next((n for n in store.available_celebs() if n not in tried), None)
+        if not cand:
+            break
+        tried.add(cand)
+        got = crawler.collect(cand, sort=args.sort, mode=args.source)
+        if len(got) >= 10:
+            celeb, items = cand, got
+            break
+        print(f"   [건너뜀] {cand}: 소스 {len(got)}건 — 부족. 쿨다운 처리.")
+        store.mark_celeb(cand)
+
+    if not celeb:
+        print(f"■ 슬롯 {slot}: 채울 인물이 없습니다. 오늘은 여기까지가 상한입니다.")
+        return "empty"
+
+    richness = crawler.assess_richness(items)
+    cta = store.next_cta(offset=slot - 1)
+    heart = C.HEART_CTA_POOL[(int(date_str.replace("-", "")) + slot)
+                             % len(C.HEART_CTA_POOL)]
+    print(f"■ 슬롯 {slot}: {celeb} — {len(items)}건 / richness={richness}")
+
+    _dump(wpath(d, "sources.json"), items)
+    _dump(wpath(d, "meta.json"), {
+        "date": date_str, "slot": slot, "celeb": celeb, "richness": richness,
+        "sources": len(items), "cta": cta, "heart": heart,
+        "no_images": args.no_images,
+    })
+    brief.factsheet_brief(d, celeb, richness, crawler.summarize(items), len(items))
+    return "ok"
+
+
+def stage_crawl(args):
+    store.init()
+    date_str = args.date or store.today_str()
+
+    made = 0
+    for s in _slots(args):
+        r = _crawl_one_slot(date_str, s, args)
+        if r == "ok":
+            made += 1
+        elif r == "empty":
+            break
+        if args.celeb:      # 인물 지정은 슬롯 하나만 채운다
+            break
+
+    print(f"■ 수집 완료: 새 슬롯 {made}개 준비 (지시서: state/work/{date_str}/슬롯/)")
+    print("   에이전트: 슬롯마다 factsheet.json + title_candidates.json 작성")
+    print("   그 다음: python main.py --stage title")
+
+
+def _title_one_slot(date_str, slot):
+    d = outdir(date_str, slot)
+    meta = _slot_meta(date_str, slot)
+    if not meta:
+        return None
+    fs_p = wpath(d, "factsheet.json")
+    cand_p = wpath(d, "title_candidates.json")
+    if not (os.path.exists(fs_p) and os.path.exists(cand_p)):
+        print(f"■ 슬롯 {slot}: 팩트시트/제목후보 없음 — 건너뜀")
+        return None
+
+    fs = _load(fs_p, "팩트시트")
+    cand = _load(cand_p, "title_candidates.json")
+    candidates = cand.get("titles") if isinstance(cand, dict) else cand
+    ranked = T.pick(candidates or [])
+    _dump(wpath(d, "titles.json"), ranked)
+
+    if not ranked or ranked[0]["score"] <= 0:
+        print(f"■ 슬롯 {slot}: 쓸 만한 제목이 없음 — 후보를 다시 써야 함")
+        return None
+
+    chosen = ranked[0]
+    second = ranked[1]["score"] if len(ranked) > 1 else 0
+    print(f"■ 슬롯 {slot} 확정: {chosen['title']}  ({chosen['score']}점, 2등과 {chosen['score']-second}점차)")
+
+    heart = meta.get("heart") or C.HEART_CTA_POOL[0]
+    brief.body_brief(d, chosen["title"], brief.factsheet_text(fs),
+                     meta["richness"], meta["cta"],
+                     bool(fs.get("has_exercise_detail")),
+                     meta["celeb"], heart)
+    return chosen
+
+
+def stage_title(args):
+    store.init()
+    date_str = args.date or store.today_str()
+    done = sum(1 for s in _slots(args) if _title_one_slot(date_str, s))
+    print(f"■ 제목 확정 {done}개 슬롯. 에이전트: 슬롯마다 draft.txt 작성")
+    print("   그 다음: python main.py --stage finish")
+
+
+def _finish_one_slot(date_str, slot, args):
+    d = outdir(date_str, slot)
+    meta = _slot_meta(date_str, slot)
+    if not meta:
+        return None
+    body_p = wpath(d, "body.txt")
+    titles_p = wpath(d, "titles.json")
+    if not (os.path.exists(body_p) and os.path.exists(titles_p)):
+        print(f"■ 슬롯 {slot}: body.txt 없음 — 건너뜀")
+        return None
+
+    ranked = _load(titles_p, "titles.json")
+    body = _load_text(body_p, "body.txt")
+    chosen = ranked[0]
+    if args.no_images:
+        meta["no_images"] = True
+
+    post, problems, polished, made, cl = _finalize(
+        d, body, meta["richness"], meta, chosen, polish_ok=args.polish)
+
+    _dump(wpath(d, "report.json"), {
+        "date": meta["date"], "slot": slot, "celeb": meta["celeb"],
+        "richness": meta["richness"], "sources": meta["sources"],
+        "title": chosen, "cta": meta["cta"], "content_lines": cl,
+        "polished": polished, "route": "agent",
+        "final_problems": problems, "images": made,
+    })
+
+    if problems:
+        brief.repair_note(d, problems)
+        print(f"■ 슬롯 {slot}: 위반 {len(problems)}건 — draft.txt 고쳐서 다시")
+        for p in problems[:8]:
+            print(f"      · {p}")
+        return False
+
+    stale = wpath(d, "위반목록.md")
+    if os.path.exists(stale):
+        os.remove(stale)
+
+    items = []
+    if os.path.exists(wpath(d, "sources.json")):
+        items = _load(wpath(d, "sources.json"), "sources.json")
+    store.mark_celeb(meta["celeb"])
+    store.mark_articles(items)
+    store.record_post(meta["date"], meta["celeb"], chosen["title"], meta["cta"])
+
+    print(f"■ 슬롯 {slot} 완료: {meta['celeb']} / 줄 {cl} / 사진 {len(made)}장"
+          + (" (polish)" if polished else ""))
+    return True
+
+
+def stage_finish(args):
+    store.init()
+    date_str = args.date or store.today_str()
+    ok, fail = 0, 0
+    for s in _slots(args):
+        r = _finish_one_slot(date_str, s, args)
+        if r is True:
+            ok += 1
+        elif r is False:
+            fail += 1
+    print(f"■ 마감: 통과 {ok}개 / 위반 남음 {fail}개")
+    if fail:
+        sys.exit(4)
+
+
+# ── A) API 경로 (슬롯 1 전용 백업) ──────────────────────────────────────
 
 def run_api(args):
     import writer
 
     store.init()
-    date_str = store.today_str()
-    d = outdir(date_str)
-
+    date_str = args.date or store.today_str()
+    slot = args.slot or 1
+    d = outdir(date_str, slot)
     if already_done(d, args.force):
         return
 
-    celeb = pick_celeb(args.celeb)
-    print(f"■ 인물: {celeb}   (날짜 {date_str} KST)")
+    tried = set(_todays_celebs(date_str))
+    if args.celeb:
+        celeb = args.celeb
+    else:
+        celeb = next((n for n in store.available_celebs() if n not in tried), None)
+        if not celeb:
+            raise SystemExit("사용 가능한 인물이 없습니다.")
+    print(f"■ 인물: {celeb}   (날짜 {date_str} / 슬롯 {slot})")
 
     print("■ 수집 중...")
     items = crawler.collect(celeb, sort=args.sort, mode=args.source)
@@ -151,214 +347,65 @@ def run_api(args):
     fs = writer.build_factsheet(celeb, crawler.summarize(items))
     fs_text = writer.factsheet_text(fs)
     _dump(wpath(d, "factsheet.json"), fs)
-    print(f"   식단 {len(fs.get('foods') or [])}개 / 운동 {len(fs.get('exercises') or [])}개 "
-          f"/ 발언 {len(fs.get('quotes') or [])}개")
 
     print("■ 제목 후보 생성...")
     candidates = writer.generate_titles(fs_text)
     ranked = T.pick(candidates)
     _dump(wpath(d, "titles.json"), ranked)
-
-    print(f"■ 제목 점수 ({len(ranked)}개)")
     for r in ranked:
         print(f"   {r['score']:>5}  {r['title']}")
     if not ranked or ranked[0]["score"] <= 0:
-        raise SystemExit("쓸 만한 제목이 없습니다. 후킹 근거가 부족하거나 전부 탈락했습니다.")
-
+        raise SystemExit("쓸 만한 제목이 없습니다.")
     chosen = ranked[0]
     print(f"■ 확정: {chosen['title']}  ({chosen['score']}점)")
-    for why in chosen["reasons"]:
-        print(f"      - {why}")
 
     if args.dry_run:
         print("\n(--dry-run 이므로 본문은 만들지 않습니다)")
-        _dump(wpath(d, "report.json"), {
-            "date": date_str, "celeb": celeb, "richness": richness,
-            "sources": len(items), "title": chosen, "dry_run": True,
-        })
         return
 
-    cta = store.next_cta()
-    print(f"■ 본문 생성... (CTA: {cta[:24]}...)")
-    heart = C.HEART_CTA_POOL[int(date_str.replace("-", "")) % len(C.HEART_CTA_POOL)]
+    cta = store.next_cta(offset=slot - 1)
+    heart = C.HEART_CTA_POOL[(int(date_str.replace("-", "")) + slot)
+                             % len(C.HEART_CTA_POOL)]
     body, history, polished = writer.generate_body(
         chosen["title"], fs_text, richness, cta,
         bool(fs.get("has_exercise_detail")), celeb, heart,
     )
 
-    meta = {"date": date_str, "celeb": celeb, "cta": cta, "no_images": args.no_images}
+    meta = {"date": date_str, "slot": slot, "celeb": celeb, "cta": cta,
+            "no_images": args.no_images}
     post, problems, extra_polish, made, cl = _finalize(
         d, body, richness, meta, chosen, polish_ok=False)
 
     _dump(wpath(d, "report.json"), {
-        "date": date_str, "celeb": celeb, "richness": richness,
+        "date": date_str, "slot": slot, "celeb": celeb, "richness": richness,
         "sources": len(items), "title": chosen, "cta": cta,
         "content_lines": cl, "polished": polished or extra_polish,
-        "repair_history": history, "final_problems": problems,
-        "images": made,
+        "repair_history": history, "final_problems": problems, "images": made,
     })
 
     store.mark_celeb(celeb)
     store.mark_articles(items)
     store.record_post(date_str, celeb, chosen["title"], cta)
-
-    print(f"■ 완료 → {os.path.join(d, C.POST_FILENAME)}")
-    print(f"   내용 줄 {cl}개 / 사진 {len(made)}장 / 남은 위반 {len(problems)}건"
-          + ("  (polish 강제복구 적용)" if polished else ""))
-    for p in problems:
-        print(f"      · {p}")
-
-
-# ── B) 에이전트 경로 ────────────────────────────────────────────────────
-
-def already_done(d, force):
-    """그 날짜에 완성된 글이 이미 있으면 건드리지 않는다.
-
-    루틴이 매일 같은 날짜 폴더에 쓰는데, 사람이 미리 만들어둔 글이 있으면
-    말없이 덮어쓴다. 손으로 다듬은 원고가 새벽에 사라지는 사고가 난다.
-    """
-    post = os.path.join(d, C.POST_FILENAME)
-    if force or not os.path.exists(post):
-        return False
-    print(f"■ 이미 오늘자 글이 있습니다 → {post}")
-    print("   덮어쓰지 않고 종료합니다. 다시 만들려면 --force 를 붙이세요.")
-    return True
-
-
-def stage_crawl(args):
-    store.init()
-    date_str = args.date or store.today_str()
-    d = outdir(date_str)
-    if already_done(d, args.force):
-        return
-
-    celeb = pick_celeb(args.celeb)
-    print(f"■ 인물: {celeb}   (날짜 {date_str} KST)")
-
-    print("■ 수집 중...")
-    items = crawler.collect(celeb, sort=args.sort, mode=args.source)
-    if not items:
-        raise SystemExit("소스를 하나도 못 모았습니다. 인물을 바꾸거나 --sort date로 시도하세요.")
-    richness = crawler.assess_richness(items)
-    cta = store.next_cta()
-    print(f"   {len(items)}건 수집 / richness={richness}")
-
-    _dump(wpath(d, "sources.json"), items)
-    heart = C.HEART_CTA_POOL[int(date_str.replace("-", "")) % len(C.HEART_CTA_POOL)]
-    _dump(wpath(d, "meta.json"), {
-        "date": date_str, "celeb": celeb, "richness": richness,
-        "sources": len(items), "cta": cta, "heart": heart,
-        "no_images": args.no_images,
-    })
-    path = brief.factsheet_brief(d, celeb, richness,
-                                 crawler.summarize(items), len(items))
-
-    print(f"■ 1단계 지시서 → {path}")
-    print("   에이전트가 할 일: factsheet.json + title_candidates.json 작성")
-    print("   그 다음: python main.py --stage title")
-
-
-def stage_title(args):
-    store.init()
-    date_str = args.date or store.today_str()
-    d = outdir(date_str)
-
-    meta = _load(wpath(d, "meta.json"), "meta.json (--stage crawl 먼저)")
-    fs = _load(wpath(d, "factsheet.json"), "factsheet.json (에이전트가 써야 합니다)")
-    cand = _load(wpath(d, "title_candidates.json"), "title_candidates.json")
-    candidates = cand.get("titles") if isinstance(cand, dict) else cand
-
-    ranked = T.pick(candidates or [])
-    _dump(wpath(d, "titles.json"), ranked)
-
-    print(f"■ 제목 점수 ({len(ranked)}개)")
-    for r in ranked:
-        print(f"   {r['score']:>5}  {r['title']}")
-    if not ranked or ranked[0]["score"] <= 0:
-        raise SystemExit("쓸 만한 제목이 없습니다. 후킹 근거가 부족하거나 전부 탈락했습니다.")
-
-    chosen = ranked[0]
-    print(f"■ 확정: {chosen['title']}  ({chosen['score']}점)")
-    for why in chosen["reasons"]:
-        print(f"      - {why}")
-
-    heart = meta.get("heart") or C.HEART_CTA_POOL[
-        int(date_str.replace("-", "")) % len(C.HEART_CTA_POOL)]
-    path = brief.body_brief(d, chosen["title"], brief.factsheet_text(fs),
-                            meta["richness"], meta["cta"],
-                            bool(fs.get("has_exercise_detail")),
-                            meta["celeb"], heart)
-    print(f"■ 2단계 지시서 → {path}")
-    print("   에이전트가 할 일: body.txt 작성")
-    print("   그 다음: python main.py --stage finish")
-
-
-def stage_finish(args):
-    store.init()
-    date_str = args.date or store.today_str()
-    d = outdir(date_str)
-
-    meta = _load(wpath(d, "meta.json"), "meta.json (--stage crawl 먼저)")
-    ranked = _load(wpath(d, "titles.json"), "titles.json (--stage title 먼저)")
-    body = _load_text(wpath(d, "body.txt"), "body.txt (에이전트가 써야 합니다)")
-    chosen = ranked[0]
-    if args.no_images:
-        meta["no_images"] = True
-
-    post, problems, polished, made, cl = _finalize(
-        d, body, meta["richness"], meta, chosen, polish_ok=args.polish)
-
-    _dump(wpath(d, "report.json"), {
-        "date": meta["date"], "celeb": meta["celeb"], "richness": meta["richness"],
-        "sources": meta["sources"], "title": chosen, "cta": meta["cta"],
-        "content_lines": cl, "polished": polished,
-        "route": "agent", "final_problems": problems, "images": made,
-    })
-
-    if problems:
-        note = brief.repair_note(d, problems)
-        print(f"■ 형식 위반 {len(problems)}건 — 본문 파일은 만들었지만 아직 복붙하면 안 됩니다.")
-        for p in problems[:12]:
-            print(f"      · {p}")
-        print(f"   위반 목록 → {note}")
-        print("   body.txt 를 고쳐서 --stage finish 를 다시 실행하세요.")
-        sys.exit(4)
-
-    # 통과했으면 지난 회차의 위반 목록을 남겨두지 않는다.
-    # 고쳐서 통과했는데 파일이 그대로 있으면 아침에 아직 문제가 있는 줄 안다.
-    stale = wpath(d, "위반목록.md")
-    if os.path.exists(stale):
-        os.remove(stale)
-
-    items = []
-    if os.path.exists(wpath(d, "sources.json")):
-        items = _load(wpath(d, "sources.json"), "sources.json")
-    store.mark_celeb(meta["celeb"])
-    store.mark_articles(items)
-    store.record_post(meta["date"], meta["celeb"], chosen["title"], meta["cta"])
-
-    print(f"■ 완료 → {os.path.join(d, C.POST_FILENAME)}")
-    print(f"   내용 줄 {cl}개 / 사진 {len(made)}장 / 위반 0건"
-          + ("  (polish 강제복구 적용)" if polished else ""))
+    print(f"■ 완료 → {os.path.join(d, C.POST_FILENAME)} / 위반 {len(problems)}건")
 
 
 def main():
     _utf8_stdout()
-    ap = argparse.ArgumentParser(description="네이버 다이어트 블로그 자동 생성")
+    ap = argparse.ArgumentParser(description="네이버 다이어트 블로그 자동 생성 (하루 최대 10편)")
     ap.add_argument("--stage", choices=("crawl", "title", "finish"),
                     help="에이전트 경로. 생략하면 API 경로(키 필요)")
+    ap.add_argument("--slot", type=int, choices=range(1, 11), metavar="1~10",
+                    help="특정 슬롯만. 생략하면 전 슬롯 순회")
     ap.add_argument("--dry-run", action="store_true", help="제목까지만 생성 (API 경로)")
-    ap.add_argument("--celeb", help="인물 지정")
-    ap.add_argument("--sort", choices=("sim", "date"), default=C.DEFAULT_SORT,
-                    help="sim=정확도(기본) / date=최신. 네이버 경로에서만 의미 있음")
-    ap.add_argument("--source", choices=("auto", "naver", "google"), default=C.SOURCE_MODE,
-                    help="수집 경로. auto=네이버 키 없으면 구글 뉴스")
+    ap.add_argument("--celeb", help="인물 지정 (슬롯 하나만 채움)")
+    ap.add_argument("--sort", choices=("sim", "date"), default=C.DEFAULT_SORT)
+    ap.add_argument("--source", choices=("auto", "naver", "google"), default=C.SOURCE_MODE)
     ap.add_argument("--no-images", action="store_true", help="본문만 생성 (사진 생략)")
     ap.add_argument("--polish", action="store_true",
                     help="finish에서 형식 위반을 기계적으로 강제 복구 (최후 수단)")
-    ap.add_argument("--date", help="작업 폴더 날짜 지정 (YYYY-MM-DD). 기본은 오늘")
+    ap.add_argument("--date", help="작업 날짜 (YYYY-MM-DD). 기본은 오늘")
     ap.add_argument("--force", action="store_true",
-                    help="그 날짜에 완성된 본문이 있어도 새로 만든다")
+                    help="완성된 본문이 있어도 새로 만든다")
     args = ap.parse_args()
 
     try:
