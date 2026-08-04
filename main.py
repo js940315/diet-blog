@@ -97,12 +97,12 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
     """검증 → 0번 본문.txt → 사진 → report.json. 두 경로가 공유한다."""
     cta = meta.get("cta")
     celeb = meta.get("celeb")
-    problems = validator.validate(body, richness, cta, celeb)
+    problems = validator.validate(body, richness, cta, celeb, chosen["title"])
     polished = False
     if problems and polish_ok:
         body = validator.polish(body)
         polished = True
-        problems = validator.validate(body, richness, cta, celeb)
+        problems = validator.validate(body, richness, cta, celeb, chosen["title"])
 
     # 제휴 표시·건강 면책은 polish를 안 거쳐도 반드시 붙어야 한다
     body = validator.ensure_notices(body)

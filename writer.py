@@ -103,7 +103,7 @@ def generate_body(title, fs_text, richness, cta, has_exercise, celeb, heart):
 
     history = []
     for attempt in range(1, C.REPAIR_ROUNDS + 1):
-        problems = validator.validate(body, richness, cta, celeb)
+        problems = validator.validate(body, richness, cta, celeb, title)
         history.append({"attempt": attempt, "problems": problems})
         if not problems:
             return body, history, False
@@ -123,7 +123,7 @@ def generate_body(title, fs_text, richness, cta, has_exercise, celeb, heart):
 
     # 재작성으로도 안 되면 기계적 강제 복구
     final = validator.polish(body)
-    remaining = validator.validate(final, richness, cta, celeb)
+    remaining = validator.validate(final, richness, cta, celeb, title)
     history.append({"attempt": "polish", "problems": remaining})
     if remaining:
         print(f"  [polish] 강제 복구 후에도 {len(remaining)}건 남음")

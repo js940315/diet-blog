@@ -98,7 +98,33 @@ def content_lines(body):
     return [ln for ln in body if not is_blank(ln)]
 
 
-def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = None):
+def hook_echo_problems(title: str, body) -> list:
+    """제목의 후킹(숫자·인용구)이 도입부에서 회수되는지.
+
+    제목에서 어그로를 걸어놓고 본문이 그 얘기를 안 하면 독자는 낚시로 읽고
+    바로 이탈한다. 도입부 = 첫 14개 내용 줄 안에서 회수돼야 한다.
+    """
+    intro = " ".join(visible(ln) for ln in body if not is_blank(ln))
+    intro = " ".join(intro.split())
+    head = " ".join(visible(ln) for ln in
+                    [l for l in body if not is_blank(l)][:14])
+    probs = []
+    for num in re.findall(r"\d+(?:\.\d+)?", title):
+        if num not in head:
+            probs.append(f"제목의 숫자 {num} 를 도입부에서 회수 안 함 (낚시로 읽힘)")
+    m = re.match(r'^["“]([^"“”]+)["”]', title)
+    if m:
+        toks = [t.strip('.,?!…"') for t in m.group(1).split()]
+        toks = [t for t in toks if len(t) >= 2 and not t.isdigit()]
+        if toks:
+            hit = sum(1 for t in toks if t in head)
+            if hit * 2 < len(toks):
+                probs.append("제목 인용구를 도입부에서 다시 다루지 않음 (낚시로 읽힘)")
+    return probs
+
+
+def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = None,
+             title: str = None):
     """위반 목록을 반환한다. 빈 리스트면 통과."""
     problems = []
     body, tags, notices = split_sections(text)
@@ -187,7 +213,11 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
         if re.sub(r"\s", "", cta) not in flat:
             problems.append(f"CTA 문장이 본문에 없음: {cta}")
 
-    # 11. 수치는 아라비아 숫자로
+    # 11. 제목 후킹 회수 — 어그로 걸었으면 도입부에서 다뤄야 한다
+    if title:
+        problems.extend(hook_echo_problems(title, body))
+
+    # 11-2. 수치는 아라비아 숫자로
     for ln in cl:
         v = visible(ln)
         for m in _SPELLED_NUM.finditer(v):
