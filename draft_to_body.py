@@ -59,8 +59,7 @@ def convert(raw_text: str):
 
     body = "\n".join(out)
     chars = sum(len(validator.visible(l).replace(" ", ""))
-                for l in out if not validator.is_blank(l)
-                and not validator.visible(l).startswith("#"))
+                for l in out if not validator.is_blank(l))
     return body, problems, content, chars
 
 
