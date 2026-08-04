@@ -13,8 +13,17 @@ import config as C
 
 BR = C.BRAILLE
 _BULLET = re.compile(r"^\s*(?:[-*•·▪◦]|\d+[.)]|[가-힣][.)])\s+")
-_SUBHEAD = re.compile(r'^\*\*".+"\*\*$')
+_SUBHEAD = re.compile(
+    "^" + re.escape(C.SUBHEAD_OPEN) + ".+" + re.escape(C.SUBHEAD_CLOSE) + "$"
+)
+# 마크다운은 네이버에서 해석되지 않고 기호가 그대로 노출된다
+_MARKDOWN = re.compile(r"\*\*|^#{1,6}\s|`")
 _HASHTAG = re.compile(r"#[^\s#]+")
+
+
+def subhead(text: str) -> str:
+    """소제목 한 줄을 만든다. 표시 방식은 config에서만 정한다."""
+    return f"{C.SUBHEAD_OPEN}{text}{C.SUBHEAD_CLOSE}"
 
 
 def is_blank(line: str) -> bool:
@@ -113,13 +122,14 @@ def validate(text: str, richness: str = "normal", cta: str = None):
     if n_tags != C.HASHTAG_COUNT:
         problems.append(f"해시태그 {n_tags}개 — 정확히 {C.HASHTAG_COUNT}개여야 함")
 
-    # 9. 소제목 형식
+    # 9. 소제목 형식 / 마크다운 노출
+    #    네이버는 마크다운을 해석하지 않는다. **가 있으면 화면에 별표가 그대로 보인다.
     for ln in cl:
         v = visible(ln)
-        if v.startswith("**") and not _SUBHEAD.match(v):
-            problems.append(f'소제목 형식 오류 (**"제목"** 이어야 함): {v[:24]}')
+        if _MARKDOWN.search(v):
+            problems.append(f"마크다운 기호 노출 (네이버는 해석 못 함): {v[:24]}")
     if not any(_SUBHEAD.match(visible(ln)) for ln in cl):
-        problems.append("소제목이 하나도 없음")
+        problems.append(f"소제목이 하나도 없음 ({subhead('소제목')} 형식)")
 
     # 10. CTA — 코드가 로테이션시킨 문장이 실제로 들어갔는지.
     #     한 줄 상한(19자)보다 CTA가 기니 줄 나눔은 허용하고, 공백을 지운 뒤 비교한다.
@@ -236,6 +246,13 @@ def polish(text: str) -> str:
 
         v = _strip_trailing_braille(ln)
         v = _BULLET.sub("", v).strip()
+        # 옛 형식 **"소제목"** 과 남은 마크다운 기호를 걷어낸다.
+        # 네이버에 그대로 노출되므로 살려둘 이유가 없다.
+        if v.startswith("**") and v.endswith("**") and len(v) > 4:
+            v = v[2:-2].strip()
+            if not _SUBHEAD.match(v):
+                v = subhead(v.strip(C.SUBHEAD_OPEN + C.SUBHEAD_CLOSE))
+        v = v.replace("**", "").replace("`", "").strip()
         if not v:
             continue
 
@@ -283,7 +300,7 @@ if __name__ == "__main__":
         "",                                                            # 빈 줄 형식 위반
         "- 불릿을 쓰면 안 된다",                                        # 불릿
         "짧다",                                                         # 길이 미달
-        "**소제목 형식 틀림**",                                          # 소제목 형식
+        '**"옛 소제목 형식"**',                                          # 마크다운 노출
         "#태그1 #태그2",                                                # 해시태그 부족
     ])
     print("── 검증 (망가진 입력) ──")

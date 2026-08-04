@@ -8,7 +8,8 @@
 초안 규칙 — 점자는 절대 손으로 넣지 않는다.
   · 한 줄이 한 줄이다 (네이버가 알아서 감싸주지 않는다. 여기서 끊은 대로 나간다)
   · 빈 줄 하나 = 단락 구분  → ⠀⠀⠀ 로 바뀐다
-  · 소제목은  **"소제목"**  형식 그대로 쓴다 (길이 검사 예외)
+  · 소제목은 config.SUBHEAD_OPEN/CLOSE 형식 (기본 "소제목") — 길이 검사 예외
+  · 마크다운 기호는 쓰지 않는다. 네이버가 해석 못 해서 화면에 그대로 보인다
   · 해시태그는 맨 끝에 한 줄에 하나씩
 
 길이·단락 위반은 고쳐주지 않고 **알려만 준다.** 기계가 자르면 읽는 맛이 죽는다.
@@ -44,8 +45,8 @@ def convert(raw_text: str):
         content += 1
         run += 1
         issues = []
-        if not s.startswith("**") and not (C.LINE_MIN <= len(s) <= C.LINE_MAX):
-            issues.append(f"길이 {len(s)}자")
+        if not validator._SUBHEAD.match(s) and not (C.LINE_MIN <= len(s) <= C.LINE_MAX):
+            issues.append(f"길이 {len(s)}자")   # 소제목은 길이 예외
         if run > C.PARA_MAX_LINES:
             issues.append(f"단락 {run}줄")
         if issues:
