@@ -40,10 +40,13 @@ def _utf8_stdout():
 
 
 def outdir(date_str, slot):
-    """복붙할 것만 놓는 폴더. 슬롯당 본문 1개 + 사진 몇 장."""
-    d = os.path.join(C.OUTPUT_DIR, date_str, str(slot))
-    os.makedirs(d, exist_ok=True)
-    return d
+    """복붙할 것만 놓는 폴더. 슬롯당 본문 1개 + 사진 몇 장.
+
+    폴더 생성은 본문이 완성되는 finish 시점에만 한다. crawl 때 미리 만들면
+    아침에 빈 폴더가 보여서 "왜 비어 있냐"는 혼란이 생긴다(2026-08-05 실제 발생).
+    폴더가 있다 = 발행 가능하다. 이 등식을 지킨다.
+    """
+    return os.path.join(C.OUTPUT_DIR, date_str, str(slot))
 
 
 def wpath(d, name):
@@ -121,6 +124,7 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
     body = validator.ensure_notices(body)
 
     post = chosen["title"] + "\n" + C.BLANK_LINE + "\n" + body
+    os.makedirs(d, exist_ok=True)   # 본문이 완성되는 이 순간에만 output 폴더가 생긴다
     _dump(os.path.join(d, C.POST_FILENAME), post)
 
     made = []
