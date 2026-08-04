@@ -122,6 +122,9 @@ def run_api(args):
     date_str = store.today_str()
     d = outdir(date_str)
 
+    if already_done(d, args.force):
+        return
+
     celeb = pick_celeb(args.celeb)
     print(f"■ 인물: {celeb}   (날짜 {date_str} KST)")
 
@@ -195,10 +198,26 @@ def run_api(args):
 
 # ── B) 에이전트 경로 ────────────────────────────────────────────────────
 
+def already_done(d, force):
+    """그 날짜에 완성된 글이 이미 있으면 건드리지 않는다.
+
+    루틴이 매일 같은 날짜 폴더에 쓰는데, 사람이 미리 만들어둔 글이 있으면
+    말없이 덮어쓴다. 손으로 다듬은 원고가 새벽에 사라지는 사고가 난다.
+    """
+    post = os.path.join(d, "post.txt")
+    if force or not os.path.exists(post):
+        return False
+    print(f"■ 이미 오늘자 글이 있습니다 → {post}")
+    print("   덮어쓰지 않고 종료합니다. 다시 만들려면 --force 를 붙이세요.")
+    return True
+
+
 def stage_crawl(args):
     store.init()
     date_str = args.date or store.today_str()
     d = outdir(date_str)
+    if already_done(d, args.force):
+        return
 
     celeb = pick_celeb(args.celeb)
     print(f"■ 인물: {celeb}   (날짜 {date_str} KST)")
@@ -320,6 +339,8 @@ def main():
     ap.add_argument("--polish", action="store_true",
                     help="finish에서 형식 위반을 기계적으로 강제 복구 (최후 수단)")
     ap.add_argument("--date", help="작업 폴더 날짜 지정 (YYYY-MM-DD). 기본은 오늘")
+    ap.add_argument("--force", action="store_true",
+                    help="그 날짜에 완성된 post.txt 가 있어도 새로 만든다")
     args = ap.parse_args()
 
     try:
