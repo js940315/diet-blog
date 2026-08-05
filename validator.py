@@ -205,6 +205,15 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
             problems.append(f"마크다운 기호 노출 (네이버는 해석 못 함): {v[:24]}")
     if not any(flags):
         problems.append(f"소제목이 하나도 없음 ({subhead('소제목')} 형식, 앞뒤가 빈 줄이어야 함)")
+    else:
+        # 마무리 소제목 — 마지막 소제목 뒤가 길면 끝이 처진다 (2026-08-05 피드백).
+        # 정리 블록 앞에 한 줄짜리 마무리 소제목을 하나 더 두는 게 규격이다.
+        last = max(i for i, f in enumerate(flags) if f)
+        tail_cl = sum(1 for ln in body[last + 1:] if not is_blank(ln))
+        if tail_cl > 16:
+            problems.append(
+                f"마무리 소제목 없음 — 마지막 소제목 뒤 내용이 {tail_cl}줄 (허용 16). "
+                "정리 앞에 소제목을 하나 더 넣어라")
 
     # 10. CTA — 코드가 로테이션시킨 문장이 실제로 들어갔는지.
     #     한 줄 상한(19자)보다 CTA가 기니 줄 나눔은 허용하고, 공백을 지운 뒤 비교한다.
