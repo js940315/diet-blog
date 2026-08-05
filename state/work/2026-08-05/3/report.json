@@ -23,30 +23,5 @@
   "polished": false,
   "route": "agent",
   "final_problems": [],
-  "images": [
-    {
-      "slot": 1,
-      "category": "두부",
-      "photo": "두부_0s_unsplash_3.jpg",
-      "file": "1번 사진.jpg"
-    },
-    {
-      "slot": 2,
-      "category": "오트밀",
-      "photo": "오트밀_0w_0.jpg",
-      "file": "2번 사진.jpg"
-    },
-    {
-      "slot": 3,
-      "category": "닭가슴살",
-      "photo": "닭가슴살_0w_0.jpg",
-      "file": "3번 사진.jpg"
-    },
-    {
-      "slot": 4,
-      "category": "아보카도",
-      "photo": "아보카도_0w_0.jpg",
-      "file": "4번 사진.jpg"
-    }
-  ]
+  "images": []
 }

@@ -215,6 +215,26 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
                 f"마무리 소제목 없음 — 마지막 소제목 뒤 내용이 {tail_cl}줄 (허용 16). "
                 "정리 앞에 소제목을 하나 더 넣어라")
 
+        # 챕터 밸런스 — 소제목별 분량이 들쭉날쭉하면 읽는 리듬이 깨진다
+        # (2026-08-05 피드백). 블록 구조: [도입?] 챕터들 [마무리]
+        sub_idx = [i for i, f in enumerate(flags) if f]
+        if len(sub_idx) >= 3:
+            bounds = sub_idx + [len(body)]
+            sizes = [sum(1 for ln in body[bounds[k]+1:bounds[k+1]]
+                         if not is_blank(ln)) for k in range(len(sub_idx))]
+            intro_cl = sum(1 for ln in body[:sub_idx[0]] if not is_blank(ln))
+            chapters = sizes[:-1] if intro_cl > 0 else sizes[1:-1]
+            closing = sizes[-1]
+            for n, sz in enumerate(chapters, 1):
+                if not 11 <= sz <= 17:
+                    problems.append(f"챕터 {n} 분량 {sz}줄 — 11~17줄로 맞출 것")
+            if chapters and max(chapters) - min(chapters) > 4:
+                problems.append(
+                    f"챕터 분량 편차 {max(chapters)-min(chapters)}줄 "
+                    f"({min(chapters)}~{max(chapters)}) — 4줄 이내로 맞출 것")
+            if not 5 <= closing <= 13:
+                problems.append(f"마무리 블록 {closing}줄 — 5~13줄로 맞출 것")
+
     # 10. CTA — 코드가 로테이션시킨 문장이 실제로 들어갔는지.
     #     한 줄 상한(19자)보다 CTA가 기니 줄 나눔은 허용하고, 공백을 지운 뒤 비교한다.
     if cta:
