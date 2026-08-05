@@ -65,10 +65,37 @@ def _focus_from(align: str) -> str:
     return "center"
 
 
+def _day_used_path(date_tag):
+    return os.path.join(C.ROOT, "state", f"used_photos_{date_tag}.json")
+
+
+def _load_day_used(date_tag):
+    """같은 날 다른 슬롯이 이미 쓴 사진들. 하루 10편 체제에서 슬롯 간 중복 방지.
+
+    슬롯들이 병렬로 돌면 서로의 선택을 못 보고 같은 사진을 집는다(실측 13건).
+    날짜 단위 사용 기록을 두고 뽑기 전에 제외한다.
+    """
+    import json
+    p = _day_used_path(date_tag)
+    if os.path.exists(p):
+        try:
+            with open(p, encoding="utf-8") as f:
+                return set(json.load(f))
+        except Exception:
+            return set()
+    return set()
+
+
+def _save_day_used(date_tag, used):
+    import json
+    with open(_day_used_path(date_tag), "w", encoding="utf-8") as f:
+        json.dump(sorted(used), f, ensure_ascii=False, indent=1)
+
+
 def render(title, fs, date_tag, outdir):
     """실물 사진 세트를 만든다. 반환: [{slot, category, photo, file}]"""
     buckets = choose_buckets(fs, date_tag)
-    used, made = set(), []
+    used, made = _load_day_used(date_tag), []
 
     for seq, category in enumerate(buckets, 1):
         fname = PL.pick_photo(category, date_tag, seq, exclude=used)
@@ -92,6 +119,7 @@ def render(title, fs, date_tag, outdir):
             continue
 
         PL.record_usage(category, fname, date_tag, seq)
+        _save_day_used(date_tag, used)
         made.append({"slot": seq, "category": category,
                      "photo": fname, "file": os.path.basename(dst)})
         print(f"  {seq}번 사진.jpg  [{category}] {fname}")
