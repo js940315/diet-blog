@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-06",
+  "slot": 3,
+  "celeb": "박나래",
+  "richness": "thin",
+  "sources": 175,
+  "title": {
+    "title": "\"집 안에 술집 차려놓고도\" 14kg 뺐다는 41세 개그우먼의 반전",
+    "score": 94,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}

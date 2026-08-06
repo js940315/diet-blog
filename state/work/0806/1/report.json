@@ -1,5 +1,6 @@
 {
   "date": "2026-08-06",
+  "slot": 1,
   "celeb": "김남주",
   "richness": "thin",
   "sources": 61,
@@ -15,7 +16,7 @@
     ]
   },
   "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
-  "content_lines": 75,
+  "content_lines": 77,
   "polished": false,
   "route": "agent",
   "final_problems": [],

@@ -82,8 +82,16 @@ def _slots(args):
     return [args.slot] if args.slot else list(range(1, C.DAILY_SLOTS + 1))
 
 
+def _date_key(date_str):
+    """폴더 키는 MMDD (2026-08-06 사용자 확정, 전 블로그 공통)."""
+    return date_str.replace("-", "")[4:]
+
+
 def _slot_meta(date_str, slot):
-    p = os.path.join(C.WORK_DIR, date_str, str(slot), "meta.json")
+    # ⚠️ output 이 MMDD 로 바뀔 때 여기만 옛 경로(YYYY-MM-DD)로 남아서
+    # 같은 날 인물 중복 방지가 통째로 무력화됐다 (9개 슬롯 전부 같은 인물).
+    # 작업 폴더 키는 반드시 outdir 와 같은 MMDD 를 쓴다.
+    p = os.path.join(C.WORK_DIR, _date_key(date_str), str(slot), "meta.json")
     if not os.path.exists(p):
         return None
     with open(p, encoding="utf-8") as f:
@@ -209,7 +217,7 @@ def stage_crawl(args):
         if args.celeb:      # 인물 지정은 슬롯 하나만 채운다
             break
 
-    print(f"■ 수집 완료: 새 슬롯 {made}개 준비 (지시서: state/work/{date_str}/슬롯/)")
+    print(f"■ 수집 완료: 새 슬롯 {made}개 준비 (지시서: state/work/{_date_key(date_str)}/슬롯/)")
     print("   에이전트: 슬롯마다 factsheet.json + title_candidates.json 작성")
     print("   그 다음: python main.py --stage title")
 
