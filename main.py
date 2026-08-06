@@ -45,8 +45,10 @@ def outdir(date_str, slot):
     폴더 생성은 본문이 완성되는 finish 시점에만 한다. crawl 때 미리 만들면
     아침에 빈 폴더가 보여서 "왜 비어 있냐"는 혼란이 생긴다(2026-08-05 실제 발생).
     폴더가 있다 = 발행 가능하다. 이 등식을 지킨다.
+
+    날짜 폴더는 MMDD 로 쓴다 (2026-08-06 사용자 확정: 전 블로그 output/MMDD/번호 통일).
     """
-    return os.path.join(C.OUTPUT_DIR, date_str, str(slot))
+    return os.path.join(C.OUTPUT_DIR, date_str.replace("-", "")[4:], str(slot))
 
 
 def wpath(d, name):
