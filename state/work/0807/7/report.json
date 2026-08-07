@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-07",
+  "slot": 7,
+  "celeb": "화사",
+  "richness": "thin",
+  "sources": 122,
+  "title": {
+    "title": "\"임신설까지 돌았던\" 40kg대 여가수, 호박식혜 해프닝의 반전",
+    "score": 98,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "인생 사건 +10",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 64,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
