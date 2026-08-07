@@ -120,6 +120,23 @@ def already_done(d, force):
     return True
 
 
+def write_backup_titles(d, ranked):
+    """예비제목.txt — 확정 제목과 나머지 후보를 output 폴더에 같이 둔다.
+
+    패션비버와 같은 규격 (2026-08-07 사용자 확정). 확정 제목이 마음에 안 들면
+    발행자가 예비 중 하나로 갈아끼우고 제목만 바꿔 발행할 수 있다.
+    ⚠️ 예비로 바꿀 때는 제목의 숫자·인용구가 도입부와 어긋날 수 있다는 것만 유의.
+    """
+    lines = ["[확정]", "", ranked[0]["title"], "", "─── 예비 ───", ""]
+    for r in ranked[1:]:
+        if r["score"] <= 0:
+            continue                     # 탈락(실명 노출 등)은 예비로도 안 준다
+        lines.append(r["title"])
+        lines.append("")
+    with open(os.path.join(d, "예비제목.txt"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines).rstrip() + "\n")
+
+
 def _finalize(d, body, richness, meta, chosen, polish_ok):
     """검증 → 0번 본문.txt → 사진 → report.json. 두 경로가 공유한다."""
     cta = meta.get("cta")
@@ -302,6 +319,8 @@ def _finish_one_slot(date_str, slot, args):
     if os.path.exists(stale):
         os.remove(stale)
 
+    write_backup_titles(d, ranked)
+
     items = []
     if os.path.exists(wpath(d, "sources.json")):
         items = _load(wpath(d, "sources.json"), "sources.json")
@@ -397,6 +416,7 @@ def run_api(args):
         "repair_history": history, "final_problems": problems, "images": made,
     })
 
+    write_backup_titles(d, ranked)
     store.mark_celeb(celeb)
     store.mark_articles(items)
     store.record_post(date_str, celeb, chosen["title"], cta)
