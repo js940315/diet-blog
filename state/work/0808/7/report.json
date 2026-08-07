@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-08",
+  "slot": 7,
+  "celeb": "조여정",
+  "richness": "thin",
+  "sources": 67,
+  "title": {
+    "title": "\"365일 중 360일 다이어트\" 44세 여배우의 직무유기 선언",
+    "score": 100,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 3개 +18"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "샐러드",
+      "photo": "샐러드_0s_pexels_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "아보카도",
+      "photo": "아보카도_0w_1.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "식단레시피",
+      "photo": "식단레시피_1s_pexels_6.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}

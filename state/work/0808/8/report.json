@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-08",
+  "slot": 8,
+  "celeb": "김선아",
+  "richness": "thin",
+  "sources": 17,
+  "title": {
+    "title": "먹방 찍고도 50kg, 50세 여배우가 밝힌 다이어트 의지",
+    "score": 100,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "모순 구조(~인데 ~했다) +14",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "아보카도",
+      "photo": "아보카도_0s_pexels_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_2.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "식단레시피",
+      "photo": "식단레시피_1s_pexels_4.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "샐러드",
+      "photo": "샐러드_0s_unsplash_7.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}

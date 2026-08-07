@@ -634,7 +634,7 @@
     "license": "Pexels License",
     "credit": "Engin Akyurt / Pexels",
     "attribution_required": true,
-    "원본해상도": "8944x6708",
+    "원본해상도": "7490x4996",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "fresh green salad bowl",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -642,9 +642,9 @@
   "샐러드_0s_unsplash_1.jpg": {
     "카테고리": "샐러드",
     "license": "Unsplash License",
-    "credit": "Declan Sun / Unsplash",
+    "credit": "Janesca / Unsplash",
     "attribution_required": true,
-    "원본해상도": "2400x1651",
+    "원본해상도": "2400x1601",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "fresh green salad bowl",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -652,9 +652,9 @@
   "샐러드_0s_pexels_2.jpg": {
     "카테고리": "샐러드",
     "license": "Pexels License",
-    "credit": "Jonathan Borba / Pexels",
+    "credit": "Yaroslav Shuraev / Pexels",
     "attribution_required": true,
-    "원본해상도": "8192x5464",
+    "원본해상도": "6720x4480",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "fresh green salad bowl",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -702,9 +702,9 @@
   "단백질쉐이크_0s_pexels_0.jpg": {
     "카테고리": "단백질쉐이크",
     "license": "Pexels License",
-    "credit": "Farhad Ibrahimzade / Pexels",
+    "credit": "Lisa from Pexels / Pexels",
     "attribution_required": true,
-    "원본해상도": "6410x5432",
+    "원본해상도": "6000x4000",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "protein shake smoothie glass",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -722,9 +722,9 @@
   "단백질쉐이크_0s_pexels_2.jpg": {
     "카테고리": "단백질쉐이크",
     "license": "Pexels License",
-    "credit": "Denys Gromov / Pexels",
+    "credit": "Mikhail Nilov / Pexels",
     "attribution_required": true,
-    "원본해상도": "7008x4672",
+    "원본해상도": "6000x4000",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "protein shake smoothie glass",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -801,10 +801,10 @@
   },
   "두부_0o_0.jpg": {
     "카테고리": "두부",
-    "license": "by-sa",
-    "credit": "사진 : Alpha from Melbourne, Australia / CC BY-SA 2.0 / wikimedia",
+    "license": "cc0",
+    "credit": "사진 : 渡邉厚夫(たいちょ渡邉) / CC0 / wordpress",
     "attribution_required": true,
-    "원본해상도": "2048x1536",
+    "원본해상도": "2048x1646",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "tofu dish plate",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -2232,9 +2232,9 @@
   "두부_0w_0.jpg": {
     "카테고리": "두부",
     "license": "CC BY-SA 4.0",
-    "credit": "사진 : DFC 0765 Colorful stir-fry with baby corn ca / CC BY-SA 4.0 / Wikimedia Commons",
+    "credit": "사진 : Baked Tofu with Potatoes and Broccoli / CC BY-SA 4.0 / Wikimedia Commons",
     "attribution_required": true,
-    "원본해상도": "5568x3712",
+    "원본해상도": "2774x2816",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "tofu dish plate",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -2491,10 +2491,10 @@
   },
   "아보카도_0w_0.jpg": {
     "카테고리": "아보카도",
-    "license": "CC BY-SA 4.0",
-    "credit": "사진 : DFC 3949 Close-up of a pile of ripe and unri / CC BY-SA 4.0 / Wikimedia Commons",
+    "license": "CC0",
+    "credit": "사진 : Healthy Cafe Food (Unsplash) / CC0 / Wikimedia Commons",
     "attribution_required": true,
-    "원본해상도": "5568x3712",
+    "원본해상도": "2936x1960",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "avocado toast healthy",
     "검수": "미확인 — Read로 눈 확인 필요"
@@ -2607,6 +2607,16 @@
     "원본해상도": "6000x4000",
     "처리": "정사각 1400px + 시리즈 톤 + 비네트",
     "검색어": "protein shake smoothie glass",
+    "검수": "미확인 — Read로 눈 확인 필요"
+  },
+  "샐러드_0w_2.jpg": {
+    "카테고리": "샐러드",
+    "license": "CC BY-SA 4.0",
+    "credit": "사진 : Mysore Special Fruit Salad With Ice Cream / CC BY-SA 4.0 / Wikimedia Commons",
+    "attribution_required": true,
+    "원본해상도": "3565x2675",
+    "처리": "정사각 1400px + 시리즈 톤 + 비네트",
+    "검색어": "fresh green salad bowl",
     "검수": "미확인 — Read로 눈 확인 필요"
   }
 }
