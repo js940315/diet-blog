@@ -1,0 +1,48 @@
+{
+  "date": "2026-08-09",
+  "slot": 5,
+  "celeb": "박은혜",
+  "richness": "thin",
+  "sources": 25,
+  "title": {
+    "title": "\"다이어트 열심히 해\" 배우가 밝힌 컴백 이유",
+    "score": 66,
+    "reasons": [
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "식단레시피",
+      "photo": "식단레시피_0s_unsplash_4.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "샐러드",
+      "photo": "샐러드_0s_unsplash_3.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "도시락",
+      "photo": "도시락_0s_pexels_7.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
