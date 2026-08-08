@@ -123,6 +123,27 @@ def hook_echo_problems(title: str, body) -> list:
     return probs
 
 
+def _bare_job(job: str, text: str):
+    """'여'가 안 붙은 직업어를 찾는다. 동사 '배우다'와 명사 '배우자'는 제외.
+
+    '배우'는 배우고·배우기·배우자(남편/아내)와 글자가 겹친다. 그래서 뒤에
+    명사 조사·서술격(가/를/의/씨/예요...)이 붙거나 문장이 끝날 때만 직업어로 본다.
+    '여배우'·'남배우'는 앞 글자로 걸러진다.
+    """
+    out = []
+    for m in re.finditer(re.escape(job), text):
+        i, j = m.start(), m.end()
+        if i > 0 and text[i - 1] in "여남":
+            continue
+        rest = text[j:]
+        if rest == "" or rest[0] in " \n\t,.!?\"'”’)·…":
+            out.append(text[max(0, i - 4):j + 3].strip())
+            continue
+        if any(rest.startswith(p) for p in C.JOB_NOUN_AFTER):
+            out.append(text[max(0, i - 4):j + 3].strip())
+    return out
+
+
 def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = None,
              title: str = None):
     """위반 목록을 반환한다. 빈 리스트면 통과."""
@@ -279,6 +300,15 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
     for w in C.BANNED_HOOKS:
         if w in full:
             problems.append(f"금지선 소재: {w}")
+
+    # 직업어에 '여'가 붙었는지 — 이 블로그는 여자 다이어트만 다룬다.
+    # 제목도 같이 본다 (홈판 목록에서 앞 20자만 보이므로 제목이 더 중요하다).
+    for where, txt in (("제목", title or ""), ("본문", full)):
+        for job in C.GENDERED_JOBS:
+            for m in _bare_job(job, txt):
+                problems.append(
+                    f"{where}에 '{m}' — 여{job}로 쓸 것. "
+                    "남자 연예인이면 직업어를 빼고 이름만 써라 (모델은 그대로 둔다)")
 
     # 언론사 인용 금지 — 여기는 블로그지 보도자료 리뷰가 아니다.
     # 방송 프로그램명("전참시에서")은 막지 않는다. 신문·통신사 이름과 '보도/기사/매체'만 잡는다.

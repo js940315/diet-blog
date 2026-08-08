@@ -5,7 +5,7 @@
   "richness": "thin",
   "sources": 89,
   "title": {
-    "title": "\"저 살도 뺐어요\" 유재석 앞 46세 배우의 감량 고백",
+    "title": "\"저 살도 뺐어요\" 유재석 앞 46세 여배우의 감량 고백",
     "score": 88,
     "reasons": [
       "앞20자 숫자 +30",
@@ -25,7 +25,7 @@
     {
       "slot": 1,
       "category": "아보카도",
-      "photo": "아보카도_0s_unsplash_5.jpg",
+      "photo": "아보카도_0s_unsplash_7.jpg",
       "file": "1번 사진.jpg"
     },
     {
@@ -43,7 +43,7 @@
     {
       "slot": 4,
       "category": "샐러드",
-      "photo": "샐러드_0s_pexels_2.jpg",
+      "photo": "샐러드_0s_pexels_4.jpg",
       "file": "4번 사진.jpg"
     }
   ]
