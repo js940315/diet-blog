@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-09",
+  "slot": 10,
+  "celeb": "조혜련",
+  "richness": "thin",
+  "sources": 116,
+  "title": {
+    "title": "50대인데 8kg 감량을 반년 가까이 유지 중인 방송인",
+    "score": 100,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "모순 구조(~인데 ~했다) +14",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "식단레시피",
+      "photo": "식단레시피_0w_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "샐러드",
+      "photo": "샐러드_0s_pexels_6.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "도시락",
+      "photo": "도시락_0s_pexels_5.jpg",
+      "file": "3번 사진.jpg"
+    }
+  ]
+}
