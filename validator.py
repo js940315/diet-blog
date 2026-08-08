@@ -280,6 +280,19 @@ def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = 
         if w in full:
             problems.append(f"금지선 소재: {w}")
 
+    # 언론사 인용 금지 — 여기는 블로그지 보도자료 리뷰가 아니다.
+    # 방송 프로그램명("전참시에서")은 막지 않는다. 신문·통신사 이름과 '보도/기사/매체'만 잡는다.
+    for w in C.PRESS_OUTLETS:
+        if w in full:
+            problems.append(
+                f"언론사명 노출: {w} — 출처를 밝히지 말고 "
+                "'알려졌어요/전해졌죠' 형태로 바꿀 것 (방송 프로그램명은 허용)")
+    for w in C.PRESS_TERMS:
+        if w in full:
+            problems.append(
+                f"보도자료 말투: '{w}' — 블로그 문장으로 바꿀 것 "
+                "(예: '기사에는 없더라고요' → '거기까지는 알려지지 않았어요')")
+
     return problems
 
 
