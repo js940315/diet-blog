@@ -25,25 +25,25 @@
     {
       "slot": 1,
       "category": "아보카도",
-      "photo": "아보카도_0w_0.jpg",
+      "photo": "아보카도_0s_unsplash_5.jpg",
       "file": "1번 사진.jpg"
     },
     {
       "slot": 2,
       "category": "단백질쉐이크",
-      "photo": "단백질쉐이크_0s_unsplash_5.jpg",
+      "photo": "단백질쉐이크_0s_unsplash_3.jpg",
       "file": "2번 사진.jpg"
     },
     {
       "slot": 3,
       "category": "식단레시피",
-      "photo": "식단레시피_0s_pexels_3.jpg",
+      "photo": "식단레시피_0s_unsplash_2.jpg",
       "file": "3번 사진.jpg"
     },
     {
       "slot": 4,
       "category": "샐러드",
-      "photo": "샐러드_0s_unsplash_3.jpg",
+      "photo": "샐러드_0s_pexels_4.jpg",
       "file": "4번 사진.jpg"
     }
   ]

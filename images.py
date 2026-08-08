@@ -10,6 +10,8 @@
 import os
 
 import config as C
+import food_match
+import food_photos
 import photo_library as PL
 from image_sourcing import prepare_photo
 
@@ -32,18 +34,32 @@ def _match_buckets(texts, table):
     return [b for b, keys in table.items() if any(k in joined for k in keys)]
 
 
-def choose_buckets(fs: dict, date_tag: str = ""):
+def choose_buckets(fs: dict, date_tag: str = "", title: str = ""):
     """슬롯별 photo_category. 1번이 대표 사진(홈판 썸네일로 쓰인다).
+
+    **글에 실제로 나온 음식이 최우선이다. 특히 제목에 음식이 있으면 그게 1번이다.**
+    홈판 썸네일이 제목과 따로 놀면 그냥 낚시로 읽힌다.
+
+    2026-08-08 이전에는 미리 정의된 9개 버킷에 문자열이 걸릴 때만 반영하고
+    안 걸리면 날짜로 돌린 기본 버킷을 넣었다. 그래서 제목이 "호박식혜 해프닝"인데
+    아보카도가, "바나나와 필라테스뿐인데"인데 샐러드가 나갔다. 10편 중 1편만
+    우연히 맞았다. 지금은 사전에 없는 음식이면 render 에서 그 자리에 소싱한다.
 
     ⚠️ 음식 버킷만 쓴다. 운동·공간·인물 컷은 사람이 크게 나와서 글과 따로 놀고,
        남의 몸 사진을 다이어트 글에 붙이는 모양새가 된다.
-       팩트시트에 식품 언급이 없으면 기본 버킷을 날짜에 따라 돌려 쓴다.
     """
-    picked = [b for b in _match_buckets(fs.get("foods") or [], FOOD_BUCKETS)
-              if b in C.FOOD_BUCKETS_ONLY]
+    # 1) 제목·팩트시트에 실제로 나온 음식 — 등장 순서 그대로. 제목 것이 맨 앞.
+    picked = list(food_match.extract_foods(title, fs, limit=C.IMAGE_COUNT))
 
-    # 남는 슬롯은 기본 음식 버킷에서 채운다. 날짜로 시작점을 밀어
-    # 매일 같은 조합이 나오지 않게 한다.
+    # 2) 표기 흔들림("닭 가슴살", "프로틴")은 구형 키워드 표로 한 번 더 훑는다
+    for b in _match_buckets(fs.get("foods") or [], FOOD_BUCKETS):
+        if len(picked) >= C.IMAGE_COUNT:
+            break
+        if b not in picked:
+            picked.append(b)
+
+    # 3) 그래도 남으면 기본 음식 버킷에서 채운다. 날짜로 시작점을 밀어
+    #    매일 같은 조합이 나오지 않게 한다.
     pool = list(C.FOOD_BUCKETS_ONLY)
     if pool:
         offset = sum(ord(c) for c in date_tag) % len(pool)
@@ -94,11 +110,18 @@ def _save_day_used(date_tag, used):
 
 def render(title, fs, date_tag, outdir):
     """실물 사진 세트를 만든다. 반환: [{slot, category, photo, file}]"""
-    buckets = choose_buckets(fs, date_tag)
+    buckets = choose_buckets(fs, date_tag, title=title)
     used, made = _load_day_used(date_tag), []
 
     for seq, category in enumerate(buckets, 1):
         fname = PL.pick_photo(category, date_tag, seq, exclude=used)
+
+        # 글에 나온 음식인데 라이브러리에 버킷이 없으면 그 자리에서 받아온다.
+        # 기본 버킷(FOOD_BUCKETS_ONLY)은 build_photo_library 소관이라 건드리지 않는다.
+        if not fname and category not in C.FOOD_BUCKETS_ONLY:
+            if food_photos.ensure_bucket(category):
+                fname = PL.pick_photo(category, date_tag, seq, exclude=used)
+
         if not fname:
             print(f"  [건너뜀] {seq}번 — '{category}' 버킷에 사진이 없습니다.")
             continue
@@ -141,5 +164,21 @@ if __name__ == "__main__":
         {"foods": ["고구마", "닭가슴살 샐러드"], "exercises": ["필라테스"]}, "0804"))
     print("식품 언급 없음:", choose_buckets({"foods": [], "exercises": []}, "0804"))
     print("다른 날짜   :", choose_buckets({"foods": [], "exercises": []}, "0806"))
+
+    print("\n제목의 음식이 1번으로 오는지 (2026-08-08 사고 재발 방지):")
+    cases = [
+        ('"임신설까지 돌았던" 40kg대 여가수, 호박식혜 해프닝의 반전', {}, "호박식혜"),
+        ("바나나와 필라테스뿐인데 56세에 신체나이 30대라는 여가수",
+         {"foods": ["저탄고지 식단", "바나나", "밀가루를 뺀 비빔국수 샐러드"]}, "바나나"),
+        ("4kg 빠졌는데 근육량은 늘었다는 개그우먼의 식단 딱 한 가지",
+         {"foods": ["꽃게", "갑오징어"]}, "꽃게"),
+    ]
+    bad = 0
+    for t, fs, expect in cases:
+        got = choose_buckets(fs, "0808", title=t)
+        ok = got[0] == expect
+        bad += 0 if ok else 1
+        print(f"  {'OK ' if ok else 'FAIL'} 1번={got[0]} (기대 {expect})  전체={got}")
+    print("자체테스트:", "통과" if not bad else f"{bad}건 실패")
     print("\n운동 버킷이 섞이지 않는지 확인 — 위 결과에 아래 단어가 없어야 한다:")
     print("  운동홈트 공간주방 공간홈트 셀럽감량 뷰티바디 스트레칭 필라테스")

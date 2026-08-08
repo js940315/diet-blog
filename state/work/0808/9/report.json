@@ -25,20 +25,26 @@
   "images": [
     {
       "slot": 1,
-      "category": "샐러드",
-      "photo": "샐러드_0o_1.jpg",
+      "category": "오이김밥",
+      "photo": "오이김밥_w_0.jpg",
       "file": "1번 사진.jpg"
     },
     {
       "slot": 2,
-      "category": "아보카도",
-      "photo": "아보카도_0s_unsplash_5.jpg",
+      "category": "참치쌈장",
+      "photo": "참치쌈장_w_1.jpg",
       "file": "2번 사진.jpg"
     },
     {
+      "slot": 3,
+      "category": "샐러드",
+      "photo": "샐러드_0s_unsplash_3.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
       "slot": 4,
-      "category": "식단레시피",
-      "photo": "식단레시피_1s_unsplash_3.jpg",
+      "category": "아보카도",
+      "photo": "아보카도_0s_pexels_4.jpg",
       "file": "4번 사진.jpg"
     }
   ]
