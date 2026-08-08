@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-09",
+  "slot": 9,
+  "celeb": "이경실",
+  "richness": "thin",
+  "sources": 44,
+  "title": {
+    "title": "\"과자 6봉지를 순식간에\" 60세 개그우먼이 겪은 갱년기",
+    "score": 96,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "인생 사건 +10",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_6.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "식단레시피",
+      "photo": "식단레시피_0s_pexels_7.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "샐러드",
+      "photo": "샐러드_0w_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "도시락",
+      "photo": "도시락_0w_1.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
