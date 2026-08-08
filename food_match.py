@@ -43,9 +43,9 @@ FOOD_QUERIES = {
     # ── 단백질 ───────────────────────────────────────────────────────
     "닭가슴살": "grilled chicken breast meal",
     "소고기": "lean beef steak plate",
-    "삶은 달걀": "boiled eggs plate",
-    "달걀": "eggs healthy breakfast",
-    "계란": "eggs healthy breakfast",
+    "삶은 달걀": "hard boiled egg halved yolk",
+    "달걀": "hard boiled egg halved yolk",
+    "계란": "hard boiled egg halved yolk",
     "구운란": "roasted eggs snack",
     "두부": "tofu block fresh",
     "두유": "soy milk glass",
