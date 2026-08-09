@@ -6,8 +6,6 @@
     "셀럽감량_0s_unsplash_1.jpg"
   ],
   "샐러드": [
-    "샐러드_0s_unsplash_1.jpg",
-    "샐러드_0s_unsplash_3.jpg",
     "샐러드_0w_1.jpg",
     "샐러드_0w_2.jpg",
     "샐러드_0s_unsplash_5.jpg",
@@ -45,7 +43,9 @@
     "샐러드_0w_0.jpg",
     "샐러드_0s_unsplash_7.jpg",
     "샐러드_0s_unsplash_5.jpg",
-    "샐러드_0w_1.jpg"
+    "샐러드_0w_1.jpg",
+    "샐러드_0s_unsplash_3.jpg",
+    "샐러드_0s_unsplash_7.jpg"
   ],
   "식단레시피": [
     "식단레시피_1s_unsplash_5.jpg",
@@ -436,6 +436,8 @@
     "토마토_s_unsplash_1.jpg",
     "토마토_s_pexels_0.jpg",
     "토마토_s_unsplash_1.jpg",
+    "토마토_s_unsplash_1.jpg",
+    "토마토_s_pexels_0.jpg",
     "토마토_s_unsplash_1.jpg"
   ],
   "주스": [
@@ -481,9 +483,15 @@
     "김밥_w_0.jpg"
   ],
   "오이": [
+    "오이_o_0.jpg",
+    "오이_o_1.jpg",
     "오이_o_0.jpg"
   ],
   "새우": [
     "새우_o_0.jpg"
+  ],
+  "감자": [
+    "감자_o_1.jpg",
+    "감자_o_0.jpg"
   ]
 }

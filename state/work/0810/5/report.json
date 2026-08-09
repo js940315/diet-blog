@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-10",
+  "slot": 5,
+  "celeb": "진서연",
+  "richness": "thin",
+  "sources": 101,
+  "title": {
+    "title": "\"40일 만에 28kg 뺐다는\" 여배우의 식단 비결",
+    "score": 94,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 56,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "샐러드",
+      "photo": "샐러드_0s_unsplash_7.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "토마토",
+      "photo": "토마토_s_unsplash_1.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "감자",
+      "photo": "감자_o_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "샐러드",
+      "photo": "샐러드_0s_pexels_0.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
