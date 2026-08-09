@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-10",
+  "slot": 7,
+  "celeb": "박미선",
+  "richness": "thin",
+  "sources": 77,
+  "title": {
+    "title": "\"57세인데 가공육은 입에도 안 댄다는\" 개그우먼의 아침 식단",
+    "score": 94,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "모순 구조(~인데 ~했다) +14",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 57,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "샐러드",
+      "photo": "샐러드_0s_pexels_6.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "도시락",
+      "photo": "도시락_0s_pexels_0.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "고구마",
+      "photo": "고구마_0s_pexels_4.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_pexels_6.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
