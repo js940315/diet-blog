@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-10",
+  "slot": 10,
+  "celeb": "김태희",
+  "richness": "thin",
+  "sources": 28,
+  "title": {
+    "title": "\"난 먹는데 진심\"이라는 45세 여배우의 한마디",
+    "score": 80,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 60,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "샐러드",
+      "photo": "샐러드_0o_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "도시락",
+      "photo": "도시락_0s_pexels_5.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "고구마",
+      "photo": "고구마_0w_1.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_pexels_0.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
