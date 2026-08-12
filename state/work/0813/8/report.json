@@ -1,0 +1,48 @@
+{
+  "date": "2026-08-13",
+  "slot": 8,
+  "celeb": "신민아",
+  "richness": "thin",
+  "sources": 67,
+  "title": {
+    "title": "근육 타고났다는데 왜 매일 20분씩 밟을까, 어느 여배우 사연",
+    "score": 66,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_unsplash_7.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "두부",
+      "photo": "두부_0s_unsplash_7.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "오트밀",
+      "photo": "오트밀_0s_unsplash_3.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_2.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
