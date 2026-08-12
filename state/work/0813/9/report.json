@@ -1,0 +1,48 @@
+{
+  "date": "2026-08-13",
+  "slot": 9,
+  "celeb": "이민정",
+  "richness": "thin",
+  "sources": 87,
+  "title": {
+    "title": "28개월 딸 쫓아다니는 게 운동이라는 여배우의 육아",
+    "score": 66,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 67,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_pexels_2.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "두부",
+      "photo": "두부_0s_pexels_2.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "오트밀",
+      "photo": "오트밀_0s_pexels_4.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0w_2.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
