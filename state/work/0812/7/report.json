@@ -1,0 +1,48 @@
+{
+  "date": "2026-08-12",
+  "slot": 7,
+  "celeb": "한채영",
+  "richness": "thin",
+  "sources": 23,
+  "title": {
+    "title": "다리 길이만 112cm라는 여배우가 아침에 하는 일",
+    "score": 58,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "고구마",
+      "photo": "고구마_0w_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_unsplash_3.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "두부",
+      "photo": "두부_0w_1.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "오트밀",
+      "photo": "오트밀_0s_unsplash_1.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
