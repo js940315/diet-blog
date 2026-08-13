@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-13",
+  "slot": 2,
+  "celeb": "한지혜",
+  "richness": "thin",
+  "sources": 57,
+  "title": {
+    "title": "51kg 찍고도 \"화면엔 이 정도가 맞다\"는 42세 여배우",
+    "score": 98,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "본인 발언 인용 +12",
+      "모순 구조(~인데 ~했다) +14",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 76,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_6.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_unsplash_1.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "두부",
+      "photo": "두부_0s_unsplash_3.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "오트밀",
+      "photo": "오트밀_0s_pexels_6.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
