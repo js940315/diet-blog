@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-13",
+  "slot": 3,
+  "celeb": "김정은",
+  "richness": "thin",
+  "sources": 77,
+  "title": {
+    "title": "\"6개월 금주로 완성한\" 47세 여배우의 슈트핏 비결",
+    "score": 86,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 76,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0s_unsplash_5.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "두부",
+      "photo": "두부_0s_pexels_0.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "오트밀",
+      "photo": "오트밀_0s_pexels_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0w_1.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
