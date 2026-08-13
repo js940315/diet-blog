@@ -23,6 +23,7 @@ B) 에이전트 경로 — 키가 없을 때. 클로드 코드가 글만 쓴다.
 import argparse
 import json
 import os
+import shutil
 import sys
 import traceback
 
@@ -179,7 +180,20 @@ def _crawl_one_slot(date_str, slot, args):
     d = outdir(date_str, slot)
     if already_done(d, args.force):
         return "skip"
-    if _slot_meta(date_str, slot) and not args.force:
+
+    # --redraw: 에이전트가 소재 부족·논란·동명이인으로 슬롯을 포기했을 때
+    # 그 인물을 쿨다운으로 보내고 같은 슬롯에 새 인물을 다시 배정한다.
+    # 이게 없으면 포기한 슬롯은 그날 영영 빈칸으로 남는다 (0812·0813 실측:
+    # 10칸 중 5~6칸이 이 이유로 비었다). 사용자 결정(2026-08-13): 빈칸을 두지
+    # 않고 대체 인물로 채운다.
+    if getattr(args, "redraw", False):
+        m = _slot_meta(date_str, slot)
+        if m and m.get("celeb"):
+            store.mark_celeb(m["celeb"])
+            print(f"■ 슬롯 {slot}: {m['celeb']} 쿨다운 처리 → 새 인물로 재배정")
+        shutil.rmtree(os.path.join(C.WORK_DIR, _date_key(date_str), str(slot)),
+                      ignore_errors=True)
+    elif _slot_meta(date_str, slot) and not args.force:
         print(f"■ 슬롯 {slot}: 이미 수집돼 있음 (건너뜀)")
         return "skip"
 
@@ -230,7 +244,11 @@ def stage_crawl(args):
         if r == "ok":
             made += 1
         elif r == "empty":
-            break
+            # 예전엔 여기서 break 했다. 그러면 인물 하나가 안 잡히는 순간
+            # 뒤 슬롯이 전부 통째로 날아간다. 후보가 진짜 0명이면
+            # _crawl_one_slot 이 즉시 반환하므로 계속 돌아도 비용이 없다.
+            print(f"   슬롯 {s} 는 비워두고 다음 슬롯으로 넘어갑니다.")
+            continue
         if args.celeb:      # 인물 지정은 슬롯 하나만 채운다
             break
 
@@ -432,6 +450,9 @@ def main():
                     help="특정 슬롯만. 생략하면 전 슬롯 순회")
     ap.add_argument("--dry-run", action="store_true", help="제목까지만 생성 (API 경로)")
     ap.add_argument("--celeb", help="인물 지정 (슬롯 하나만 채움)")
+    ap.add_argument("--redraw", action="store_true",
+                    help="포기한 슬롯을 새 인물로 재배정 "
+                         "(--stage crawl --slot N --redraw). 기존 인물은 쿨다운 처리")
     ap.add_argument("--sort", choices=("sim", "date"), default=C.DEFAULT_SORT)
     ap.add_argument("--source", choices=("auto", "naver", "google"), default=C.SOURCE_MODE)
     ap.add_argument("--no-images", action="store_true", help="본문만 생성 (사진 생략)")
@@ -441,6 +462,13 @@ def main():
     ap.add_argument("--force", action="store_true",
                     help="완성된 본문이 있어도 새로 만든다")
     args = ap.parse_args()
+
+    # --redraw 는 슬롯 하나를 지목해서 쓴다. 슬롯을 안 주면 오늘 수집분을
+    # 전부 날려버리므로 막는다.
+    if args.redraw and not args.slot:
+        print("[중단] --redraw 는 --slot N 과 같이 써야 합니다. "
+              "예: python main.py --stage crawl --slot 4 --redraw")
+        sys.exit(2)
 
     try:
         if args.stage == "crawl":
