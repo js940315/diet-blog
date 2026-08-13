@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-14",
+  "slot": 9,
+  "celeb": "배두나",
+  "richness": "thin",
+  "sources": 43,
+  "title": {
+    "title": "\"이 나이에 식단하면 다쳐\"라는 45세 여배우의 소신",
+    "score": 88,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 56,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "두부",
+      "photo": "두부_0w_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "오트밀",
+      "photo": "오트밀_0s_pexels_6.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0w_3.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "아보카도",
+      "photo": "아보카도_0s_pexels_0.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
