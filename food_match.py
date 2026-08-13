@@ -76,7 +76,7 @@ FOOD_QUERIES = {
     "블루베리": "fresh blueberries bowl",
     "딸기": "fresh strawberries",
     "수박": "watermelon slices",
-    "레몬": "yellow lemon closeup",
+    "레몬": "whole lemon fruit isolated",
     "아보카도": "avocado halved fresh",
     "옥수수": "corn cobs fresh",
 

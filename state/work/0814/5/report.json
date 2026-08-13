@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-14",
+  "slot": 5,
+  "celeb": "하지원",
+  "richness": "thin",
+  "sources": 95,
+  "title": {
+    "title": "근육 늘려 체중 뺐다는 48세 여배우의 진짜 이유",
+    "score": 80,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 66,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 3,
+      "category": "두부",
+      "photo": "두부_0o_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "오트밀",
+      "photo": "오트밀_0w_2.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
