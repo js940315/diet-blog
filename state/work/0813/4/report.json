@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-13",
+  "slot": 4,
+  "celeb": "한효주",
+  "richness": "thin",
+  "sources": 24,
+  "title": {
+    "title": "39세인데 매일 아침 고강도 운동 모임에 나간다는 여배우",
+    "score": 94,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "모순 구조(~인데 ~했다) +14",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 2,
+      "category": "딸기",
+      "photo": "딸기_o_0.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "그릭요거트",
+      "photo": "그릭요거트_0w_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "두부",
+      "photo": "두부_0s_pexels_6.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}

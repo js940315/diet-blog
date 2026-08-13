@@ -157,11 +157,11 @@
     "그릭요거트_0s_pexels_6.jpg",
     "그릭요거트_0s_pexels_4.jpg",
     "그릭요거트_0s_pexels_2.jpg",
-    "그릭요거트_0s_unsplash_1.jpg"
+    "그릭요거트_0s_unsplash_1.jpg",
+    "그릭요거트_0s_unsplash_7.jpg",
+    "그릭요거트_0w_0.jpg"
   ],
   "두부": [
-    "두부_0s_unsplash_7.jpg",
-    "두부_0s_unsplash_1.jpg",
     "두부_0s_unsplash_5.jpg",
     "두부_0s_unsplash_3.jpg",
     "두부_0s_unsplash_7.jpg",
@@ -199,7 +199,9 @@
     "두부_0w_0.jpg",
     "두부_0s_unsplash_7.jpg",
     "두부_0s_unsplash_1.jpg",
-    "두부_0s_unsplash_3.jpg"
+    "두부_0s_unsplash_3.jpg",
+    "두부_0s_pexels_4.jpg",
+    "두부_0s_pexels_6.jpg"
   ],
   "오트밀": [
     "오트밀_0s_pexels_2.jpg",
@@ -544,5 +546,9 @@
   ],
   "사과": [
     "사과_o_0.jpg"
+  ],
+  "딸기": [
+    "딸기_o_1.jpg",
+    "딸기_o_0.jpg"
   ]
 }
