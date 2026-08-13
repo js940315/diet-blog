@@ -1,0 +1,35 @@
+{
+  "date": "2026-08-14",
+  "slot": 8,
+  "celeb": "이다희",
+  "richness": "thin",
+  "sources": 31,
+  "title": {
+    "title": "\"현미밥에 참치 싸먹어\"라는 여배우의 반전 한식 사랑",
+    "score": 44,
+    "reasons": [
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 3,
+      "category": "오트밀",
+      "photo": "오트밀_0s_unsplash_5.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "두부",
+      "photo": "두부_0s_unsplash_3.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
