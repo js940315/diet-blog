@@ -75,6 +75,11 @@ def disqualify_reason(title: str):
     for w in C.BANNED_HOOKS:
         if w in title:
             return f"금지선: {w}"
+    # 프롬프트 예시를 그대로 베낀 제목은 여기서 죽인다.
+    # 프롬프트에 "쓰지 마라"라고 적는 것만으로는 안 지켜진다는 걸 0810·0814 에서 봤다.
+    for w in getattr(C, "CLICHE_OPENERS", ()):
+        if w in title:
+            return f"상투 문구 복붙: {w}"
     for name in C.CELEB_POOL:
         # 2글자 이름은 일반 단어와 겹친다 (조이는/수지타산/슬기롭게). 3글자만 자동검사.
         if len(name) >= 3 and name in title:
