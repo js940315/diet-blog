@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-15",
+  "slot": 2,
+  "celeb": "임수정",
+  "richness": "thin",
+  "sources": 27,
+  "title": {
+    "title": "\"46세 맞아\" 소리 듣는다는 여배우의 8년째 채식",
+    "score": 86,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 60,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "오트밀",
+      "photo": "오트밀_0w_1.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0w_2.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "아보카도",
+      "photo": "아보카도_0s_pexels_6.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_unsplash_3.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
