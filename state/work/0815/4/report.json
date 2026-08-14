@@ -1,0 +1,50 @@
+{
+  "date": "2026-08-15",
+  "slot": 4,
+  "celeb": "염정아",
+  "richness": "thin",
+  "sources": 36,
+  "title": {
+    "title": "48kg 지키는 53세 여배우, \"타고난 게 아니다\"라고 밝혔다는데",
+    "score": 98,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "본인 발언 인용 +12",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "오트밀",
+      "photo": "오트밀_0s_unsplash_7.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_0.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "아보카도",
+      "photo": "아보카도_0s_unsplash_5.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_7.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
