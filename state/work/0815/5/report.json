@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-15",
+  "slot": 5,
+  "celeb": "신세경",
+  "richness": "thin",
+  "sources": 26,
+  "title": {
+    "title": "48kg 공개한 30대 여배우, 디저트도 즐긴다는데",
+    "score": 86,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 55,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 3,
+      "category": "오트밀",
+      "photo": "오트밀_0s_pexels_2.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_4.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
