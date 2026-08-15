@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-16",
+  "slot": 4,
+  "celeb": "김고은",
+  "richness": "thin",
+  "sources": 74,
+  "title": {
+    "title": "\"얼굴도 몸도 말렸다\"는 30대 여배우, 숏컷 변신 뒤 벌어진 일",
+    "score": 80,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 64,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_4.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "아보카도",
+      "photo": "아보카도_0s_unsplash_1.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_unsplash_3.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "식단레시피",
+      "photo": "식단레시피_1s_pexels_0.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
