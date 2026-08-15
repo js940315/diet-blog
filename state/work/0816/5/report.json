@@ -1,0 +1,43 @@
+{
+  "date": "2026-08-16",
+  "slot": 5,
+  "celeb": "고윤정",
+  "richness": "thin",
+  "sources": 114,
+  "title": {
+    "title": "\"청순한 얼굴인데 등근육은 남배우급\"이라는 여배우의 필라테스",
+    "score": 80,
+    "reasons": [
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "모순 구조(~인데 ~했다) +14",
+      "단정형 종결 +8"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_4.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "아보카도",
+      "photo": "아보카도_0w_0.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_7.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}

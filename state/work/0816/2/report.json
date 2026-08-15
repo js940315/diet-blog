@@ -1,0 +1,46 @@
+{
+  "date": "2026-08-16",
+  "slot": 2,
+  "celeb": "서현",
+  "richness": "thin",
+  "sources": 39,
+  "title": {
+    "title": "10년 넘게 매일 아침 공복 30분, 걸그룹 막내 출신 여가수의 고집",
+    "score": 72,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 75,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [
+    "챕터 1 분량 18줄 — 11~17줄로 맞출 것",
+    "챕터 3 분량 21줄 — 11~17줄로 맞출 것",
+    "챕터 분량 편차 9줄 (12~21) — 4줄 이내로 맞출 것"
+  ],
+  "images": [
+    {
+      "slot": 1,
+      "category": "두유",
+      "photo": "두유_w_1.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "고구마",
+      "photo": "고구마_0s_unsplash_5.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "샐러드",
+      "photo": "샐러드_0s_unsplash_1.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
