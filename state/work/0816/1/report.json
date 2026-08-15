@@ -1,0 +1,49 @@
+{
+  "date": "2026-08-16",
+  "slot": 1,
+  "celeb": "윤아",
+  "richness": "thin",
+  "sources": 58,
+  "title": {
+    "title": "'원조 센터' 타이틀에 48kg까지, 여가수의 자기관리 비결은",
+    "score": 78,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 다이어트 신호어 +22",
+      "본인 발언 인용 +12",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 72,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_pexels_6.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "피자",
+      "photo": "피자_s_unsplash_1.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "아보카도",
+      "photo": "아보카도_0s_unsplash_7.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_2.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
