@@ -142,12 +142,14 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
     """검증 → 0번 본문.txt → 사진 → report.json. 두 경로가 공유한다."""
     cta = meta.get("cta")
     celeb = meta.get("celeb")
-    problems = validator.validate(body, richness, cta, celeb, chosen["title"])
+    problems = validator.validate(body, richness, cta, celeb, chosen["title"],
+                                  meta.get("factsheet"))
     polished = False
     if problems and polish_ok:
         body = validator.polish(body)
         polished = True
-        problems = validator.validate(body, richness, cta, celeb, chosen["title"])
+        problems = validator.validate(body, richness, cta, celeb, chosen["title"],
+                                  meta.get("factsheet"))
 
     body = validator.ensure_notices(body)
 
@@ -314,6 +316,10 @@ def _finish_one_slot(date_str, slot, args):
     chosen = ranked[0]
     if args.no_images:
         meta["no_images"] = True
+    # 동명이인 교차검증에 쓴다. 없으면 그 검사만 건너뛴다.
+    fs_p = wpath(d, "factsheet.json")
+    if os.path.exists(fs_p):
+        meta["factsheet"] = _load(fs_p, "factsheet.json")
 
     post, problems, polished, made, cl = _finalize(
         d, body, meta["richness"], meta, chosen, polish_ok=args.polish)
@@ -423,7 +429,7 @@ def run_api(args):
     )
 
     meta = {"date": date_str, "slot": slot, "celeb": celeb, "cta": cta,
-            "no_images": args.no_images}
+            "no_images": args.no_images, "factsheet": fs}
     post, problems, extra_polish, made, cl = _finalize(
         d, body, richness, meta, chosen, polish_ok=False)
 

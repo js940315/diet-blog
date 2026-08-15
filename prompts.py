@@ -20,6 +20,22 @@ FACTSHEET_USER = """\
 
 여기서 **소스에 실제로 적힌 것만** 뽑아 정리해라.
 
+**0단계 — 동명이인 분리 (2026-08-14 사용자 지시. 이걸 먼저 안 하면 전부 오염된다)**
+검색은 이름으로만 했다. **같은 이름의 다른 사람 기사가 섞여 있다고 전제하고 시작해라.**
+실측 사고: '서현진' 소스에 배우 서현진(트렁크 촬영·출산 후 54kg)과 아나운서
+서현진(미스코리아 출신·전 MBC 아나운서)이 함께 담겼고, 결과물이 두 사람을
+한 사람인 것처럼 썼다. 독자가 바로 알아채는 치명적 오류다.
+1. 소스를 대표작·소속·직업·나이로 묶는다. 서로 안 이어지는 묶음이 둘 이상이면 동명이인이다.
+2. 기사가 가장 많은 묶음을 주 인물로 정하고, 그 묶음만 남긴다.
+3. 나머지 묶음의 발언·나이·경력·사건은 **한 줄도 가져오지 마라.** 재밌어도 버린다. 다른 사람이다.
+4. 어느 쪽인지 못 가리는 기사도 버린다.
+5. **경력을 나열할 때 특히 조심해라.** "미스코리아 출신", "전직 아나운서" 같은 이력은
+   동명이인에게서 옮겨붙기 가장 쉬운 항목이다. 주 인물 묶음의 기사에 그 이력이
+   직접 적혀 있지 않으면 쓰지 마라.
+
+identity_anchor 에 주 인물을 대표작·소속으로 못 박고, namesake_dropped 에 버린
+쪽의 식별 표식을 적어라 (예: ["미스코리아 출신 아나운서 서현진"]). 없으면 빈 배열.
+
 주의:
 - 소스에 없는 수치·기간·식단명을 지어내지 마라. 없으면 빈 배열/빈 문자열.
 - 몸무게·키 스펙은 소스에 명시된 경우에만 넣는다.
@@ -53,13 +69,19 @@ FACTSHEET_SCHEMA = {
                    "description": "본인이 직접 한 말만. 제3자 평가·커뮤니티 반응은 제외"},
         "quote_sources": {"type": "array", "items": {"type": "string"},
                           "description": "각 발언의 출처(프로그램명·매체명). quotes와 같은 순서·같은 길이"},
+        "identity_anchor": {"type": "string",
+                            "description": "주 인물을 대표작·소속으로 한 줄로 못 박은 값. "
+                                           "예: 드라마 트렁크 주연 배우"},
+        "namesake_dropped": {"type": "array", "items": {"type": "string"},
+                             "description": "동명이인이라 버린 쪽의 식별 표식. 없으면 빈 배열"},
         "has_exercise_detail": {"type": "boolean"},
         "notes": {"type": "string"},
     },
     "required": [
         "celeb", "age", "job", "weight_before", "weight_after", "height",
         "duration", "foods", "exercises", "habits", "life_events", "quotes",
-        "quote_sources", "has_exercise_detail", "notes",
+        "quote_sources", "identity_anchor", "namesake_dropped",
+        "has_exercise_detail", "notes",
     ],
     "additionalProperties": False,
 }

@@ -144,10 +144,44 @@ def _bare_job(job: str, text: str):
     return out
 
 
+def namesake_contamination(text: str, factsheet: dict):
+    """동명이인이 섞였을 가능성을 본문에서 잡는다 (2026-08-14 사용자 지시).
+
+    NAMESAKE_DROP 은 **이미 당한 이름만** 막는다. 처음 보는 동명이인은 못 막는다.
+    그래서 결과물 쪽에서 한 번 더 본다.
+
+    원리: 본문에 나온 직업·이력 표식이 팩트시트에 근거가 없으면 남의 이력이
+    옮겨붙은 것이다. 2026-08-14 사고가 정확히 이 형태였다 — 배우 서현진 글에
+    "미스코리아 출신이자 전직 MBC 아나운서"가 들어갔고, 그건 동명이인 쪽 이력이었다.
+
+    배우가 진짜 가수 출신인 경우도 있으므로, 팩트시트(job·identity_anchor·
+    life_events·notes·quotes)에 그 단어가 있으면 통과시킨다. 근거가 있으면 쓴 것이다.
+    """
+    if not isinstance(factsheet, dict):
+        return []                      # 팩트시트가 없으면 이 검사만 건너뛴다
+    person = factsheet.get("person") if isinstance(factsheet.get("person"), dict) else factsheet
+    grounds = " ".join(str(person.get(k, "")) for k in ("job", "identity_anchor", "notes"))
+    for k in ("life_events", "quotes", "habits"):
+        v = person.get(k) or factsheet.get(k) or []
+        if isinstance(v, list):
+            grounds += " " + " ".join(str(x) for x in v)
+
+    plain = visible(text)
+    found = [m for m in getattr(C, "PROFESSION_MARKERS", ())
+             if m in plain and m not in grounds]
+    if found:
+        anchor = (person.get("identity_anchor") or "").strip() or "(비어 있음)"
+        return [f"동명이인 의심: 본문에 팩트시트 근거가 없는 이력 {found} 가 나왔다. "
+                f"주 인물은 '{anchor}' 다. 다른 사람 이력이 섞였는지 확인하고, "
+                f"근거가 있으면 팩트시트에 넣어라"]
+    return []
+
+
 def validate(text: str, richness: str = "normal", cta: str = None, celeb: str = None,
-             title: str = None):
+             title: str = None, factsheet: dict = None):
     """위반 목록을 반환한다. 빈 리스트면 통과."""
     problems = []
+    problems += namesake_contamination(text, factsheet)
     body, tags, notices = split_sections(text)
     cl = content_lines(body)
 

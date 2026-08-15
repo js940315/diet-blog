@@ -168,8 +168,45 @@ def _collect_google(celeb: str, seen_links: set):
     return items
 
 
+def drop_namesakes(celeb: str, items):
+    """동명이인 기사를 걷어낸다 (2026-08-14 사용자 지시).
+
+    검색은 이름으로만 하니 같은 이름의 다른 사람 기사가 그대로 섞여 들어온다.
+    2026-08-14 실측 사고: '서현진' 소스에 배우 서현진(트렁크·출산 후)과
+    아나운서 서현진(미스코리아 출신 전 MBC)이 함께 담겼고, 본문 한 편이
+    두 사람 얘기를 한 사람인 것처럼 썼다.
+
+    여기서 안 자르면 팩트시트가 오염되고, 오염된 팩트시트는 제목·본문까지
+    그대로 간다. 소스 단계가 유일하게 싼 방어선이다.
+    """
+    markers = C.NAMESAKE_DROP.get(celeb)
+    if not markers:
+        return items
+    kept, dropped = [], []
+    for it in items:
+        blob = (it.get("title", "") or "") + " " + (it.get("desc") or "")
+        hit = next((m for m in markers if m in blob), None)
+        if hit:
+            dropped.append((hit, it.get("title", "")))
+        else:
+            kept.append(it)
+    if dropped:
+        print(f"  [동명이인] {len(dropped)}건 제외 - {celeb}")
+        for hit, title in dropped[:5]:
+            print(f"      . ({hit}) {title[:44]}")
+    return kept
+
+
 def collect(celeb: str, sort: str = None, display: int = None, mode: str = None):
-    """한 인물에 대한 소스를 모은다. 이미 쓴 링크는 걸러낸다."""
+    """한 인물에 대한 소스를 모은다. 이미 쓴 링크·동명이인 기사는 걸러낸다.
+
+    수집 자체는 _collect_raw 가 하고, 여기서 동명이인만 한 번에 걷어낸다.
+    _collect_raw 는 반환 지점이 여러 개라 각각에 필터를 붙이면 하나를 빠뜨리게 된다.
+    """
+    return drop_namesakes(celeb, _collect_raw(celeb, sort, display, mode))
+
+
+def _collect_raw(celeb: str, sort: str = None, display: int = None, mode: str = None):
     sort = sort or C.DEFAULT_SORT
     display = display or C.NAVER_DISPLAY
     mode = mode or C.SOURCE_MODE
