@@ -15,31 +15,27 @@
     ]
   },
   "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
-  "content_lines": 75,
+  "content_lines": 66,
   "polished": false,
   "route": "agent",
-  "final_problems": [
-    "챕터 1 분량 18줄 — 11~17줄로 맞출 것",
-    "챕터 3 분량 21줄 — 11~17줄로 맞출 것",
-    "챕터 분량 편차 9줄 (12~21) — 4줄 이내로 맞출 것"
-  ],
+  "final_problems": [],
   "images": [
     {
       "slot": 1,
       "category": "두유",
-      "photo": "두유_w_1.jpg",
+      "photo": "두유_w_0.jpg",
       "file": "1번 사진.jpg"
     },
     {
       "slot": 3,
       "category": "고구마",
-      "photo": "고구마_0s_unsplash_5.jpg",
+      "photo": "고구마_0s_unsplash_7.jpg",
       "file": "3번 사진.jpg"
     },
     {
       "slot": 4,
       "category": "샐러드",
-      "photo": "샐러드_0s_unsplash_1.jpg",
+      "photo": "샐러드_0s_pexels_6.jpg",
       "file": "4번 사진.jpg"
     }
   ]

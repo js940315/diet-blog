@@ -1,11 +1,11 @@
 {
   "date": "2026-08-16",
-  "slot": 9,
-  "celeb": "김혜윤",
+  "slot": 8,
+  "celeb": "노윤서",
   "richness": "thin",
-  "sources": 61,
+  "sources": 87,
   "title": {
-    "title": "무명 7년 버텼는데도 톱스타 된 여배우, 그때 세운 운동 습관",
+    "title": "26세인데 리포머·캐딜락·체어 다 쓴다는 여배우의 코어 루틴",
     "score": 72,
     "reasons": [
       "앞20자 숫자 +30",
@@ -15,8 +15,8 @@
       "숫자 1개 +6"
     ]
   },
-  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
-  "content_lines": 65,
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 68,
   "polished": false,
   "route": "agent",
   "final_problems": [],
@@ -24,20 +24,26 @@
     {
       "slot": 1,
       "category": "닭가슴살",
-      "photo": "닭가슴살_0w_2.jpg",
+      "photo": "닭가슴살_0s_unsplash_3.jpg",
       "file": "1번 사진.jpg"
     },
     {
       "slot": 2,
       "category": "아보카도",
-      "photo": "아보카도_0w_1.jpg",
+      "photo": "아보카도_0s_pexels_6.jpg",
       "file": "2번 사진.jpg"
     },
     {
       "slot": 3,
       "category": "단백질쉐이크",
-      "photo": "단백질쉐이크_0s_pexels_2.jpg",
+      "photo": "단백질쉐이크_0s_unsplash_5.jpg",
       "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "식단레시피",
+      "photo": "식단레시피_1o_3.jpg",
+      "file": "4번 사진.jpg"
     }
   ]
 }

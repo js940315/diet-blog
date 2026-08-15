@@ -1,0 +1,48 @@
+{
+  "date": "2026-08-16",
+  "slot": 3,
+  "celeb": "한소희",
+  "richness": "thin",
+  "sources": 113,
+  "title": {
+    "title": "\"논란 2년 만에 속마음 고백했다는\" 30대 여배우의 감정관리 비결",
+    "score": 72,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8",
+      "숫자 2개 +12"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 75,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "닭가슴살",
+      "photo": "닭가슴살_0s_unsplash_1.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "아보카도",
+      "photo": "아보카도_0w_0.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_6.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "식단레시피",
+      "photo": "식단레시피_1s_unsplash_3.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
