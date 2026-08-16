@@ -1,0 +1,42 @@
+{
+  "date": "2026-08-17",
+  "slot": 8,
+  "celeb": "제니",
+  "richness": "thin",
+  "sources": 100,
+  "title": {
+    "title": "타임지 100인 행사 참석한 여가수, 몸매 관리는 플라잉요가",
+    "score": 58,
+    "reasons": [
+      "앞20자 숫자 +30",
+      "앞20자 인물 특정 +14",
+      "단정형 종결 +8",
+      "숫자 1개 +6"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "아보카도",
+      "photo": "아보카도_0w_1.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "식단레시피",
+      "photo": "식단레시피_1s_pexels_2.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "샐러드",
+      "photo": "샐러드_0w_2.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
