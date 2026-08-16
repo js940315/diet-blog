@@ -300,11 +300,20 @@ def _title_one_slot(date_str, slot):
     # 조용히 통과시키면 규칙을 글로만 적어둔 것과 같아진다.
     if T.below_floor(ranked):
         print(f"■ 슬롯 {slot}: 최고점 {ranked[0]['score']}점 < {C.MIN_SCORE}점 — "
-              f"제목규칙 §4 에 따라 전부 폐기. 후보를 다시 뽑아야 한다.")
+              f"제목규칙 §4 에 따라 전부 폐기.")
         print(f"   1등: {ranked[0]['title']}")
         for r in ranked[0]["reasons"]:
             print(f"     - {r}")
-        print("   보통 원인은 하나다 — 제3자 실명·금기 소재·돈 숫자가 셋 다 없다.")
+        # 후보를 다시 뽑아야 하는지, 인물을 바꿔야 하는지 여기서 갈린다.
+        # 재료가 없는 인물은 몇 번을 다시 뽑아도 60을 못 넘는다.
+        have, missing = T.material_report(fs, subject)
+        print(f"   팩트시트 재료 — 있음: {', '.join(have) if have else '없음'}")
+        print(f"                  없음: {', '.join(missing) if missing else '없음'}")
+        if have:
+            print("   → 재료는 있다. 그 카드를 제목 앞쪽에 물려서 후보 10개를 다시 써라.")
+        else:
+            print("   → 세 카드가 하나도 없다. 후보를 다시 써도 60점은 안 나온다.")
+            print("      이 인물은 건너뛰고 다른 인물로 슬롯을 채워라.")
         return None
 
     chosen = ranked[0]

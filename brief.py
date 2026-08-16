@@ -55,8 +55,15 @@ def factsheet_text(fs: dict) -> str:
         v = (fs.get(k) or "").strip()
         if v:
             lines.append(f"- {ko}: {v}")
+    # 제목규칙 §3 의 재료는 맨 위로 올린다. 프롬프트에서 안 보이면 제목이 60점을 못 넘고
+    # 슬롯이 통째로 날아간다. 실측 2026-08-16: 팩트시트 12명 중 5명만 이 재료가 있었다.
+    for k, ko in (("related_celebs", "★ 엮인 유명인 — 제3자 실명 카드 (+30, 최강)"),
+                  ("money_facts", "★ 돈 (+20)")):
+        v = [x for x in (fs.get(k) or []) if x]
+        if v:
+            lines.append(f"- {ko}: {', '.join(v)}")
     for k, ko in (("foods", "식단"), ("exercises", "운동"),
-                  ("habits", "습관"), ("life_events", "인생 사건")):
+                  ("habits", "습관"), ("life_events", "인생 사건 (+25 금기 소재 재료)")):
         v = [x for x in (fs.get(k) or []) if x]
         if v:
             lines.append(f"- {ko}: {', '.join(v)}")

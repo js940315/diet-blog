@@ -267,6 +267,37 @@ def below_floor(ranked):
     return ranked[0]["score"] < C.MIN_SCORE
 
 
+def material_report(factsheet, subject=None):
+    """이 팩트시트로 60점을 만들 재료가 있는가.
+
+    점수표 산술상 제3자 실명(+30)·금기 소재(+25)·돈 숫자(+20) 중 최소 하나가
+    없으면 60점을 넘기기가 사실상 불가능하다(나머지를 6개 쌓으면 40자를 넘어
+    초과 감점으로 되돌아온다). 재료가 없는 인물은 **후보를 몇 번 다시 뽑아도
+    안 된다** — 인물을 바꾸는 게 맞다.
+
+    제목을 뽑기 전에 이걸 봐야 슬롯 하나를 통째로 날리지 않는다.
+    반환: (가진 카드 목록, 없는 카드 목록)
+    """
+    if not factsheet:
+        return [], ["팩트시트 없음"]
+    blob = " ".join(
+        str(v) for k, v in factsheet.items()
+        if k not in ("celeb",) and isinstance(v, (str, int, float, list))
+        for v in ([v] if not isinstance(v, list) else v)
+    )
+    have, missing = [], []
+    tp = [n for n in _third_party_pool(subject) if len(n) >= 2 and n in blob]
+    (have if tp else missing).append(
+        f"제3자 실명(+30){': ' + tp[0] if tp else ''}")
+    tb = [x for x in C.TABOO_WORDS if x in blob]
+    (have if tb else missing).append(
+        f"금기 소재(+25){': ' + tb[0] if tb else ''}")
+    mn = _MONEY.search(blob)
+    (have if mn else missing).append(
+        f"돈 숫자(+20){': ' + mn.group() if mn else ''}")
+    return have, missing
+
+
 # ── 자체 테스트 ─────────────────────────────────────────────────────────
 # 제목규칙.md 의 실증 예시를 그대로 쓴다. 조회수가 붙은 것은 실제 성과다.
 KNOWN = [
