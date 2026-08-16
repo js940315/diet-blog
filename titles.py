@@ -1,202 +1,298 @@
 """제목 10개 → 점수 → 1개 확정.
 
+원본 규칙은 저장소 루트 **제목규칙.md** 다. 이 파일은 그 구현체다.
+규칙을 바꾸려면 제목규칙.md 를 먼저 고치고 여기를 맞춘다. 반대로 하면 둘이 갈라진다.
+
 설계 원칙: 제목 선택은 LLM이 하지 않는다.
 모델은 후보만 만들고, 고르는 건 아래 점수 함수다.
-홈판은 앞 20자만 노출되므로 총점의 절반 이상이 앞 20자에서 나온다.
 
-튜닝은 프롬프트가 아니라 config.WEIGHTS 숫자로 한다.
+2026-08-16 전면 교체. 이전 표는 "다이어트 정보"에 가점을 줬다(앞20자 다이어트
+신호어 +22). 사용자 판정으로 그 방향이 뒤집혔다 — 클릭을 만드는 건 다이어트가
+아니라 **인물 가십**이고, 다이어트는 훅이 아니라 명분이다.
+그래서 다이어트 단어가 앞쪽에 있으면 이제 **감점**이다.
 """
 
 import re
 
 import config as C
 
-_NUM = re.compile(r"\d+")
-_AGE = re.compile(r"\d+\s*(?:세|대)")
+# ── 제목규칙 §1 폐기 조건 판정용 ────────────────────────────────────────
+_AGE = re.compile(r"\d+\s*(?:세|대|년생)")
 _JOB = re.compile(
-    r"여배우|배우|가수|모델|아나운서|방송인|개그우먼|코미디언|트로트|"
-    r"여신|스타|아이돌|디바|MC|셀럽"
+    r"여배우|배우|여가수|가수|모델|아나운서|방송인|개그우먼|코미디언|트로트|"
+    r"여신|스타|아이돌|디바|MC|셀럽|출신|여사장|사업가"
 )
-# 정답이 너무 쉬운 조합: 유명 남자 실명 + 혼인 관계어.
-# "장동건과 16년째 부부"는 누가 봐도 답이 나와서 클릭베이트가 죽는다.
-_MARRIAGE = re.compile(r"남편|부부|아내|와이프|배우자|결혼|재혼")
-# 유지 기간형: 37년째 / 20년간 / 15년 동안
-_DURATION = re.compile(r"\d+\s*년\s*(?:째|간|동안|넘게|째로)")
-_WEIGHT_TOKEN = re.compile(r"\d+\s*(?:kg|KG|킬로|키로)|\d+\s*사이즈|몸무게|체중")
-# 감량 낙차형: 58kg에서 44kg으로 / 58 → 44 / 70kg대에서
-_DROP = re.compile(
-    r"\d+\s*(?:kg|KG|킬로|키로)?\s*(?:대)?\s*(?:에서|부터|→|->)\s*\d+"
+# §1-3 큰따옴표 발화 훅. 맨 앞에서 열려야 한다(§2 "훅은 반드시 맨 앞").
+_HOOK = re.compile(r'^\s*["“]([^"“”]{2,30})["”]')
+# §1-4 kg·cm·인치 중 하나
+_SIZE = re.compile(r"\d+\s*(?:kg|KG|킬로|키로|cm|CM|센치|센티|인치)")
+# §1-6 "N가지" / "Best N" / "TOP N"
+_LISTICLE = re.compile(r"\d+\s*가지|\bbest\s*\d+|\btop\s*\d+|베스트\s*\d+|탑\s*\d+",
+                       re.IGNORECASE)
+
+# ── 제목규칙 §3 화력 증폭기 판정용 ──────────────────────────────────────
+# §3-2 돈: 800억 / 12억 / 3천만원 / 억대
+_MONEY = re.compile(r"\d+\s*(?:억|조|천만원|백만원|만원)|억대|조원")
+# §3-4 상식 배반: "먹었는데 뺐다". 양보/역접 어미 + 먹는 행위
+_DEFY = re.compile(
+    r"(?:먹|밥|탄수화물|치킨|야식|빵|면|술|디저트|라면)[^ ]{0,6}"
+    r"(?:는데도|은데도|인데도|었는데|았는데|고도|면서도)"
+    r"|굶어도|안 굶고|약 안 먹고|운동 안 하고|끊지 않"
 )
-_QUOTE = re.compile(r'["“”‘’\']')
-# 이슈 선행형: 제목이 짧은 인용/이슈로 시작하고 따옴표가 17자 안에 닫힌다.
-# 길게 늘어지는 인용은 앞 20자를 다 먹어서 오히려 감점 대상이다.
-_ISSUE_LEAD = re.compile(r'^["“]([^"“”]{4,20})["”]')
-# 선두 인용이 ..으로 끝나며 여운을 남기는 형태.  "어제도 했다는.."
-_TEASE = re.compile(r'^["“][^"“”]{4,20}(?:\.\.|…)["”]?')
+# §3-5 억울·자기부정 발화
+_SELF_NEG = re.compile(
+    r"억울|밖에 안|망언|뭐한거지|나 살쪘|걱정했|짜증|서럽|후회|자괴|한심|창피"
+)
+# §4 나이 불신형 훅: "이게 46세?" / "진짜 46세 맞아?"
+_AGE_DISBELIEF = re.compile(
+    r"(?:이게|진짜|실화|실제로).{0,10}\d+\s*(?:세|대|년생)"
+    r"|\d+\s*(?:세|대|년생).{0,6}(?:맞아|맞나|실화|라고\?)"
+)
+# §4 정보형 훅: 가십이 아니라 정보다
+_INFO_HOOK = re.compile(
+    r"비법|비결|방법|팁|노하우|정리|총정리|알아보|추천|효능|효과적|하는 법|"
+    r"주의사항|체크리스트|가이드"
+)
+# §3 감량폭+기간 동시: "40일, 28kg" / "3개월에 16kg" / "두 달 만에 9kg"
+_PERIOD = re.compile(r"\d+\s*(?:일|주|개월|달|년)|두\s*달|석\s*달|한\s*달")
+_DROP_AMOUNT = re.compile(r"\d+\s*(?:kg|KG|킬로|키로)")
 _HEIGHT = re.compile(r"(\d{2,3})\s*(?:cm|CM|센치|센티)")
 _KG = re.compile(r"(\d{2,3})\s*(?:kg|KG|킬로|키로)")
-_QUESTION_END = re.compile(r"(?:\?|까|까요|나요|을까|ㄹ까|일까|는지)\s*$")
-# 모순 구조: 지위·스펙과 어긋나는 행동을 한 문장에 붙인 형태.
-# "아이돌인데 뚱뚱하다고" / "32kg 뺐는데도 실패" / "평판 1위인데 돌연 사라진"
-_CONTRAST = re.compile(r"인데|는데도|은데도|았는데|었는데|고도 ")
-_OPEN_END = re.compile(r"(?:\.\.\.|…)\s*$")
 
 
-def _head(title: str) -> str:
-    return title[: C.HEAD_LEN]
+def _third_party_pool(subject=None):
+    """제목에 남아 있어도 되는(=오히려 +30인) 실명들.
+
+    주인공은 §1-7 로 이미 폐기되므로, 제목에 살아남은 실명은 정의상 제3자다.
+    주인공만 빼고 전부 제3자로 본다.
+    """
+    pool = set(C.CELEB_POOL) | set(C.MALE_CELEB_NAMES) | set(C.THIRD_PARTY_EXTRA)
+    if subject:
+        pool.discard(subject.strip())
+    return pool
 
 
-def _fully_inside(pattern: re.Pattern, head: str, title: str) -> bool:
-    """패턴이 앞 20자 안에서 '온전히' 끝나는지. 잘린 매치는 인정하지 않는다."""
-    for m in pattern.finditer(title):
-        if m.end() <= len(head):
-            return True
-    return False
+def disqualify_reason(title: str, subject=None):
+    """즉시 탈락 사유(제목규칙 §1). 없으면 None.
 
+    subject 는 그 글의 주인공 이름이다. §1-7 은 **주인공 실명만** 폐기한다.
+    예전에는 여자 연예인 179명 풀 전체를 죽였는데, 그러면 §3-1 의 최강 카드
+    (김태희 같은 제3자 실명, 실증 5,425회)가 같이 죽는다.
+    """
+    t = title.strip()
 
-def _bmi(title: str):
-    """제목에 키와 몸무게가 함께 병기됐을 때만 BMI를 계산한다."""
-    h = _HEIGHT.search(title)
-    w = _KG.search(title)
-    if not (h and w):
-        return None
-    cm = int(h.group(1))
-    kg = int(w.group(1))
-    if cm < 120 or cm > 210 or kg < 25 or kg > 200:
-        return None
-    return kg / ((cm / 100) ** 2)
-
-
-def disqualify_reason(title: str):
-    """즉시 탈락 사유. 없으면 None."""
-    for w in C.EXTREME_WORDS:
-        if w in title:
+    # 기존 안전장치는 유지한다. 제목규칙 §6-3 이 "나머지는 허용"이라고 했지만
+    # 아래 셋은 수위 문제가 아니라 사고 방지라 성격이 다르다.
+    for w in C.EXTREME_WORDS:                       # 거식·프로아나 = 섭식장애 미화
+        if w in t:
             return f"극단 마름 표현: {w}"
-    for w in C.BANNED_HOOKS:
-        if w in title:
+    for w in C.BANNED_HOOKS:                        # 약물·시술
+        if w in t:
             return f"금지선: {w}"
-    # 프롬프트 예시를 그대로 베낀 제목은 여기서 죽인다.
-    # 프롬프트에 "쓰지 마라"라고 적는 것만으로는 안 지켜진다는 걸 0810·0814 에서 봤다.
-    for w in getattr(C, "CLICHE_OPENERS", ()):
-        if w in title:
+    for w in getattr(C, "CLICHE_OPENERS", ()):      # 프롬프트 예시 복붙
+        if w in t:
             return f"상투 문구 복붙: {w}"
-    for name in C.CELEB_POOL:
-        # 2글자 이름은 일반 단어와 겹친다 (조이는/수지타산/슬기롭게). 3글자만 자동검사.
-        if len(name) >= 3 and name in title:
-            return f"여자 실명 노출: {name}"
+
+    # ── 제목규칙 §1 ──
+    if subject and len(subject.strip()) >= 2 and subject.strip() in t:
+        return f"§1-7 주인공 실명 노출: {subject.strip()}"
+    if not (_AGE.search(t) or _JOB.search(t)):
+        return "§1-1 인물이 없다"
+    if not _AGE.search(t):
+        return "§1-2 나이 숫자가 없다"
+    if not _HOOK.match(t):
+        return "§1-3 맨 앞에 큰따옴표 발화 훅이 없다"
+    if not _SIZE.search(t):
+        return "§1-4 kg·cm·인치가 하나도 없다"
+    for w in C.MEDICAL_WORDS:
+        if w in t:
+            return f"§1-5 질병·영양제·의사 소재: {w}"
+    if _LISTICLE.search(t):
+        return "§1-6 N가지 / Best N / TOP N"
     return None
 
 
-def score(title: str):
+def quote_warning(title: str, factsheet=None):
+    """제목규칙 §6-1 — 큰따옴표 발화가 팩트시트에 근거가 있는가.
+
+    **경고만 낸다. 폐기하지 않는다.** 제목의 훅은 원문을 줄인 의역이라 글자가
+    일치하지 않는 게 정상이고, 형태 D/E(사실형 훅 "이게 46세 몸매?")는 애초에
+    인물 발언이 아니라서 문자열 대조로 죽이면 전부 오탐이 된다.
+    그래서 추적이 안 되는 발화형 훅에만 표시를 달아 사람이 보게 한다.
+    """
+    m = _HOOK.match(title.strip())
+    if not m or not factsheet:
+        return None
+    hook = m.group(1)
+    # 사실형 훅(나이 불신·상식 파괴 단정)은 인물 발언이 아니므로 대조 대상이 아니다
+    if _AGE_DISBELIEF.search(hook):
+        return None
+    quotes = factsheet.get("quotes") or []
+    if not quotes:
+        return "§6-1 팩트시트에 발언이 하나도 없는데 발화형 훅을 썼다 — 근거 확인 필요"
+    # 2자 이상 토막이 하나라도 겹치면 의역으로 본다
+    frags = {hook[i:i + 2] for i in range(len(hook) - 1) if not hook[i:i + 2].isspace()}
+    for q in quotes:
+        if any(f in q for f in frags):
+            return None
+    return "§6-1 훅이 팩트시트 발언과 겹치는 부분이 없다 — 지어낸 말인지 확인 필요"
+
+
+def score(title: str, subject=None, factsheet=None):
     """(점수, 사유 목록) 반환. 사유는 titles.json에 그대로 남긴다."""
-    title = title.strip()
+    title = (title or "").strip()
     reasons = []
 
-    dq = disqualify_reason(title)
+    dq = disqualify_reason(title, subject)
     if dq:
         return C.DISQUALIFIED, [f"{dq} → 즉시 탈락"]
 
-    head = _head(title)
+    head = title[: C.HEAD_LEN]
     w = C.WEIGHTS
     total = 0
 
-    if _NUM.search(head):
-        total += w["head_number"]
-        reasons.append(f"앞20자 숫자 +{w['head_number']}")
+    # ── §3-1 제3자 유명인 실명 (+30) — 최강 카드 ──
+    hit = [n for n in _third_party_pool(subject) if len(n) >= 2 and n in title]
+    if hit:
+        total += w["third_party_celeb"]
+        reasons.append(f"제3자 유명인 실명({hit[0]}) +{w['third_party_celeb']}")
 
-    if any(s in head for s in C.DIET_SIGNAL_WORDS):
-        total += w["head_diet_signal"]
-        reasons.append(f"앞20자 다이어트 신호어 +{w['head_diet_signal']}")
+    # ── §3-3 금기 소재 (+25) ──
+    tb = [x for x in C.TABOO_WORDS if x in title]
+    if tb:
+        total += w["taboo"]
+        reasons.append(f"금기 소재({tb[0]}) +{w['taboo']}")
 
-    if _fully_inside(_AGE, head, title) or _fully_inside(_JOB, head, title):
-        total += w["head_person"]
-        reasons.append(f"앞20자 인물 특정 +{w['head_person']}")
+    # ── §3-2 돈 숫자 (+20) ──
+    if _MONEY.search(title):
+        total += w["money"]
+        reasons.append(f"돈 숫자 +{w['money']}")
 
-    if _DURATION.search(title) and _WEIGHT_TOKEN.search(title):
-        total += w["duration_form"]
-        reasons.append(f"유지 기간형 +{w['duration_form']}")
+    # ── §3-5 자기부정·억울 (+15) ──
+    if _SELF_NEG.search(title):
+        total += w["self_negative"]
+        reasons.append(f"자기부정·억울 훅 +{w['self_negative']}")
 
-    if _DROP.search(title):
-        total += w["drop_form"]
-        reasons.append(f"감량 낙차형 +{w['drop_form']}")
+    # ── §4 나이 불신형 훅 (+15) ──
+    if _AGE_DISBELIEF.search(title):
+        total += w["age_disbelief"]
+        reasons.append(f"나이 불신형 훅 +{w['age_disbelief']}")
 
-    if _ISSUE_LEAD.match(title):
-        total += w["issue_lead"]
-        reasons.append(f"이슈 선행형(짧은 인용 선두) +{w['issue_lead']}")
-        if _TEASE.match(title):
-            total += w["tease"]
-            reasons.append(f"말줄임 여운 +{w['tease']}")
-    elif _QUOTE.search(title):
-        total += w["quote"]
-        reasons.append(f"본인 발언 인용 +{w['quote']}")
+    # ── §4 감량폭+기간 동시 (+15) ──
+    if _PERIOD.search(title) and _DROP_AMOUNT.search(title):
+        total += w["drop_with_period"]
+        reasons.append(f"감량폭+기간 동시 +{w['drop_with_period']}")
 
-    if any(e in title for e in C.LIFE_EVENTS):
-        total += w["life_event"]
-        reasons.append(f"인생 사건 +{w['life_event']}")
+    # ── §3-4 상식 배반 (+15) ──
+    if _DEFY.search(title):
+        total += w["defy_sense"]
+        reasons.append(f"상식 배반(먹었는데 뺐다) +{w['defy_sense']}")
 
-    if any(n in title for n in C.MALE_CELEB_NAMES):
-        if _MARRIAGE.search(title):
-            total += w["too_obvious"]
-            reasons.append(f"남편 실명+혼인어 = 정답 노출 {w['too_obvious']}")
-        else:
-            total += w["male_celeb"]
-            reasons.append(f"관계 남자 연예인 +{w['male_celeb']}")
+    # ── §2 S2 수식어 특정성 (+10) ──
+    if any(e in title for e in C.SPECIFIC_EPITHETS):
+        total += w["specific_epithet"]
+        reasons.append(f"수식어 특정성 +{w['specific_epithet']}")
 
-    if _CONTRAST.search(title):
-        total += w["contrast"]
-        reasons.append(f"모순 구조(~인데 ~했다) +{w['contrast']}")
+    # ── §4 키+몸무게 동시 (+10) ──
+    if _HEIGHT.search(title) and _KG.search(title):
+        total += w["height_weight"]
+        reasons.append(f"키+몸무게 동시 +{w['height_weight']}")
 
-    if _OPEN_END.search(title):
-        pass  # 말줄임 종결은 단정형도 질문형도 아니다
-    elif _QUESTION_END.search(title):
-        total += w["question_end"]
-        reasons.append(f"질문형 종결 {w['question_end']}")
-    else:
-        total += w["assertive_end"]
-        reasons.append(f"단정형 종결 +{w['assertive_end']}")
+    # ── §5 앞 20자 안에서 훅이 온전히 닫힘 (+10) ──
+    m = _HOOK.match(title)
+    if m and m.end() <= C.HEAD_LEN:
+        total += w["hook_in_head"]
+        reasons.append(f"앞{C.HEAD_LEN}자 안에 훅 완결 +{w['hook_in_head']}")
 
-    n = min(len(_NUM.findall(title)), C.MAX_COUNTED_NUMBERS)
-    if n:
-        total += n * w["per_number"]
-        reasons.append(f"숫자 {n}개 +{n * w['per_number']}")
+    # ── §4 감점: 다이어트 단어가 앞쪽 ──
+    # 훅이 있어야 할 자리를 명분(다이어트)이 먹었다는 뜻이다.
+    # 훅 인용구 안의 다이어트 단어는 세지 않는다 — 그건 훅이지 명분이 아니다.
+    after_hook = title[m.end():] if m else title
+    early = after_hook[: max(0, C.HEAD_LEN - (m.end() if m else 0))]
+    if any(s in early for s in C.DIET_SIGNAL_WORDS if s not in ("kg", "킬로", "키로")):
+        total += w["diet_word_early"]
+        reasons.append(f"다이어트 단어가 앞쪽 {w['diet_word_early']}")
 
-    over = len(title) - C.TITLE_LEN_SOFT_MAX
+    # ── §4 감점: 수식어가 '여배우' 단독 ──
+    if "여배우" in title and not any(e in title for e in C.SPECIFIC_EPITHETS):
+        total += w["bare_actress"]
+        reasons.append(f"수식어가 '여배우' 단독 {w['bare_actress']}")
+
+    # ── §4 감점: 훅이 정보형 ──
+    if _INFO_HOOK.search(title):
+        total += w["info_hook"]
+        reasons.append(f"훅이 정보형(팁·비법·방법) {w['info_hook']}")
+
+    # ── §5 길이 30~40자 ──
+    over = len(title) - C.TITLE_LEN_MAX
     if over > 0:
         total -= over
-        reasons.append(f"{C.TITLE_LEN_SOFT_MAX}자 초과 {over}자 -{over}")
+        reasons.append(f"{C.TITLE_LEN_MAX}자 초과 {over}자 -{over}")
+    short = C.TITLE_LEN_MIN - len(title)
+    if short > 0:
+        total -= short
+        reasons.append(f"{C.TITLE_LEN_MIN}자 미달 {short}자 -{short}")
 
-    bmi = _bmi(title)
-    if bmi is not None and bmi < C.BMI_FLOOR:
-        total += w["underweight"]
-        reasons.append(f"저체중 스펙 BMI {bmi:.1f} {w['underweight']}")
+    wr = quote_warning(title, factsheet)
+    if wr:
+        reasons.append(f"⚠ {wr}")
 
     return total, reasons
 
 
-def pick(candidates):
-    """후보 리스트 → [{title, score, reasons}] 내림차순. 1등이 확정 제목."""
+def pick(candidates, subject=None, factsheet=None):
+    """후보 리스트 → [{title, score, reasons}] 내림차순. 1등이 확정 제목.
+
+    동점이면 제목규칙 §4 에 따라 제3자 실명 보유 쪽을 위로 올린다.
+    """
+    pool = _third_party_pool(subject)
     scored = []
     for t in candidates:
         t = (t or "").strip()
         if not t:
             continue
-        s, r = score(t)
-        scored.append({"title": t, "score": s, "reasons": r})
-    scored.sort(key=lambda x: -x["score"])
+        s, r = score(t, subject, factsheet)
+        scored.append({
+            "title": t, "score": s, "reasons": r,
+            "third_party": bool([n for n in pool if len(n) >= 2 and n in t]),
+        })
+    scored.sort(key=lambda x: (-x["score"], not x["third_party"]))
     return scored
 
 
+def below_floor(ranked):
+    """제목규칙 §4 — 최고점이 60점 미만이면 전부 폐기하고 다시 뽑아야 한다."""
+    if not ranked:
+        return True
+    return ranked[0]["score"] < C.MIN_SCORE
+
+
 # ── 자체 테스트 ─────────────────────────────────────────────────────────
-# 인수인계 문서에 적힌 실측 점수를 그대로 재현하는지 확인한다.
+# 제목규칙.md 의 실증 예시를 그대로 쓴다. 조회수가 붙은 것은 실제 성과다.
 KNOWN = [
-    ("37년째 53kg 유지한다는 58세 여배우의 아침 식탁", 110),
-    ("58kg에서 44kg으로, 이혼 후 달라진 44세 여배우 근황", 104),
-    # 이슈 선행형 도입(2026-08-04) 후 30 → 40. 짧은 인용 선두가 +22를 받지만
-    # 저체중 스펙 -60이 여전히 눌러서 상위로는 못 올라온다. 가드는 그대로다.
-    ('"165cm 43kg" 유지한다는 62세 여배우의 아침 식탁', 85),
-    # 뼈말라 허용(2026-08-04) 후 탈락 → 일반 채점. 커뮤니티 용어는 여전히 탈락한다.
-    ("뼈말라 몸매로 화제된 40대 여배우 다이어트", 80),
-    ("프로아나 성공기라는 40대 여배우 다이어트", C.DISQUALIFIED),
+    # §1 폐기 — 실패 실증
+    ("마그네슘과 함께 먹으면 좋은 음식 Best 5", C.DISQUALIFIED),        # 인물X·마그네슘·Best N
+    ("이거 모르면 나도 모르게 식중독", C.DISQUALIFIED),                  # 인물X·식중독
+    ("의사가 경고한 당뇨 유발 음식", C.DISQUALIFIED),                    # 의사·당뇨
+    ("두 달 만에 9kg 감량 성공 톱스타 이승연 다이어트", C.DISQUALIFIED),  # 주인공 실명(§1-7)
+    # 훅은 있는데 나이가 없다 → §1-2
+    ('"우리가 헤어졌다.." 톱스타의 45kg', C.DISQUALIFIED),
+    # 통과형 — 제3자 실명(+30) 또는 금기(+25)를 물고 있으면 여유 있게 넘는다
+    ('"성시경과 결혼할 줄 알았지만".. 11살 연상과 결혼 후 46세 원조 요정 43kg', 68),
+    # ⚠️ 아래 둘은 제목규칙 §2 형태 E·§3-4·§3-5 를 제대로 갖췄는데도 **60 미만**이다.
+    #    버그가 아니라 §4 점수표의 산술이 그렇다. 제3자 실명(+30)·금기(+25)·돈(+20)
+    #    셋 중 하나가 없으면 나머지 항목을 6개는 쌓아야 60이 된다.
+    #    즉 이 표는 "세 카드 중 최소 하나는 반드시 물어라"는 뜻이다.
+    #    §4 지시대로 이런 후보만 나오면 폐기하고 다시 뽑는다(main.py 재생성 루프).
+    ('"이게 46세 몸매?" 밥 두 공기씩 먹었는데도 49kg 유지하는 원조 얼짱', 48),
+    ('"2kg밖에 안 빠져 억울하다는" 53세 미스코리아 출신, 165cm 43kg', 42),
+    # 항목을 5개까지 쌓아도 길이가 늘어 -10 을 맞아 결국 50 이다.
+    # §4 표(최대 90) + §5 길이 상한(40자, 초과 1자당 -1)이 서로 당긴다:
+    #   세 카드 없이 60을 넘기려면 항목 6개가 필요한데 그러면 45~50자가 되고,
+    #   그 초과분이 다시 점수를 깎아 60 아래로 되돌아온다.
+    # 결론: **이 표는 사실상 "제3자 실명·금기 소재·돈 숫자 중 최소 하나는
+    #        반드시 물어라"는 규칙이다.** 셋 다 없으면 재생성이 정상 동작이다.
+    ('"2kg밖에 안 빠져 억울하다는" 53세 미스코리아 출신, 40일 만에 165cm 43kg', 50),
 ]
 
 if __name__ == "__main__":
@@ -205,15 +301,23 @@ if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
+    SUBJECT = "이승연"
     ok = True
     for title, expected in KNOWN:
-        got, reasons = score(title)
-        mark = "OK " if got == expected else "FAIL"
-        if got != expected:
+        got, reasons = score(title, SUBJECT)
+        if expected is None:                     # 통과형: 60점 이상이어야 한다
+            good = got >= C.MIN_SCORE
+            mark = "OK " if good else "FAIL"
+            exp_s = f">={C.MIN_SCORE}"
+        else:
+            good = got == expected
+            mark = "OK " if good else "FAIL"
+            exp_s = str(expected)
+        if not good:
             ok = False
-        print(f"{mark} 기대 {expected:>5} / 실제 {got:>5}  {title}")
+        print(f"{mark} 기대 {exp_s:>6} / 실제 {got:>5}  {title}")
         for r in reasons:
             print(f"        - {r}")
     print()
-    print("전부 일치" if ok else "불일치 있음 — 가중치 확인 필요")
+    print("전부 일치" if ok else "불일치 있음 — 제목규칙.md 와 대조할 것")
     sys.exit(0 if ok else 1)

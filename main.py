@@ -167,7 +167,10 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
     _dump(os.path.join(d, C.POST_FILENAME), post)
 
     made = []
-    if not meta.get("no_images"):
+    # 2026-08-16 사용자 지시: "건강비버 앞으로 이미지 준비하지마. 쓸 수 있는 사진이 아예 없네."
+    # 음식 사진 라이브러리가 고갈돼 매일 같은 사진이 돌아가고 있었다.
+    # 되살리려면 config.IMAGES_ENABLED 를 True 로 바꾸면 된다 — 코드는 그대로 둔다.
+    if C.IMAGES_ENABLED and not meta.get("no_images"):
         try:
             import images
             fs = _load(wpath(d, "factsheet.json"), "팩트시트")
@@ -282,16 +285,34 @@ def _title_one_slot(date_str, slot):
     fs = _load(fs_p, "팩트시트")
     cand = _load(cand_p, "title_candidates.json")
     candidates = cand.get("titles") if isinstance(cand, dict) else cand
-    ranked = T.pick(candidates or [])
+    # 제목규칙 §1-7 은 **주인공 실명만** 폐기한다. 제3자 실명은 오히려 +30 이므로
+    # 주인공이 누구인지 넘겨야 한다. 팩트시트도 넘겨 §6-1(실제 발언인가)을 대조한다.
+    subject = fs.get("celeb") or meta.get("celeb")
+    ranked = T.pick(candidates or [], subject, fs)
     _dump(wpath(d, "titles.json"), ranked)
 
     if not ranked or ranked[0]["score"] <= 0:
         print(f"■ 슬롯 {slot}: 쓸 만한 제목이 없음 — 후보를 다시 써야 함")
         return None
 
+    # 제목규칙 §4: 60점 미만이면 전부 폐기하고 다시 뽑는다.
+    # 여기서는 후보를 다시 만들 수 없으므로(모델 호출은 앞 단계다) 멈추고 알린다.
+    # 조용히 통과시키면 규칙을 글로만 적어둔 것과 같아진다.
+    if T.below_floor(ranked):
+        print(f"■ 슬롯 {slot}: 최고점 {ranked[0]['score']}점 < {C.MIN_SCORE}점 — "
+              f"제목규칙 §4 에 따라 전부 폐기. 후보를 다시 뽑아야 한다.")
+        print(f"   1등: {ranked[0]['title']}")
+        for r in ranked[0]["reasons"]:
+            print(f"     - {r}")
+        print("   보통 원인은 하나다 — 제3자 실명·금기 소재·돈 숫자가 셋 다 없다.")
+        return None
+
     chosen = ranked[0]
     second = ranked[1]["score"] if len(ranked) > 1 else 0
     print(f"■ 슬롯 {slot} 확정: {chosen['title']}  ({chosen['score']}점, 2등과 {chosen['score']-second}점차)")
+    for r in chosen["reasons"]:
+        if r.startswith("⚠"):
+            print(f"   {r}")
 
     heart = meta.get("heart") or C.HEART_CTA_POOL[0]
     brief.body_brief(d, chosen["title"], brief.factsheet_text(fs),
@@ -414,15 +435,31 @@ def run_api(args):
     fs_text = writer.factsheet_text(fs)
     _dump(wpath(d, "factsheet.json"), fs)
 
-    print("■ 제목 후보 생성...")
-    candidates = writer.generate_titles(fs_text)
-    ranked = T.pick(candidates)
+    # 제목규칙 §4: 60점 미만이면 전부 폐기하고 후보를 **다시 뽑는다**.
+    # 이 경로는 모델을 직접 부를 수 있으므로 재생성이 가능하다.
+    ranked, pool = [], []
+    for attempt in range(1, C.TITLE_RETRY_MAX + 1):
+        print(f"■ 제목 후보 생성... (시도 {attempt}/{C.TITLE_RETRY_MAX})")
+        pool += writer.generate_titles(fs_text) or []
+        ranked = T.pick(pool, celeb, fs)
+        for r in ranked[:10]:
+            print(f"   {r['score']:>5}  {r['title']}")
+        if not T.below_floor(ranked):
+            break
+        top = ranked[0]["score"] if ranked else "-"
+        print(f"   최고점 {top} < {C.MIN_SCORE} — 제목규칙 §4 에 따라 다시 뽑는다")
     _dump(wpath(d, "titles.json"), ranked)
-    for r in ranked:
-        print(f"   {r['score']:>5}  {r['title']}")
     if not ranked or ranked[0]["score"] <= 0:
         raise SystemExit("쓸 만한 제목이 없습니다.")
+    if T.below_floor(ranked):
+        raise SystemExit(
+            f"{C.TITLE_RETRY_MAX}번 다시 뽑아도 {C.MIN_SCORE}점을 못 넘었습니다.\n"
+            "  거의 항상 원인은 하나입니다 — 제3자 실명·금기 소재·돈 숫자가 셋 다 없습니다.\n"
+            "  팩트시트에 그 재료가 없으면 인물을 바꾸는 게 빠릅니다.")
     chosen = ranked[0]
+    for r in chosen["reasons"]:
+        if r.startswith("⚠"):
+            print(f"   {r}")
     print(f"■ 확정: {chosen['title']}  ({chosen['score']}점)")
 
     if args.dry_run:
