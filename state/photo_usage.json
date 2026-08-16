@@ -6,8 +6,6 @@
     "셀럽감량_0s_unsplash_1.jpg"
   ],
   "샐러드": [
-    "샐러드_0w_1.jpg",
-    "샐러드_0w_0.jpg",
     "샐러드_0s_unsplash_3.jpg",
     "샐러드_0s_pexels_4.jpg",
     "샐러드_0s_pexels_6.jpg",
@@ -45,11 +43,11 @@
     "샐러드_0w_1.jpg",
     "샐러드_0w_0.jpg",
     "샐러드_0s_pexels_4.jpg",
-    "샐러드_0s_pexels_6.jpg"
+    "샐러드_0s_pexels_6.jpg",
+    "샐러드_0s_unsplash_1.jpg",
+    "샐러드_0s_unsplash_7.jpg"
   ],
   "식단레시피": [
-    "식단레시피_1s_pexels_0.jpg",
-    "식단레시피_1s_unsplash_1.jpg",
     "식단레시피_1s_pexels_6.jpg",
     "식단레시피_0s_pexels_7.jpg",
     "식단레시피_1s_unsplash_7.jpg",
@@ -87,7 +85,9 @@
     "식단레시피_1o_3.jpg",
     "식단레시피_0s_pexels_5.jpg",
     "식단레시피_1s_unsplash_1.jpg",
-    "식단레시피_1s_pexels_6.jpg"
+    "식단레시피_1s_pexels_6.jpg",
+    "식단레시피_1s_pexels_4.jpg",
+    "식단레시피_0s_unsplash_4.jpg"
   ],
   "스트레칭": [
     "스트레칭_0w_0.jpg",
@@ -291,8 +291,6 @@
     "닭가슴살_0s_unsplash_1.jpg"
   ],
   "아보카도": [
-    "아보카도_0s_unsplash_7.jpg",
-    "아보카도_0s_unsplash_5.jpg",
     "아보카도_0s_pexels_4.jpg",
     "아보카도_0s_pexels_6.jpg",
     "아보카도_0s_unsplash_7.jpg",
@@ -330,11 +328,11 @@
     "아보카도_0s_pexels_4.jpg",
     "아보카도_0s_pexels_0.jpg",
     "아보카도_0w_1.jpg",
-    "아보카도_0w_0.jpg"
+    "아보카도_0w_0.jpg",
+    "아보카도_0s_unsplash_7.jpg",
+    "아보카도_0s_unsplash_3.jpg"
   ],
   "단백질쉐이크": [
-    "단백질쉐이크_0s_unsplash_5.jpg",
-    "단백질쉐이크_0s_unsplash_1.jpg",
     "단백질쉐이크_0s_unsplash_3.jpg",
     "단백질쉐이크_0s_pexels_7.jpg",
     "단백질쉐이크_0s_pexels_2.jpg",
@@ -372,7 +370,9 @@
     "단백질쉐이크_0s_unsplash_3.jpg",
     "단백질쉐이크_0s_pexels_7.jpg",
     "단백질쉐이크_0s_unsplash_1.jpg",
-    "단백질쉐이크_0s_unsplash_5.jpg"
+    "단백질쉐이크_0s_unsplash_5.jpg",
+    "단백질쉐이크_0s_unsplash_3.jpg",
+    "단백질쉐이크_0s_pexels_6.jpg"
   ],
   "고구마": [
     "고구마_0s_unsplash_5.jpg",
