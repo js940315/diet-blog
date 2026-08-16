@@ -1,0 +1,48 @@
+{
+  "date": "2026-08-17",
+  "slot": 3,
+  "celeb": "나연",
+  "richness": "thin",
+  "sources": 102,
+  "title": {
+    "title": "\"다이어트 안 해\" 당당했던 여가수, 그래도 유지하는 비결",
+    "score": 66,
+    "reasons": [
+      "앞20자 다이어트 신호어 +22",
+      "앞20자 인물 특정 +14",
+      "이슈 선행형(짧은 인용 선두) +22",
+      "단정형 종결 +8"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 56,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": [
+    {
+      "slot": 1,
+      "category": "아보카도",
+      "photo": "아보카도_0s_pexels_0.jpg",
+      "file": "1번 사진.jpg"
+    },
+    {
+      "slot": 2,
+      "category": "단백질쉐이크",
+      "photo": "단백질쉐이크_0s_pexels_7.jpg",
+      "file": "2번 사진.jpg"
+    },
+    {
+      "slot": 3,
+      "category": "식단레시피",
+      "photo": "식단레시피_0s_pexels_5.jpg",
+      "file": "3번 사진.jpg"
+    },
+    {
+      "slot": 4,
+      "category": "샐러드",
+      "photo": "샐러드_0w_0.jpg",
+      "file": "4번 사진.jpg"
+    }
+  ]
+}
