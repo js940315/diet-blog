@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-18",
+  "slot": 1,
+  "celeb": "유나",
+  "richness": "thin",
+  "sources": 299,
+  "title": {
+    "title": "\"이게 23세?\"…박신혜 드라마로 데뷔한 170cm 46kg 아이돌",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(박신혜) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
