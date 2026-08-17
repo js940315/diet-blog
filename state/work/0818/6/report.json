@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-18",
+  "slot": 6,
+  "celeb": "장원영",
+  "richness": "thin",
+  "sources": 325,
+  "title": {
+    "title": "\"제니는 200억, 이쪽은 137억\"…21세, 173cm 48kg 부자",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(제니) +30",
+      "돈 숫자 +20",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "쉬어가는 날도 계획에 넣어야 오래 갑니다.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
