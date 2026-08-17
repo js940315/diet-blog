@@ -257,17 +257,21 @@ def assess_richness(items) -> str:
     return "thin" if hits < 12 else "normal"
 
 
-def _balance_by_query(items, limit):
-    """쿼리별로 돌아가며 뽑는다. 앞 쿼리가 자리를 다 먹는 것을 막는다.
+def _balance_by_query(items, limit, floor=1):
+    """쿼리마다 최소 floor 건을 보장하고, 남는 자리는 원래 순서(좋아요 순)로 채운다.
 
-    2026-08-18 발견: 수집기는 QUERY_SUFFIXES 를 순서대로 돌며 append 하는데,
-    다이어트 쿼리 하나가 최대 60건(30건 × news/blog)을 쌓는다. 그래서 items[:25] 는
-    **사실상 첫 쿼리 결과만** 담긴다.
-    전날 제목 규칙을 바꾸며 결혼·이혼·재산 같은 가십 쿼리를 7개 추가했는데,
-    그것들이 5~11번째라 프롬프트에 한 건도 들어가지 못했다 — 쿼리만 늘리고
-    효과는 0이었다. 제목규칙 §3 의 재료(제3자 실명·금기·돈)가 바로 그 쿼리에서 나온다.
+    두 가지 요구가 부딪히는 자리다.
+      1) popularity.rank() 가 좋아요 순으로 정렬한다(2026-08-17 사용자 확정).
+         summarize() 가 앞 25건만 쓰므로 순서가 곧 선별이기 때문이다.
+      2) 그런데 그 정렬만 쓰면 **앞 쿼리가 25칸을 독식한다.** 실측:
+         옛 방식은 8개 쿼리 중 4종만 뽑혔고, 8/13 에 추가한 작품 쿼리
+         (명장면·명대사 재조명·상대역 케미·예능 출연)는 5일간 **0칸**이었다.
+         관계형 후킹의 재료가 거기서 나오는데 프롬프트에 도달한 적이 없다.
 
-    라운드로빈으로 바꾸면 25칸을 모든 쿼리가 나눠 갖는다. 수집량·토큰은 그대로다.
+    순수 라운드로빈으로 바꿨더니 이번엔 좋아요 평균이 111 -> 81 로 떨어졌다.
+    그래서 절충한다 — 쿼리별 1등만 자리를 보장하고(재료 확보), 나머지 17칸은
+    좋아요 순 그대로 간다(질 확보). 버킷 내부는 입력 순서를 유지하므로
+    보장분도 그 쿼리의 최고 인기 항목이다.
     """
     buckets = {}
     order = []
@@ -277,19 +281,24 @@ def _balance_by_query(items, limit):
             buckets[q] = []
             order.append(q)
         buckets[q].append(it)
-    out, i = [], 0
-    while len(out) < limit:
-        added = False
+
+    picked, seen = [], set()
+    for _ in range(max(0, floor)):                 # 쿼리별 보장분
         for q in order:
-            if i < len(buckets[q]):
-                out.append(buckets[q][i])
-                added = True
-                if len(out) >= limit:
+            for it in buckets[q]:
+                if id(it) not in seen:
+                    picked.append(it)
+                    seen.add(id(it))
                     break
-        if not added:
+            if len(picked) >= limit:
+                return picked
+    for it in items:                               # 남는 자리는 원래(좋아요) 순서
+        if len(picked) >= limit:
             break
-        i += 1
-    return out
+        if id(it) not in seen:
+            picked.append(it)
+            seen.add(id(it))
+    return picked
 
 
 def summarize(items, limit=25):
