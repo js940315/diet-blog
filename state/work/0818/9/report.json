@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-18",
+  "slot": 9,
+  "celeb": "청하",
+  "richness": "thin",
+  "sources": 149,
+  "title": {
+    "title": "\"이게 30세?\" 161cm 44kg, 아이오아이 출신 빚 갚은 근황",
+    "score": 70,
+    "reasons": [
+      "금기 소재(빚) +25",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": false
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 62,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
