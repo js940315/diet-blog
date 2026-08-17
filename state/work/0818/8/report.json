@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-18",
+  "slot": 8,
+  "celeb": "김세정",
+  "richness": "thin",
+  "sources": 184,
+  "title": {
+    "title": "\"집 산 건 맞다, 30억 아니다\" 고윤정 친분, 30세, 164cm 47kg",
+    "score": 67,
+    "reasons": [
+      "제3자 유명인 실명(고윤정) +30",
+      "돈 숫자 +20",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 3자 -3"
+    ],
+    "third_party": true
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 72,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
