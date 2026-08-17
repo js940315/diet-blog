@@ -257,10 +257,45 @@ def assess_richness(items) -> str:
     return "thin" if hits < 12 else "normal"
 
 
+def _balance_by_query(items, limit):
+    """쿼리별로 돌아가며 뽑는다. 앞 쿼리가 자리를 다 먹는 것을 막는다.
+
+    2026-08-18 발견: 수집기는 QUERY_SUFFIXES 를 순서대로 돌며 append 하는데,
+    다이어트 쿼리 하나가 최대 60건(30건 × news/blog)을 쌓는다. 그래서 items[:25] 는
+    **사실상 첫 쿼리 결과만** 담긴다.
+    전날 제목 규칙을 바꾸며 결혼·이혼·재산 같은 가십 쿼리를 7개 추가했는데,
+    그것들이 5~11번째라 프롬프트에 한 건도 들어가지 못했다 — 쿼리만 늘리고
+    효과는 0이었다. 제목규칙 §3 의 재료(제3자 실명·금기·돈)가 바로 그 쿼리에서 나온다.
+
+    라운드로빈으로 바꾸면 25칸을 모든 쿼리가 나눠 갖는다. 수집량·토큰은 그대로다.
+    """
+    buckets = {}
+    order = []
+    for it in items:
+        q = it.get("query") or "_"
+        if q not in buckets:
+            buckets[q] = []
+            order.append(q)
+        buckets[q].append(it)
+    out, i = [], 0
+    while len(out) < limit:
+        added = False
+        for q in order:
+            if i < len(buckets[q]):
+                out.append(buckets[q][i])
+                added = True
+                if len(out) >= limit:
+                    break
+        if not added:
+            break
+        i += 1
+    return out
+
+
 def summarize(items, limit=25):
     """프롬프트에 넣을 소스 묶음. 너무 길면 자른다."""
     out = []
-    for i, it in enumerate(items[:limit], 1):
+    for i, it in enumerate(_balance_by_query(items, limit), 1):
         head = it.get("media") or it["source"]
         line = f"[{i}] ({head}) {it['title']}"
         desc = (it.get("desc") or "").strip()
