@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-18",
+  "slot": 10,
+  "celeb": "전소미",
+  "richness": "thin",
+  "sources": 312,
+  "title": {
+    "title": "\"이게 25세?\"…한소희와 친한 아이오아이 출신, 172cm 47kg",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(한소희) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 66,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
