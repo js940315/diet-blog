@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-18",
+  "slot": 3,
+  "celeb": "김나영",
+  "richness": "thin",
+  "sources": 301,
+  "title": {
+    "title": "\"이게 44세 몸매 맞아?\" 홍진경도 부러워한 재혼, 170cm 50kg",
+    "score": 90,
+    "reasons": [
+      "제3자 유명인 실명(홍진경) +30",
+      "금기 소재(재혼) +25",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
