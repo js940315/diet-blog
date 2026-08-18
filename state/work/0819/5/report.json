@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-19",
+  "slot": 5,
+  "celeb": "김민경",
+  "richness": "thin",
+  "sources": 165,
+  "title": {
+    "title": "\"이게 46세?\"…신봉선도 놀란 원조 운동뚱, 10kg 감량",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(신봉선) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
