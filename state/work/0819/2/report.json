@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-19",
+  "slot": 2,
+  "celeb": "이본",
+  "richness": "thin",
+  "sources": 138,
+  "title": {
+    "title": "\"이게 53세?\" 10년 결별 후 2억 차 탄 언차일드 출신, 168cm",
+    "score": 80,
+    "reasons": [
+      "금기 소재(결별) +25",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": false
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 79,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
