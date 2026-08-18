@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-19",
+  "slot": 6,
+  "celeb": "유이",
+  "richness": "thin",
+  "sources": 199,
+  "title": {
+    "title": "\"이게 38세라고?\" 애프터스쿨 출신 173cm 51kg, 이수지 옆 MC",
+    "score": 74,
+    "reasons": [
+      "제3자 유명인 실명(수지) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 1자 -1"
+    ],
+    "third_party": true
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
