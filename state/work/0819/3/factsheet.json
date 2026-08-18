@@ -1,0 +1,27 @@
+{
+  "celeb": "송가인",
+  "age": "39세",
+  "job": "가수",
+  "weight_before": "",
+  "weight_after": "44kg",
+  "height": "",
+  "duration": "3개월째 매일 밤 실내 자전거로 44kg 유지",
+  "foods": [],
+  "exercises": ["실내 자전거", "집안일(청소 등으로 열량 소모)"],
+  "habits": [
+    "매일 밤 실내 자전거를 3개월째 타고 있다고 밝힘",
+    "달리기보다 집안일이 열량 소모가 크다고 말함"
+  ],
+  "life_events": ["'재산 200억설'이 돌자 역삼동 전셋집을 떠났다고 알려짐"],
+  "quotes": ["날마다 실내자전거 탄지 3개월째!", "날 좋은 날 이사 완료"],
+  "quote_sources": ["Chosunbiz", "텐아시아"],
+  "identity_anchor": "미스트롯1 진 출신 트로트 가수",
+  "namesake_dropped": [],
+  "related_celebs": [
+    "이찬원 - 같은 트로트 가수로 방송·행사에서 함께 활동",
+    "김나희 - 결혼식에서 축가를 불러주기로 함"
+  ],
+  "money_facts": ["'재산 200억설'이 돌았으나 역삼동 전셋집을 떠나며 해명에 나섰다고 알려짐"],
+  "has_exercise_detail": true,
+  "notes": "구글 뉴스 헤드라인만 확보돼 richness thin. '이것/이 방법/이 식단' 등 구체 정보가 마스킹된 기사는 foods/exercises에서 제외. 갑상선 등 질병 소재는 이 인물 소스에 없음."
+}
