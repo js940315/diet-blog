@@ -60,6 +60,11 @@ _HEIGHT = re.compile(r"(\d{2,3})\s*(?:cm|CM|센치|센티)")
 _KG = re.compile(r"(\d{2,3})\s*(?:kg|KG|킬로|키로)")
 
 
+# 경력·기간을 숫자로 밝힌 표현도 수식어로 인정한다 ("19년 차 배우", "데뷔 27년").
+# 목록에만 의존하면 멀쩡한 제목이 '맨몸' 취급을 받는다.
+_TENURE = re.compile(r"\d+\s*년\s*(?:차|째|만에)|데뷔\s*\d+|\d+\s*기|\d+\s*년\s*활동")
+
+
 def _third_party_pool(subject=None):
     """제목에 남아 있어도 되는(=오히려 +30인) 실명들.
 
@@ -213,10 +218,17 @@ def score(title: str, subject=None, factsheet=None):
         total += w["diet_word_early"]
         reasons.append(f"다이어트 단어가 앞쪽 {w['diet_word_early']}")
 
-    # ── §4 감점: 수식어가 '여배우' 단독 ──
-    if "여배우" in title and not any(e in title for e in C.SPECIFIC_EPITHETS):
+    # ── §4 감점: 직업어에 수식어가 없다 ──
+    # 2026-08-18 사용자 확정(두 블로그 동일 규칙):
+    #   "앞에 충분히 궁금해 할 만한 포인트가 들어가면서 수식어가 붙으면 사용 가능."
+    # 전에는 "여배우" 라는 글자만 검사해서 `40대 여가수`·`톱스타 걸그룹`·`모델` 은
+    # 그냥 통과했다. 금지가 아니라 **맨몸으로 쓰지 말라**는 규칙이므로
+    # 직업어 전체를 같은 기준으로 본다.
+    if (_JOB.search(title)
+            and not any(e in title for e in C.SPECIFIC_EPITHETS)
+            and not _TENURE.search(title)):
         total += w["bare_actress"]
-        reasons.append(f"수식어가 '여배우' 단독 {w['bare_actress']}")
+        reasons.append(f"직업어에 수식어가 없다(특정성 0) {w['bare_actress']}")
 
     # ── §4 감점: 훅이 정보형 ──
     if _INFO_HOOK.search(title):
