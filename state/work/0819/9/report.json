@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-19",
+  "slot": 9,
+  "celeb": "산다라박",
+  "richness": "thin",
+  "sources": 261,
+  "title": {
+    "title": "\"박나래가 1주일 치 식량을\"…42세 원조 여가수, 37kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(박나래) +30",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 67,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
