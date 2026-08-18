@@ -179,6 +179,19 @@ def _finalize(d, body, richness, meta, chosen, polish_ok):
         except Exception as e:
             print(f"   [경고] 사진 준비 실패 — 본문은 정상입니다: {str(e)[:80]}")
 
+    # 이미지메모.txt — 사진은 준비하지 않지만 어디서 구할지는 알려준다.
+    # 2026-08-18 사용자 지시로 패션비버와 통일. 인스타 explore 링크는 죽어서 안 쓴다.
+    _name = (meta.get("celeb") or "").strip()
+    if _name:
+        memo = [f"■ {_name} — 이미지 어디서 구하나", "",
+                "이미지 검색 (로그인 없이 바로 열립니다):",
+                f"  네이버  {C.IMAGE_SEARCH_PRIMARY.format(name=_name)}",
+                f"  다음    {C.IMAGE_SEARCH_BACKUP.format(name=_name)}", "",
+                "※ 못 찾으면 사진 없이 발행해도 되는 글입니다."]
+        with open(os.path.join(d, "이미지메모.txt"), "w",
+                  encoding="utf-8", newline="\n") as f:
+            f.write("\n".join(memo) + "\n")
+
     cl = len(validator.content_lines(validator.split_sections(body)[0]))
     return post, problems, polished, made, cl
 

@@ -66,9 +66,16 @@ BMI_FLOOR = 17.5             # 이 미만 스펙이 제목에 병기되면 대�
 # 2026-08-16 사용자 지시: "건강비버 앞으로 이미지 준비하지마.
 #                          쓸 수 있는 사진이 아예 없네. 생략하고"
 # 음식 사진 라이브러리가 고갈돼 매일 같은 사진이 돌아가고 있었다.
-# 슬롯 폴더에는 이제 `0번 본문.txt` 와 `예비제목.txt` 만 들어간다.
+# 슬롯 폴더에는 이제 `본문.txt`·`예비제목.txt`·`이미지메모.txt` 만 들어간다.
 # 되살리려면 이 한 줄만 True 로. 아래 설정과 images.py 는 그대로 남겨둔다.
 IMAGES_ENABLED = False
+
+# 사진은 준비하지 않지만 **어디서 구할지는 알려준다** (2026-08-18 사용자 지시).
+# 패션비버와 같은 링크를 쓴다. 인스타 explore 링크는 죽었다 —
+# 로그인 상태에서도 "페이지를 사용할 수 없습니다" 가 뜬다(사용자 스크린샷).
+# 실측(로그인 없이 본문에 담긴 썸네일 수): 네이버 106~131 / 다음 103 / 구글 0.
+IMAGE_SEARCH_PRIMARY = "https://search.naver.com/search.naver?where=image&query={name}"
+IMAGE_SEARCH_BACKUP = "https://search.daum.net/search?w=img&q={name}"
 
 # 카드뉴스(텍스트 얹은 이미지)는 쓰지 않는다. 실물 사진 그대로 나간다.
 IMAGE_SIZE = 1080            # 정사각 한 변
@@ -409,7 +416,7 @@ CTA_POOL = (
 # ── 경로 ────────────────────────────────────────────────────────────────
 # 아침에 폴더를 열면 복붙할 것만 보여야 한다.
 # 본문 1개 + 사진 몇 장. 나머지 중간 산출물은 한 겹 아래로 내린다.
-POST_FILENAME = "0번 본문.txt"
+POST_FILENAME = "본문.txt"   # 2026-08-18 사용자 지시: 두 블로그 파일명 통일
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUTPUT_DIR = os.path.join(ROOT, "output")
