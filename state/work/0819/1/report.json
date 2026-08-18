@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-19",
+  "slot": 1,
+  "celeb": "김완선",
+  "richness": "thin",
+  "sources": 133,
+  "title": {
+    "title": "\"56세 맞아?\"…데뷔 40년째 46kg 지킨 원조 여가수, 매년 100억",
+    "score": 69,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 1자 -1"
+    ],
+    "third_party": false
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 73,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
