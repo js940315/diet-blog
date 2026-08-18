@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-19",
+  "slot": 3,
+  "celeb": "변정수",
+  "richness": "thin",
+  "sources": 96,
+  "title": {
+    "title": "\"진짜 51세 맞아?\" 175만원 대박낸 모델 출신 174cm 53kg",
+    "score": 65,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": false
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 66,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
