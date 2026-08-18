@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-19",
+  "slot": 7,
+  "celeb": "나나",
+  "richness": "thin",
+  "sources": 285,
+  "title": {
+    "title": "\"진짜 34세 맞아?\" 한소희 이웃 톱스타, 171cm 48kg",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(한소희) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 57,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
