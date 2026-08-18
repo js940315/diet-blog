@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-19",
+  "slot": 8,
+  "celeb": "전효성",
+  "richness": "thin",
+  "sources": 233,
+  "title": {
+    "title": "\"김숙도 놀란 사정 있었다는\" 36세 시크릿 출신, 6개월 6kg 감량",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(김숙) +30",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10"
+    ],
+    "third_party": true
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 75,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
