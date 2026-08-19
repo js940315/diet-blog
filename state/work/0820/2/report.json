@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-20",
+  "slot": 2,
+  "celeb": "고소영",
+  "richness": "thin",
+  "sources": 302,
+  "title": {
+    "title": "\"16년 만에 부부 투샷 공개\"…이게 54세? 장동건 아내 40kg대",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(장동건) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
