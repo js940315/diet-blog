@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-20",
+  "slot": 7,
+  "celeb": "김민경",
+  "richness": "thin",
+  "sources": 164,
+  "title": {
+    "title": "\"이게 46세 몸매?\" 홍윤화도 놀란 달걀 30개 먹는데도 10kg 감량",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(홍윤화) +30",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+상식배반)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
