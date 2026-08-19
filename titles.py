@@ -65,6 +65,37 @@ _KG = re.compile(r"(\d{2,3})\s*(?:kg|KG|킬로|키로)")
 _TENURE = re.compile(r"\d+\s*년\s*(?:차|째|만에)|데뷔\s*\d+|\d+\s*기|\d+\s*년\s*활동")
 
 
+# 이름 뒤에 붙는 한 글자 조사. 이 집합 안이면 이름 경계로 본다.
+_JOSA = set("이가은는을를과와도만의에로께랑씨님")
+
+
+def _name_hit(text: str, name: str) -> bool:
+    """실명이 **독립된 이름으로** 들어 있는가 (2026-08-19, 패션비버에서 이식).
+
+    단순 부분문자열 검사는 두 방향으로 틀린다.
+      · 앞 경계 없음: "서현" 이 "서현진" 에 걸린다. 실제 풀에 그런 쌍이 셋 있다
+        (서현/서현진 · 윤아/송윤아 · 윤아/오윤아).
+        주인공이 "서현" 인 글에서 제3자로 "서현진" 을 쓰면 §1-7 이 주인공
+        실명 노출로 오판해 **멀쩡한 제목이 즉시 탈락**한다.
+      · 뒤 경계를 한글로 막으면: "김태희도" 처럼 조사가 붙은 실제 표기를
+        전부 놓친다 (패션비버에서 상위 20편 중 12편을 놓쳤다).
+    그래서 앞은 한글이면 막고, 뒤는 조사만 허용한다.
+    """
+    if not name or len(name) < 2:
+        return False
+    for i in range(len(text) - len(name) + 1):
+        if text[i:i + len(name)] != name:
+            continue
+        before = text[i - 1] if i > 0 else ""
+        after = text[i + len(name)] if i + len(name) < len(text) else ""
+        if "가" <= before <= "힣":
+            continue
+        if "가" <= after <= "힣" and after not in _JOSA:
+            continue
+        return True
+    return False
+
+
 def _third_party_pool(subject=None):
     """제목에 남아 있어도 되는(=오히려 +30인) 실명들.
 
@@ -75,6 +106,43 @@ def _third_party_pool(subject=None):
     if subject:
         pool.discard(subject.strip())
     return pool
+
+
+def hook_units(title: str, subject=None):
+    """제목에 든 **서로 다른 훅 축** 목록 (2026-08-19 사용자 지시로 신설).
+
+    사용자: "하나가 엄청 구체적이면서 강력한 거면 몰라도, 그냥 적당히 강한
+    거면 2개를 넣는 게 더 세게 꽂힌다. 0.5초 안에 클릭할지 말지 결정하게
+    만들어야 한다. 홈판에서 클릭이 안 나오면 글이 아무리 좋아도 의미 없다."
+
+    ⚠️ 나이·kg·큰따옴표 훅은 §1 이 이미 **필수**로 강제한다. 그래서 축으로
+       세지 않는다 — 모든 제목이 갖고 있으니 세봐야 변별이 안 된다.
+       여기서 세는 건 그 위에 얹은 **선택 축**이다. 축이 하나뿐이면
+       "필수 요소 + 적당히 강한 것 하나" 이고, 그게 사용자가 말한 약한 제목이다.
+
+    패션비버 실측(월간 상위 20편): 축 1개 평균 14,690회 / 2개 20,499 /
+    3개 32,286 / 4개 14,180. 건강비버는 자체 순위 데이터가 아직 없어 같은
+    방향으로만 적용한다 — 순위표가 생기면 여기서 다시 재야 한다.
+    """
+    got = []
+    if any(_name_hit(title, n) for n in _third_party_pool(subject)):
+        got.append("실명")
+    if _MONEY.search(title):
+        got.append("돈")
+    if any(x in title for x in C.TABOO_WORDS):
+        got.append("금기")
+    # 아래 축 구분은 제목규칙 §4 점수표의 항목과 1:1 로 맞췄다.
+    # 나이 불신형과 상식 배반은 표에서도 **다른 줄**이라 따로 센다.
+    if _AGE_DISBELIEF.search(title):
+        got.append("나이불신")
+    if _DEFY.search(title):
+        got.append("상식배반")
+    if _SELF_NEG.search(title):
+        got.append("자기부정")
+    if (_PERIOD.search(title) and _DROP_AMOUNT.search(title)) or (
+            _HEIGHT.search(title) and _KG.search(title)):
+        got.append("수치")
+    return got
 
 
 def disqualify_reason(title: str, subject=None):
@@ -99,7 +167,7 @@ def disqualify_reason(title: str, subject=None):
             return f"상투 문구 복붙: {w}"
 
     # ── 제목규칙 §1 ──
-    if subject and len(subject.strip()) >= 2 and subject.strip() in t:
+    if subject and _name_hit(t, subject.strip()):
         return f"§1-7 주인공 실명 노출: {subject.strip()}"
     if not (_AGE.search(t) or _JOB.search(t)):
         return "§1-1 인물이 없다"
@@ -157,7 +225,7 @@ def score(title: str, subject=None, factsheet=None):
     total = 0
 
     # ── §3-1 제3자 유명인 실명 (+30) — 최강 카드 ──
-    hit = [n for n in _third_party_pool(subject) if len(n) >= 2 and n in title]
+    hit = [n for n in _third_party_pool(subject) if _name_hit(title, n)]
     if hit:
         total += w["third_party_celeb"]
         reasons.append(f"제3자 유명인 실명({hit[0]}) +{w['third_party_celeb']}")
@@ -245,6 +313,25 @@ def score(title: str, subject=None, factsheet=None):
         total -= short
         reasons.append(f"{C.TITLE_LEN_MIN}자 미달 {short}자 -{short}")
 
+    # ── 훅 축 다양성 (2026-08-19 사용자 지시) ──────────────────────────
+    # "적당히 강한 거면 2개를 넣어야 세게 꽂힌다. 0.5초 안에 결정된다."
+    #
+    # ⚠️ **점수는 건드리지 않는다.** 제목규칙 §4 의 점수표는 사용자가 정한
+    #    것이고, 같은 절이 배점 조정 조건까지 못 박아 뒀다:
+    #        "점수 60~70인데 조회수가 상위권이면 → 해당 요소 배점을 올린다"
+    #    즉 배점은 **조회수를 보고** 바꾸는 것이다. 건강비버는 아직 그
+    #    순위 데이터가 없다. 패션비버 수치(축 1개 14,690회 / 2개 20,499 /
+    #    3개 32,286)를 다른 블로그에 그대로 옮겨 배점을 흔들면 근거 없는
+    #    조작이 된다. 그래서 여기서는 **표시와 동점 처리에만** 쓴다.
+    units = hook_units(title, subject)
+    if len(units) >= 2:
+        reasons.append(f"훅 축 {len(units)}개({'+'.join(units)})")
+    else:
+        reasons.append(
+            f"⚠ 훅 축 {len(units)}개({'+'.join(units) or '없음'}) — 나이·kg·인용은 "
+            "어차피 필수다. 그 위에 실명·돈·금기·반전·감정 중 둘은 얹어야 "
+            "0.5초 안에 눌린다")
+
     wr = quote_warning(title, factsheet)
     if wr:
         reasons.append(f"⚠ {wr}")
@@ -256,19 +343,24 @@ def pick(candidates, subject=None, factsheet=None):
     """후보 리스트 → [{title, score, reasons}] 내림차순. 1등이 확정 제목.
 
     동점이면 제목규칙 §4 에 따라 제3자 실명 보유 쪽을 위로 올린다.
+    실명까지 같으면 **훅 축이 많은 쪽**을 올린다 (2026-08-19 사용자 지시).
+    점수표를 건드리지 않고 사용자의 새 원칙을 반영할 수 있는 자리다.
     """
-    pool = _third_party_pool(subject)
     scored = []
     for t in candidates:
         t = (t or "").strip()
         if not t:
             continue
         s, r = score(t, subject, factsheet)
+        units = hook_units(t, subject)
         scored.append({
             "title": t, "score": s, "reasons": r,
-            "third_party": bool([n for n in pool if len(n) >= 2 and n in t]),
+            # 실명 판정도 경계 검사를 쓴다 — "서현" 이 "서현진" 에 걸리던 버그
+            "third_party": "실명" in units,
+            "hook_units": units,
         })
-    scored.sort(key=lambda x: (-x["score"], not x["third_party"]))
+    scored.sort(key=lambda x: (-x["score"], not x["third_party"],
+                               -len(x["hook_units"])))
     return scored
 
 
