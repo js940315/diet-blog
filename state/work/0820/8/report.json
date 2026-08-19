@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-20",
+  "slot": 8,
+  "celeb": "홍윤화",
+  "richness": "thin",
+  "sources": 302,
+  "title": {
+    "title": "\"이게 38세 몸무게 맞아?\" SNL출신, 김민기 아내 40kg 요요",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(김민기) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
