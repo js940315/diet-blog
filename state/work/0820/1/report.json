@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-20",
+  "slot": 1,
+  "celeb": "송가인",
+  "richness": "thin",
+  "sources": 357,
+  "title": {
+    "title": "\"날마다 자전거 3개월째\"…이게 39세? 153cm 44kg 200억",
+    "score": 70,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 65,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
