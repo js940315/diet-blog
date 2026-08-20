@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-21",
+  "slot": 1,
+  "celeb": "신애라",
+  "richness": "thin",
+  "sources": 165,
+  "title": {
+    "title": "\"이게 56세 몸매냐\"는 차인표 아내, 다 먹는데도 51kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(차인표) +30",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+상식배반)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 67,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
