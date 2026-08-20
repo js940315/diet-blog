@@ -1,0 +1,21 @@
+{
+  "celeb": "김성령",
+  "age": "59세",
+  "job": "배우",
+  "weight_before": "60kg",
+  "weight_after": "59kg",
+  "height": "",
+  "duration": "5년 넘게 운동을 이어감",
+  "foods": [],
+  "exercises": ["일주일에 5일 운동", "5년 넘게 같은 운동을 실천"],
+  "habits": ["회식 자리에서 많이 먹더라도 챙기는 원칙이 있다", "마른 몸이 아니라 탄탄한 몸매를 지향한다"],
+  "life_events": [],
+  "quotes": ["인생 최고 몸무게가 60kg이었고 현재는 59kg", "일주일에 5일은 운동한다"],
+  "quote_sources": ["라디오스타", "라디오스타"],
+  "identity_anchor": "예능 라디오스타에 출연한 배우, 결혼 30년 차",
+  "namesake_dropped": [],
+  "related_celebs": ["허경환 - 같은 라디오스타 회차 출연"],
+  "money_facts": [],
+  "has_exercise_detail": true,
+  "notes": "구글 뉴스 헤드라인만 확보돼 richness=thin. '회식 때 이것은 꼭'·'밤마다 먹은 이 음식'처럼 마스킹된 항목은 본문에서 확인 불가해 foods에서 제외했다. 결혼·별거 관련 익명('여배우') 기사는 본인 이름으로 확인되지 않고 소스끼리 결혼 연차가 상충해 life_events에서 통째로 제외했다. 완경 고백 기사는 건강·질환 소재라 다루지 않았다. 60kg→59kg은 본인이 라디오스타에서 직접 밝힌 수치다."
+}
