@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-21",
+  "slot": 9,
+  "celeb": "김성령",
+  "richness": "thin",
+  "sources": 113,
+  "title": {
+    "title": "\"이게 59세 맞아?\" 허경환과 방송 나온 그녀, 5년째 60→59kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(허경환) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 60,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
