@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-22",
+  "slot": 9,
+  "celeb": "손담비",
+  "richness": "thin",
+  "sources": 215,
+  "title": {
+    "title": "\"이게 44세?\" 10년 전 열애·결별했던, 40일만에 10kg",
+    "score": 65,
+    "reasons": [
+      "금기 소재(결별) +25",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 57,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
