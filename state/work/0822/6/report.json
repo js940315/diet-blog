@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-22",
+  "slot": 6,
+  "celeb": "소유",
+  "richness": "thin",
+  "sources": 347,
+  "title": {
+    "title": "\"이게 34세 몸매?\" 결혼 포기했다는 월세 1300만원 48kg",
+    "score": 60,
+    "reasons": [
+      "돈 숫자 +20",
+      "자기부정·억울 훅 +15",
+      "나이 불신형 훅 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+나이불신+자기부정)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "나이불신",
+      "자기부정"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
