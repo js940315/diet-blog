@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-22",
+  "slot": 10,
+  "celeb": "이효리",
+  "richness": "thin",
+  "sources": 259,
+  "title": {
+    "title": "\"열애설 상대 직접 공개\"한 이상순 아내, 47세 57kg서 53kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(이상순) +30",
+      "금기 소재(열애) +25",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+금기)",
+      "⚠ §6-1 훅이 팩트시트 발언과 겹치는 부분이 없다 — 지어낸 말인지 확인 필요"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
