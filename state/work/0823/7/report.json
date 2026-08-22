@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-23",
+  "slot": 7,
+  "celeb": "화사",
+  "richness": "thin",
+  "sources": 306,
+  "title": {
+    "title": "\"성시경 화보 보고 바로 캡처했다는\" 30대 맞아? 톱스타, 40kg대",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(성시경) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}

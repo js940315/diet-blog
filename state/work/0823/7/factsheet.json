@@ -1,0 +1,24 @@
+{
+  "celeb": "화사",
+  "age": "30대",
+  "job": "가수",
+  "weight_before": "",
+  "weight_after": "40kg대",
+  "height": "",
+  "duration": "",
+  "foods": ["덕자찜"],
+  "exercises": [],
+  "habits": ["운동법과 식단을 크게 바꿨다고 알려짐", "체형이 달라지자 걱정하는 팬 반응도 있었다고 알려짐"],
+  "life_events": [],
+  "quotes": [
+    "성시경 화보 보고 충격받아 바로 캡처했다",
+    "사기 아니었다"
+  ],
+  "quote_sources": ["고막남친", "고막남친"],
+  "identity_anchor": "가수 화사, 마마무 멤버",
+  "namesake_dropped": [],
+  "related_celebs": ["성시경 - 팟캐스트 고막남친 동료"],
+  "money_facts": [],
+  "has_exercise_detail": false,
+  "notes": "richness=thin이나 실제로는 소스량 충분. 나이는 소스에 구체 숫자가 없어 나이대(30대)만 표기. '팬들이 살 왜 뺐냐고 화낸다'는 표현은 정확한 발언 출처(방송명)가 확인되지 않아 직접인용 대신 habits에 사실만 반영. '뼈말라' 표현은 2026-08-04 사용자 결정으로 허용된 묘사어라 그대로 둠."
+}
