@@ -1,0 +1,21 @@
+{
+  "celeb": "김숙",
+  "age": "50대",
+  "job": "개그우먼",
+  "weight_before": "",
+  "weight_after": "60kg",
+  "height": "",
+  "duration": "",
+  "foods": [],
+  "exercises": [],
+  "habits": ["체지방률 30%를 기록했다고 방송에서 공개됨"],
+  "life_events": ["절친인 라미란과 1박 2일 여행을 함께 다녀옴", "사당귀에서 전현무와 함께 방송을 진행함"],
+  "quotes": [],
+  "quote_sources": [],
+  "identity_anchor": "개그우먼 김숙",
+  "namesake_dropped": [],
+  "related_celebs": ["라미란 - 절친이자 여행 동행", "전현무 - 사당귀 방송 동료"],
+  "money_facts": [],
+  "has_exercise_detail": false,
+  "notes": "richness=thin. '15cm 다이어트 침' 전기자극 시술 기사는 시술 금지 규칙으로 배제. 나이는 이번 수집 소스에 구체 숫자로 없어 공개적으로 알려진 나이대(50대)만 표기하고 정확한 나이는 넣지 않음. 헤드라인의 '근육이 왜이래' 등 제3자 평가성 표현은 배제하고 체중·체지방률 수치만 사실로 반영. 다른 방송인과의 커플 표기는 방송 캐릭터성 표현일 가능성이 있어 확정 관계로 단정하지 않고 related_celebs에서 제외."
+}
