@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-23",
+  "slot": 2,
+  "celeb": "성유리",
+  "richness": "thin",
+  "sources": 205,
+  "title": {
+    "title": "\"이게 45세?\" 이효리 옆 원조 요정, 산후 80kg서 50kg 감량",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(이효리) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}

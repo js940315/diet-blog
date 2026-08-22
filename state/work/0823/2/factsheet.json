@@ -1,0 +1,25 @@
+{
+  "celeb": "성유리",
+  "age": "45세",
+  "job": "가수",
+  "weight_before": "80kg",
+  "weight_after": "50kg",
+  "height": "",
+  "duration": "",
+  "foods": [],
+  "exercises": ["필라테스", "근력 운동", "유산소 운동"],
+  "habits": [],
+  "life_events": ["쌍둥이 딸 출산", "남편 안성현이 코인 상장 관련 의혹으로 재판을 받다 보석으로 석방됨"],
+  "quotes": [
+    "몸무게 80kg 찍어… 하루 1kg씩 증가",
+    "쌍둥이 임신 후 80kg까지 쪄…다이어트 지긋지긋",
+    "유산소 가야지"
+  ],
+  "quote_sources": ["끝까지 간다", "끝까지 간다", "스포츠조선"],
+  "identity_anchor": "핑클 출신 가수 성유리",
+  "namesake_dropped": [],
+  "related_celebs": ["안성현 - 남편", "이효리 - 핑클 동료 그룹 멤버"],
+  "money_facts": [],
+  "has_exercise_detail": true,
+  "notes": "richness=thin. '나체 수면'을 언급한 기사(12번)는 헤드라인에 인물명이 없어 성유리로 단정할 근거가 없어 배제. 남편 관련 의혹은 액수 불명시라 money_facts 대신 life_events에만 사실관계로 반영."
+}
