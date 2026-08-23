@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-24",
+  "slot": 6,
+  "celeb": "김다미",
+  "richness": "thin",
+  "sources": 93,
+  "title": {
+    "title": "\"20kg 업고 뛰었다\" 유재석과 만난 대표작 마녀 30대, 170cm",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(유재석) +30",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
