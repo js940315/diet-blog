@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-24",
+  "slot": 7,
+  "celeb": "전여빈",
+  "richness": "thin",
+  "sources": 259,
+  "title": {
+    "title": "\"데뷔 10년만에 첫 주연\"인 37세 여배우, 송혜교와 166cm 47kg",
+    "score": 74,
+    "reasons": [
+      "제3자 유명인 실명(송혜교) +30",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 1자 -1",
+      "훅 축 2개(실명+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "쉬어가는 날도 계획에 넣어야 오래 갑니다.",
+  "content_lines": 76,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
