@@ -238,8 +238,10 @@ def _crawl_one_slot(date_str, slot, args):
         if len(got) >= 10:
             celeb, items = cand, got
             break
-        print(f"   [건너뜀] {cand}: 소스 {len(got)}건 — 부족. 쿨다운 처리.")
-        store.mark_celeb(cand)
+        # 2026-08-23: 여기서 기본 15일을 걸어 풀을 태우고 있었다.
+        # 기사가 없는 건 그날 사정이다 — 며칠 뒤엔 새 기사가 나온다.
+        print(f"   [건너뜀] {cand}: 소스 {len(got)}건 — 부족. {C.SKIP_COOLDOWN_DAYS}일만 쉰다.")
+        store.mark_celeb(cand, cooldown_days=C.SKIP_COOLDOWN_DAYS)
 
     if not celeb:
         print(f"■ 슬롯 {slot}: 채울 인물이 없습니다. 오늘은 여기까지가 상한입니다.")

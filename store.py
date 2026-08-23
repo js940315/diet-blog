@@ -81,12 +81,27 @@ def available_celebs():
     return [n for n, _ in out]
 
 
-def mark_celeb(name: str):
+def mark_celeb(name: str, cooldown_days: int = None):
+    """인물을 쓴 것으로 표시한다.
+
+    cooldown_days 를 주면 기본 쿨다운보다 **짧게** 건다. 스키마를 안 건드리려고
+    last_used 를 그만큼 과거로 당겨 찍는다.
+
+    ⚠️ 2026-08-23: 예전엔 인자가 없어서 **소스가 부족해 건너뛴 인물에게도**
+       글을 쓴 것과 똑같은 15일이 걸렸다. 실측 — 12일간 인물 151명을 태워
+       글은 89편이었다. 62명이 글도 못 쓰고 봉인됐고, 결국 8/23 에 쓸 수 있는
+       인물이 1명만 남아 "인물 풀 소진" 으로 0/10 이 났다.
+       기사가 없는 건 그날 사정이지 그 인물이 나쁜 게 아니다. 며칠이면 된다.
+    """
+    t = now_kst()
+    if cooldown_days is not None:
+        base = getattr(C, "CELEB_COOLDOWN_DAYS", 15)
+        t = t - timedelta(days=max(0, base - cooldown_days))
     with _connect() as conn:
         conn.execute(
             "INSERT INTO celebs(name, last_used) VALUES(?, ?) "
             "ON CONFLICT(name) DO UPDATE SET last_used = excluded.last_used",
-            (name, now_kst().isoformat()),
+            (name, t.isoformat()),
         )
 
 
