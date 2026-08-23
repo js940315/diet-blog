@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-24",
+  "slot": 3,
+  "celeb": "박솔미",
+  "richness": "thin",
+  "sources": 43,
+  "title": {
+    "title": "\"송혜교도 반한 동안\" 47세 재벌가 며느리, 45억 매출 170cm",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(송혜교) +30",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+돈)",
+      "⚠ §6-1 훅이 팩트시트 발언과 겹치는 부분이 없다 — 지어낸 말인지 확인 필요"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
