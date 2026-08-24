@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-25",
+  "slot": 7,
+  "celeb": "홍지민",
+  "richness": "thin",
+  "sources": 144,
+  "title": {
+    "title": "\"억울했다\"는 52세 여배우, 남편 이혼 요구에도 32kg 감량 9년째 그대로",
+    "score": 62,
+    "reasons": [
+      "금기 소재(이혼) +25",
+      "자기부정·억울 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 3자 -3",
+      "훅 축 3개(금기+자기부정+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "자기부정",
+      "수치"
+    ]
+  },
+  "cta": "쉬어가는 날도 계획에 넣어야 오래 갑니다.",
+  "content_lines": 65,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
