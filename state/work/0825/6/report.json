@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-25",
+  "slot": 6,
+  "celeb": "전소미",
+  "richness": "thin",
+  "sources": 280,
+  "title": {
+    "title": "\"노력형이라 억울하다\"는 25세, 한소희 절친 47kg 172cm",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(한소희) +30",
+      "자기부정·억울 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+자기부정+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "자기부정",
+      "수치"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 62,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
