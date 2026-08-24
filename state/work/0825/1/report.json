@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-25",
+  "slot": 1,
+  "celeb": "로제",
+  "richness": "thin",
+  "sources": 273,
+  "title": {
+    "title": "\"카리나·장원영 다 밀렸다\"는 29세, 169cm 44kg 수익 133억",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(카리나) +30",
+      "돈 숫자 +20",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+돈+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "수치"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
