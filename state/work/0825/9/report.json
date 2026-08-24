@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-25",
+  "slot": 9,
+  "celeb": "장도연",
+  "richness": "thin",
+  "sources": 255,
+  "title": {
+    "title": "\"이혼도 가능\"이라던 41세, 100억대 이웃에 56kg 174cm",
+    "score": 65,
+    "reasons": [
+      "금기 소재(이혼) +25",
+      "돈 숫자 +20",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+금기+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "금기",
+      "수치"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 54,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
