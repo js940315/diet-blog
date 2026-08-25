@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-26",
+  "slot": 9,
+  "celeb": "한고은",
+  "richness": "thin",
+  "sources": 185,
+  "title": {
+    "title": "\"이게 51세 몸매냐\"는 신영수 아내, 33년째 52kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(신영수) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
