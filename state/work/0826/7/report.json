@@ -1,0 +1,32 @@
+{
+  "date": "2026-08-26",
+  "slot": 7,
+  "celeb": "백지영",
+  "richness": "thin",
+  "sources": 230,
+  "title": {
+    "title": "\"겁나 쪄\"라는 49세 레전드 여가수, 정석원과 PD 10억 168cm 56kg",
+    "score": 76,
+    "reasons": [
+      "제3자 유명인 실명(정석원) +30",
+      "돈 숫자 +20",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 4자 -4",
+      "훅 축 3개(실명+돈+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "수치"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
