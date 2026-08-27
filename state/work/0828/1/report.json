@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-28",
+  "slot": 1,
+  "celeb": "송혜교",
+  "richness": "thin",
+  "sources": 170,
+  "title": {
+    "title": "\"이게 46세 맞아?\" 송중기와 이혼한 국민 여배우, 17kg 감량",
+    "score": 90,
+    "reasons": [
+      "제3자 유명인 실명(송중기) +30",
+      "금기 소재(이혼) +25",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "나이불신"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 64,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
