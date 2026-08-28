@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-29",
+  "slot": 2,
+  "celeb": "한지혜",
+  "richness": "thin",
+  "sources": 145,
+  "title": {
+    "title": "\"오윤아도 반한 동안\" 40세 톱스타, 171cm 51kg 몸매",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(오윤아) +30",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 62,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
