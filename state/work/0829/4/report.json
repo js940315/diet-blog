@@ -1,0 +1,29 @@
+{
+  "date": "2026-08-29",
+  "slot": 4,
+  "celeb": "서현진",
+  "richness": "thin",
+  "sources": 110,
+  "title": {
+    "title": "\"이게 43세?\" 공유와 호흡 맞춘 톱스타, 15kg 증가 고민",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(공유) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 71,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
