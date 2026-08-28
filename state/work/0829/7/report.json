@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-29",
+  "slot": 7,
+  "celeb": "이다희",
+  "richness": "thin",
+  "sources": 98,
+  "title": {
+    "title": "\"이게 41세?\" 라면 먹고도 유지하는 톱스타, 이별 후 176cm",
+    "score": 75,
+    "reasons": [
+      "금기 소재(이별) +25",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+상식배반)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
