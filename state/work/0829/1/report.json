@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-29",
+  "slot": 1,
+  "celeb": "오연서",
+  "richness": "thin",
+  "sources": 123,
+  "title": {
+    "title": "\"이게 39세?\" 1억 5천 기부한 톱스타, 170cm 48kg",
+    "score": 65,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 65,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}

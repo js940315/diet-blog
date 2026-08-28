@@ -1,0 +1,21 @@
+{
+  "celeb": "오연서",
+  "age": "39세",
+  "job": "배우",
+  "weight_before": "",
+  "weight_after": "48kg",
+  "height": "170cm",
+  "duration": "",
+  "foods": [],
+  "exercises": ["발레"],
+  "habits": ["효소테라피 후 영하 74도 냉동테라피로 관리"],
+  "life_events": ["1억 5천만원을 기부해 화제가 됨"],
+  "quotes": [],
+  "quote_sources": [],
+  "identity_anchor": "발레로 몸매를 관리하는 배우, 1억 5천만원을 기부한 기부천사",
+  "namesake_dropped": [],
+  "related_celebs": [],
+  "money_facts": ["1억 5천만원 기부"],
+  "has_exercise_detail": true,
+  "notes": "richness=thin(헤드라인만 확보). 나이가 기사마다 39세/38세로 소폭 다르게 보도돼 39세(celebinfluencernews·v.daum)를 채택. 48kg·170cm는 v.daum 기사('170cm에 48kg')에서 그대로 가져옴. '효소테라피로 1kg 감량, 영하 74도 극한 관리'는 냉동테라피 루틴으로 습관에 반영하되 특정 효능을 단정하지 않음. '최진혁과 열애/하룻밤 일탈로 속도위반'은 '아기가 생겼어요'라는 프로그램 맥락에서 나온 기사라 실제 열애인지 프로그램 설정인지 구분이 안 돼 related_celebs에서 제외함(확인 안 된 관계는 쓰지 않음). '간헐적 단식→안면 비대칭 침 치료' 기사와 '다이어트 비법이 아이스크림?' 기사는 구체 내용이 불명확하거나 시술/의료 소재에 가까워 제외함. 본인 직접 발언(인용 가능한 문장)은 헤드라인만으로는 확인 안 돼 quotes를 비움."
+}
