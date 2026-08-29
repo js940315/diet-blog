@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-30",
+  "slot": 6,
+  "celeb": "이성경",
+  "richness": "thin",
+  "sources": 108,
+  "title": {
+    "title": "\"이게 35세 몸매?\" 성시경도 놀란 톱스타, 175cm 50kg 근수저",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(성시경) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 63,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
