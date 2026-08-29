@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-30",
+  "slot": 3,
+  "celeb": "라미란",
+  "richness": "thin",
+  "sources": 217,
+  "title": {
+    "title": "\"빼는 법도 몰라 뒀다\"는 톱스타 51세, 신동엽도 놀란 5억 코인 13kg",
+    "score": 68,
+    "reasons": [
+      "제3자 유명인 실명(신동엽) +30",
+      "돈 숫자 +20",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 2자 -2",
+      "훅 축 2개(실명+돈)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
