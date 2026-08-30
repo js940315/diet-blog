@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-31",
+  "slot": 5,
+  "celeb": "김고은",
+  "richness": "thin",
+  "sources": 199,
+  "title": {
+    "title": "\"이게 35세?\" 5000만원 기부한 파묘 주인공, 식단 없이도 50kg",
+    "score": 60,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+나이불신+상식배반)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
