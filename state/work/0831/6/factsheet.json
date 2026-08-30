@@ -1,0 +1,30 @@
+{
+  "celeb": "박규영",
+  "age": "33세",
+  "job": "배우",
+  "weight_before": "",
+  "weight_after": "",
+  "height": "",
+  "duration": "",
+  "foods": ["파스타"],
+  "exercises": ["천국의 계단(계단 오르기 운동) 40분"],
+  "habits": [
+    "파스타를 먹으면서도 계단 오르기 운동을 40분씩 했다고 밝힘",
+    "학창시절 대비 15kg 감량에 성공했다고 직접 밝힘",
+    "'모태마름' 오해에 대해 다이어트로 감량한 것이라고 직접 해명함"
+  ],
+  "life_events": [],
+  "quotes": [
+    "다이어트로 15kg 감량, 예뻐 보이고 싶어",
+    "학창시절 대비 15kg 감량, 예쁘게 보이려"
+  ],
+  "quote_sources": ["RE:뷰", "나래식"],
+  "identity_anchor": "오징어게임2에 출연한 배우 박규영",
+  "namesake_dropped": [],
+  "related_celebs": [
+    "정선희 - 방송에서 단발머리를 보고 예뻐서 짜증난다고 말함"
+  ],
+  "money_facts": [],
+  "has_exercise_detail": true,
+  "notes": "Google News RSS 헤드라인만 확보, 기사 본문 미확인. '뼈말라 몸매'라는 제3자의 극단적 몸 묘사 표현은 체형 비하성 서술이라 통째로 제외. 절대 체중(before/after) 수치는 확인 안 되고 '학창시절 대비 15kg 감량'이라는 상대적 감량폭만 두 매체(RE:뷰, 나래식)에서 동일하게 확인됨. 운동은 '천국의 계단'(계단 오르기 기구) 40분이라는 구체 정보가 있어 has_exercise_detail=true. 정선희가 방송에서 단발머리를 보고 예뻐서 짜증난다고 말한 일화는 실제 타 방송인의 발언이라 related_celebs로 채택함."
+}
