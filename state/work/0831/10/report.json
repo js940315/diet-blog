@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-31",
+  "slot": 10,
+  "celeb": "한소희",
+  "richness": "thin",
+  "sources": 333,
+  "title": {
+    "title": "\"이게 32세?\" 류준열과 결별한 톱스타, 라면 먹고도 15kg 유지",
+    "score": 75,
+    "reasons": [
+      "금기 소재(결별) +25",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+상식배반)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 60,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
