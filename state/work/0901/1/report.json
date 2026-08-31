@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-01",
+  "slot": 1,
+  "celeb": "권유리",
+  "richness": "thin",
+  "sources": 150,
+  "title": {
+    "title": "\"이게 35세?\" 유재석도 놀란 열애설, 데드리프트 60kg",
+    "score": 80,
+    "reasons": [
+      "제3자 유명인 실명(유재석) +30",
+      "금기 소재(열애) +25",
+      "나이 불신형 훅 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "나이불신"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 73,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
