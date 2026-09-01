@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-02",
+  "slot": 5,
+  "celeb": "안유진",
+  "richness": "thin",
+  "sources": 197,
+  "title": {
+    "title": "\"장원영과 같은 그룹\" 21세, 40억 아파트 당첨에 173cm",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(장원영) +30",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+돈)",
+      "⚠ §6-1 훅이 팩트시트 발언과 겹치는 부분이 없다 — 지어낸 말인지 확인 필요"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 50,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
