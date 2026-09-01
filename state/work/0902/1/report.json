@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-02",
+  "slot": 1,
+  "celeb": "김나영",
+  "richness": "thin",
+  "sources": 165,
+  "title": {
+    "title": "\"이혼 후 밤마다 서럽게 울었다\"던 43세, 지금 170cm 50kg",
+    "score": 60,
+    "reasons": [
+      "금기 소재(이혼) +25",
+      "자기부정·억울 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+자기부정+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "자기부정",
+      "수치"
+    ]
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 76,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
