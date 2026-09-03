@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-04",
+  "slot": 3,
+  "celeb": "박소현",
+  "richness": "thin",
+  "sources": 125,
+  "title": {
+    "title": "\"김숙 탓이라는\" 20년 만에 결혼한 55세 출신, 164cm 47kg",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(김숙) +30",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 56,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
