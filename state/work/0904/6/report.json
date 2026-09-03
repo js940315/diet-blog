@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-04",
+  "slot": 6,
+  "celeb": "유이",
+  "richness": "thin",
+  "sources": 147,
+  "title": {
+    "title": "\"두 번 차였다는\" 전현무도 놀란 열애 원하는 38세, 173cm 52kg",
+    "score": 74,
+    "reasons": [
+      "제3자 유명인 실명(전현무) +30",
+      "금기 소재(열애) +25",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 1자 -1",
+      "훅 축 3개(실명+금기+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "수치"
+    ]
+  },
+  "cta": "쉬어가는 날도 계획에 넣어야 오래 갑니다.",
+  "content_lines": 54,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
