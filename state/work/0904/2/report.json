@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-04",
+  "slot": 2,
+  "celeb": "고소영",
+  "richness": "thin",
+  "sources": 241,
+  "title": {
+    "title": "\"살 빨리 빼면 안 돼\" 장동건도 응원한 53세 출신, 5개월 3kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(장동건) +30",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 54,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
