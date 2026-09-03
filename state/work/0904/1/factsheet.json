@@ -1,0 +1,29 @@
+{
+  "celeb": "김완선",
+  "age": "56세",
+  "job": "가수",
+  "weight_before": "",
+  "weight_after": "46kg",
+  "height": "",
+  "duration": "",
+  "foods": [],
+  "exercises": [],
+  "habits": [],
+  "life_events": [
+    "16세 연하 김요한과 열애설이 보도됨",
+    "박진영과 27년 만에 오해를 풀고 화해했다는 보도"
+  ],
+  "quotes": [],
+  "quote_sources": [],
+  "identity_anchor": "80년대 '삐에로' 등 히트곡으로 원조 섹시퀸·디바로 불리는 가수 김완선",
+  "namesake_dropped": [],
+  "related_celebs": [
+    "김요한 - 16세 연하, 열애설 보도",
+    "박진영 - 27년 만에 불화 해소, 화해",
+    "슬기(에스파) - 방송에서 함께 무대 언급",
+    "김광규 - 방송에서 대시 에피소드"
+  ],
+  "money_facts": [],
+  "has_exercise_detail": false,
+  "notes": "구글 뉴스 헤드라인만 수집돼 richness=thin. 식단·운동 구체 정보는 소스에 없어 비워둠(무릎 재활 운동 관련 기사는 의사 소재라 통째로 제외). 체중은 '46kg'과 '40㎏대' 두 표현이 모두 보도됐으나 겹치는 시기라 대표값 46kg만 채택. 발언 인용은 다이어트와 무관하거나 맥락 확인이 안 돼 전부 제외."
+}
