@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-04",
+  "slot": 5,
+  "celeb": "송가인",
+  "richness": "thin",
+  "sources": 271,
+  "title": {
+    "title": "\"억울하다는\" 200억설 겹친 40세 오디션 출신, 153cm 44kg",
+    "score": 65,
+    "reasons": [
+      "돈 숫자 +20",
+      "자기부정·억울 훅 +15",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+자기부정+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "자기부정",
+      "수치"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
