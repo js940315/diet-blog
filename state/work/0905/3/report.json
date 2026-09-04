@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-05",
+  "slot": 3,
+  "celeb": "김성령",
+  "richness": "thin",
+  "sources": 48,
+  "title": {
+    "title": "\"이게 59세 맞나\"…30년차 168cm 58kg, 협찬만 30억",
+    "score": 70,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 63,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
