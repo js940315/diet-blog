@@ -1,0 +1,31 @@
+{
+  "celeb": "이은지",
+  "age": "34세",
+  "job": "개그우먼",
+  "weight_before": "65kg",
+  "weight_after": "56kg",
+  "height": "",
+  "duration": "",
+  "foods": [],
+  "exercises": ["러닝"],
+  "habits": ["뛸 생각에 안 먹게 됨", "굶는 다이어트는 하지 않음"],
+  "life_events": [],
+  "quotes": [
+    "굶는 다이어트요? 전 안 했어요",
+    "65kg→56kg, 쾌녀 된 기분",
+    "현재 56kg..뛸 생각에 안 먹게 돼"
+  ],
+  "quote_sources": [
+    "뉴스와",
+    "네이트",
+    "스포츠조선"
+  ],
+  "identity_anchor": "예능 '지구오락실' 등 출연 개그우먼",
+  "namesake_dropped": [],
+  "related_celebs": [
+    "안유진 - 같은 예능('우주떡집') 함께 출연"
+  ],
+  "money_facts": [],
+  "has_exercise_detail": true,
+  "notes": "나이(34세)는 제공된 소스에 없어 위키백과 생년월일(1992년생) 기준으로 계산해 채움 — 소스에는 다이어트 관련 사실만 담음. 65kg→56kg(10kg 감량)은 다수 기사에서 일관되게 확인됨. 감량 기간은 소스에 명시되지 않아 duration 비움. 그 외 유명인 언급(화사 등)은 전부 별개 기사의 다른 인물이라 배제. related_celebs는 '우주떡집' 방송에서 함께 출연이 확인된 안유진으로 채움."
+}

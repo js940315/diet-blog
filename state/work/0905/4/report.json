@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-05",
+  "slot": 4,
+  "celeb": "이은지",
+  "richness": "thin",
+  "sources": 175,
+  "title": {
+    "title": "\"이게 34세?\"…안유진과 특훈, 안 굶고 65kg→56kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(안유진) +30",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+상식배반)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 74,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
