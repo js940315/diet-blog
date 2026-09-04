@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-05",
+  "slot": 9,
+  "celeb": "황신혜",
+  "richness": "thin",
+  "sources": 282,
+  "title": {
+    "title": "\"이게 63세 맞나\"…이혼 두 번, 166cm 48kg",
+    "score": 60,
+    "reasons": [
+      "금기 소재(이혼) +25",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
