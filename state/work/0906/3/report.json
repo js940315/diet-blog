@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-06",
+  "slot": 3,
+  "celeb": "박나래",
+  "richness": "thin",
+  "sources": 332,
+  "title": {
+    "title": "\"이게 40세?\"…일본 남성과 열애 공개, 48kg 유지 1년째",
+    "score": 65,
+    "reasons": [
+      "금기 소재(열애) +25",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 66,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
