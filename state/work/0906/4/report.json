@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-06",
+  "slot": 4,
+  "celeb": "이지혜",
+  "richness": "thin",
+  "sources": 208,
+  "title": {
+    "title": "\"이게 43세?\"…열애했던 그 시절, 168cm 53kg",
+    "score": 60,
+    "reasons": [
+      "금기 소재(열애) +25",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 54,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
