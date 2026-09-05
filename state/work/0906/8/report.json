@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-06",
+  "slot": 8,
+  "celeb": "한혜진",
+  "richness": "thin",
+  "sources": 157,
+  "title": {
+    "title": "\"이게 44세 몸매?\"…8살 연하 남편, 25년간 1kg",
+    "score": 65,
+    "reasons": [
+      "금기 소재(연하) +25",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 65,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
