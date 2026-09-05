@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-06",
+  "slot": 9,
+  "celeb": "손담비",
+  "richness": "thin",
+  "sources": 179,
+  "title": {
+    "title": "\"이게 43세?\"…10년 전 결별 후 재회, 46kg",
+    "score": 64,
+    "reasons": [
+      "금기 소재(결별) +25",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "30자 미달 1자 -1",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 62,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
