@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-06",
+  "slot": 6,
+  "celeb": "소유",
+  "richness": "thin",
+  "sources": 227,
+  "title": {
+    "title": "\"이게 35세?\"…8개월 만에 20kg, 숙소는 170만원",
+    "score": 60,
+    "reasons": [
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "쉬어가는 날도 계획에 넣어야 오래 갑니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
