@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-06",
+  "slot": 10,
+  "celeb": "이효리",
+  "richness": "thin",
+  "sources": 217,
+  "title": {
+    "title": "\"이게 47세?\"…이상순과 13년째, 60억 집 53kg",
+    "score": 90,
+    "reasons": [
+      "제3자 유명인 실명(이상순) +30",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 4개(실명+돈+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
