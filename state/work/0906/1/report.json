@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-06",
+  "slot": 1,
+  "celeb": "김남주",
+  "richness": "thin",
+  "sources": 66,
+  "title": {
+    "title": "\"이게 52세?\"…결혼 20년차 김승우 아내, 47kg 수십 년째",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(김승우) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
