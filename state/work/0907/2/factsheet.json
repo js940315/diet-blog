@@ -1,0 +1,24 @@
+{
+  "celeb": "성유리",
+  "age": "44세",
+  "job": "여배우",
+  "weight_before": "80kg",
+  "weight_after": "50kg",
+  "height": "",
+  "duration": "",
+  "foods": [],
+  "exercises": ["필라테스"],
+  "habits": [],
+  "life_events": ["쌍둥이 임신 중 체중이 크게 늘었다", "2년 7개월 만에 방송 복귀했다"],
+  "quotes": [
+    "쌍둥이 임신 후 80㎏까지 살쪄…먹는 것도 없는데",
+    "하루 1kg 증가, 억울"
+  ],
+  "quote_sources": ["뉴시스", "끝까지 간다"],
+  "identity_anchor": "핑클 출신 여배우, 쌍둥이 딸을 둔 워킹맘",
+  "namesake_dropped": [],
+  "related_celebs": ["이효리 - 핑클 동료, 복귀를 응원함", "이진 - 핑클 동료, 최근 재회해 친분을 과시함"],
+  "money_facts": [],
+  "has_exercise_detail": true,
+  "notes": "richness=thin, 구글뉴스 헤드라인만 확보되어 본문 맥락 확인 불가. 남편의 법적 분쟁(구속·보석·상고)은 다이어트와 무관한 별도 사건이라 본문 소재로 쓰지 않음. 주상욱의 과거 발언은 확인 안 된 열애 암시라 배제. 감량 기간·현재 키는 소스에 없어 비워둠."
+}
