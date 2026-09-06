@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-07",
+  "slot": 2,
+  "celeb": "성유리",
+  "richness": "thin",
+  "sources": 105,
+  "title": {
+    "title": "\"억울하다던\" 이효리 응원 받은 핑클 출신 44세, 50kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(이효리) +30",
+      "자기부정·억울 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+자기부정)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "자기부정"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 65,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
