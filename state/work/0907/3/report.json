@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-07",
+  "slot": 3,
+  "celeb": "옥주현",
+  "richness": "thin",
+  "sources": 160,
+  "title": {
+    "title": "\"이게 45세?\" 조여정을 이상형으로 꼽은 핑클 출신, 173cm",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(조여정) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 62,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
