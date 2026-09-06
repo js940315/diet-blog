@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-07",
+  "slot": 1,
+  "celeb": "장윤정",
+  "richness": "thin",
+  "sources": 281,
+  "title": {
+    "title": "\"이게 46세 몸매?\" 도경완 아내 톱스타, 술만 마신다는 48kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(도경완) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
