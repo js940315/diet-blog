@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-08",
+  "slot": 5,
+  "celeb": "김유정",
+  "richness": "thin",
+  "sources": 171,
+  "title": {
+    "title": "\"안 먹으면 서럽다는\" 박보검 옆 26세, 164cm 48kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(박보검) +30",
+      "자기부정·억울 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+자기부정+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "자기부정",
+      "수치"
+    ]
+  },
+  "cta": "내일의 나에게 미루지 말고 오늘 조금만 해보세요.",
+  "content_lines": 56,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
