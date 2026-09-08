@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-09",
+  "slot": 2,
+  "celeb": "홍지민",
+  "richness": "thin",
+  "sources": 82,
+  "title": {
+    "title": "\"이게 53세야?\" 이혼 통보 극복한 국민 뮤지컬 여배우, 32kg 감량",
+    "score": 60,
+    "reasons": [
+      "금기 소재(이혼) +25",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(금기+나이불신)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 55,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
