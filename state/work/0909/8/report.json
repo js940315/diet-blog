@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-09",
+  "slot": 8,
+  "celeb": "장도연",
+  "richness": "thin",
+  "sources": 171,
+  "title": {
+    "title": "\"이게 41세야?\" 양세찬과 웨딩사진까지 찍은 레전드 개그우먼, 56kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(양세찬) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
