@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-10",
+  "slot": 7,
+  "celeb": "진서연",
+  "richness": "thin",
+  "sources": 75,
+  "title": {
+    "title": "\"백미 끊은지 7년\"이라는 40대, 전현무도 놀란 월 4천만원 8.1kg",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(전현무) +30",
+      "돈 숫자 +20",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+돈+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "수치"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 71,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
