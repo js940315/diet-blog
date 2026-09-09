@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-10",
+  "slot": 4,
+  "celeb": "조여정",
+  "richness": "thin",
+  "sources": 105,
+  "title": {
+    "title": "\"이게 46세 몸매?\"라며 이요원도 놀란 30년째 45kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(이요원) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 73,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
