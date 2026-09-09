@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-10",
+  "slot": 9,
+  "celeb": "이영자",
+  "richness": "thin",
+  "sources": 225,
+  "title": {
+    "title": "\"85kg 유지 힘들다\"라는 58세, 황동주와 열애 중인 170cm",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(황동주) +30",
+      "금기 소재(열애) +25",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "수치"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
