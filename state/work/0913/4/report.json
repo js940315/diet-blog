@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-13",
+  "slot": 4,
+  "celeb": "서현진",
+  "richness": "thin",
+  "sources": 76,
+  "title": {
+    "title": "\"10세 연하도 OK\" 공유와 트렁크 찍은 40대, 26억 54kg",
+    "score": 85,
+    "reasons": [
+      "제3자 유명인 실명(공유) +30",
+      "금기 소재(연하) +25",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+돈+금기)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "금기"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 65,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
