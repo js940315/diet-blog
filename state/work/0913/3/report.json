@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-13",
+  "slot": 3,
+  "celeb": "강소라",
+  "richness": "thin",
+  "sources": 106,
+  "title": {
+    "title": "\"탁재훈 앞에서 긴장 안 해\" '미생' 대표작 36세 168cm 48kg",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(탁재훈) +30",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 76,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
