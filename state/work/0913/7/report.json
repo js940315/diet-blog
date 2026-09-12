@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-13",
+  "slot": 7,
+  "celeb": "한예슬",
+  "richness": "thin",
+  "sources": 137,
+  "title": {
+    "title": "\"통장 바닥났다\" 10살 연하♥와 사는 44세, 166cm 48kg 36억",
+    "score": 64,
+    "reasons": [
+      "금기 소재(연하) +25",
+      "돈 숫자 +20",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 1자 -1",
+      "훅 축 3개(돈+금기+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "금기",
+      "수치"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 66,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
