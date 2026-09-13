@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-14",
+  "slot": 6,
+  "celeb": "박보영",
+  "richness": "thin",
+  "sources": 231,
+  "title": {
+    "title": "\"이게 37세 몸매냐\"…41kg에 158cm, 조인성 절친",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(조인성) +30",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 64,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
