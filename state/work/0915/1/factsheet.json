@@ -1,0 +1,24 @@
+{
+  "celeb": "고윤정",
+  "age": "29세",
+  "job": "배우",
+  "weight_before": "",
+  "weight_after": "",
+  "height": "163cm",
+  "duration": "",
+  "foods": [],
+  "exercises": [],
+  "habits": [],
+  "life_events": [],
+  "quotes": [],
+  "quote_sources": [],
+  "identity_anchor": "영화 '남벌'(이병헌과 공연 확정)·드라마 '모자무싸' 출연 배우",
+  "namesake_dropped": [],
+  "related_celebs": [
+    "이병헌 - 영화 '남벌' 공동 출연 확정",
+    "구교환 - 드라마 '모자무싸' 공동 출연, 14세 연상"
+  ],
+  "money_facts": [],
+  "has_exercise_detail": false,
+  "notes": "Google News RSS 헤드라인만 수집돼 richness=thin. 본인 체중 수치는 334건 소스 어디에도 없음. 키는 '163cm인데 170cm 착시' 기사(네이트, 2026-05-26)에서만 확인. 나이는 '29세 고윤정' 명시 기사로 확인. 등근육 관련 기사 2건은 '이 운동?' 형태 제목뿐이라 구체 운동명이 없어 exercises/habits 비움. 정준원과의 열애설 보도는 '부인' 기사(미확정)라 life_events/related_celebs에서 제외. 김대호(42세)가 공개적으로 '이상형'이라 언급한 기사도 있었으나 다이어트·관계 사실과 무관한 가십이라 제외."
+}
