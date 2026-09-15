@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-16",
+  "slot": 5,
+  "celeb": "티파니",
+  "richness": "thin",
+  "sources": 261,
+  "title": {
+    "title": "\"이게 37세 몸매냐\" 변요한이 반한 1세대 출신 48kg 그대로",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(변요한) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
