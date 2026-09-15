@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-16",
+  "slot": 10,
+  "celeb": "아이린",
+  "richness": "thin",
+  "sources": 101,
+  "title": {
+    "title": "\"이게 35세 얼굴이야?\" 180cm 신랑과 열애 끝 결혼한 슬기 동료",
+    "score": 80,
+    "reasons": [
+      "제3자 유명인 실명(슬기) +30",
+      "금기 소재(열애) +25",
+      "나이 불신형 훅 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "나이불신"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 67,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
