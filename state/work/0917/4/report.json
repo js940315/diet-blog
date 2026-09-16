@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-17",
+  "slot": 4,
+  "celeb": "안유진",
+  "richness": "thin",
+  "sources": 155,
+  "title": {
+    "title": "\"장동민이 놀란 전투력\" 23세, 173cm 억대 기부자",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(장동민) +30",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+돈)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 57,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
