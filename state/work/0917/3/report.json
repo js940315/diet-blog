@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-17",
+  "slot": 3,
+  "celeb": "장원영",
+  "richness": "thin",
+  "sources": 276,
+  "title": {
+    "title": "\"이게 21세 식단?\" 문희준도 19kg 걸고 포기했다는",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(문희준) +30",
+      "자기부정·억울 훅 +15",
+      "나이 불신형 훅 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+자기부정)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "자기부정"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
