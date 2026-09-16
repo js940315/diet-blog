@@ -1,0 +1,25 @@
+{
+  "celeb": "김세정",
+  "age": "29세",
+  "job": "가수",
+  "weight_before": "",
+  "weight_after": "47kg",
+  "height": "164cm",
+  "duration": "23일 만에 5kg 감량",
+  "foods": ["미역국수"],
+  "exercises": [],
+  "habits": ["하루 두 끼로 관리", "갈라진 허벅지 근육이 화제"],
+  "life_events": ["2년 열애 끝에 비연예인과 결혼"],
+  "quotes": [
+    "조용히 오래가길",
+    "인생 함께할 사람 만나",
+    "피아노맨으로 보답할 것"
+  ],
+  "quote_sources": ["본인 자필 편지"],
+  "identity_anchor": "가수 김세정, '피아노맨'으로도 활동",
+  "namesake_dropped": [],
+  "related_celebs": [],
+  "money_facts": [],
+  "has_exercise_detail": false,
+  "notes": "구글 뉴스 헤드라인만 수집되어 근거가 얇음(thin). 결혼 상대는 비연예인이라 실명이 공개되지 않아 related_celebs에서 제외. 이형일 재산 신고·오정연 감량·김승원 인사청문 관련 기사는 전혀 다른 인물 소재라 제외."
+}
