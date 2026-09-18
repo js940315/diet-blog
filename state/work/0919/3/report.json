@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-19",
+  "slot": 3,
+  "celeb": "전효성",
+  "richness": "thin",
+  "sources": 95,
+  "title": {
+    "title": "\"이게 36세?\"라는 반응 쏟아진 시크릿 출신, 함은정도 인정한 53kg 관리",
+    "score": 62,
+    "reasons": [
+      "제3자 유명인 실명(함은정) +30",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 3자 -3",
+      "훅 축 2개(실명+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신"
+    ]
+  },
+  "cta": "작게 시작해야 흔들려도 다시 돌아올 수 있습니다.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
