@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-19",
+  "slot": 5,
+  "celeb": "고소영",
+  "richness": "thin",
+  "sources": 203,
+  "title": {
+    "title": "\"이게 53세?\"라는 반응 쏟아진 장동건 아내, 16년 만에 49.2kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(장동건) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 70,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
