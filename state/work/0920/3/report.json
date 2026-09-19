@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-20",
+  "slot": 3,
+  "celeb": "안선영",
+  "richness": "thin",
+  "sources": 50,
+  "title": {
+    "title": "\"이게 50세?\" 별거 고백한 168cm 55kg, 매출 1조",
+    "score": 80,
+    "reasons": [
+      "금기 소재(별거) +25",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 4개(돈+금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 67,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
