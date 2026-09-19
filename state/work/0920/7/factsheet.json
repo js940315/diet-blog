@@ -1,0 +1,21 @@
+{
+  "celeb": "황신혜",
+  "age": "62세",
+  "job": "배우",
+  "weight_before": "",
+  "weight_after": "48kg",
+  "height": "166cm",
+  "duration": "",
+  "foods": [],
+  "exercises": ["엘리베이터 대신 계단 4번 왕복", "수영"],
+  "habits": ["다이어트 빵 레시피를 직접 공개함"],
+  "life_events": ["딸의 결혼이 임박했다는 소식에 '빨리 할머니 되고 싶다'는 바람을 밝힘"],
+  "quotes": ["맛있는데 살 안 쪄", "빨리 할머니 되고 싶어", "안성기와 영화 기쁜 우리 젊은 날에서 함께 출연"],
+  "quote_sources": ["같이삽시다", "같이삽시다", "영화 기쁜 우리 젊은 날"],
+  "identity_anchor": "예능 같이삽시다에 출연 중인 여배우 황신혜",
+  "namesake_dropped": [],
+  "related_celebs": ["안성기 - 영화 기쁜 우리 젊은 날에서 함께 출연"],
+  "money_facts": [],
+  "has_exercise_detail": true,
+  "notes": "Google News RSS 헤드라인 위주 수집(thin). 시술 언급 기사([2])는 배제. 협연자 신계숙 등 다른 여성 출연자 실명은 본문 규칙상 배제. '20년째 챙겨 먹는다'는 항산화 습관([3])은 구체 식품명이 불명확해 foods에 넣지 않음. 딸 이름은 본문에서 밝히지 않음."
+}
