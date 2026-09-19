@@ -1,0 +1,32 @@
+{
+  "date": "2026-09-20",
+  "slot": 2,
+  "celeb": "홍윤화",
+  "richness": "thin",
+  "sources": 63,
+  "title": {
+    "title": "\"진짜 38세?\" 9개월 만에 40kg, 김민기♥ 955만원",
+    "score": 90,
+    "reasons": [
+      "제3자 유명인 실명(김민기) +30",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 4개(실명+돈+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 64,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
