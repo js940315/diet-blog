@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-21",
+  "slot": 5,
+  "celeb": "소유",
+  "richness": "thin",
+  "sources": 169,
+  "title": {
+    "title": "\"딘딘도 놀란\" 35세, 1억 투자로 집 사고 49kg",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(딘딘) +30",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+돈)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 62,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
