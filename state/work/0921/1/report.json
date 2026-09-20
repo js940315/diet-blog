@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-21",
+  "slot": 1,
+  "celeb": "김남주",
+  "richness": "thin",
+  "sources": 48,
+  "title": {
+    "title": "\"이게 54세 몸매?\" 김승우와 20년 넘게 살아도 169cm 47kg",
+    "score": 80,
+    "reasons": [
+      "제3자 유명인 실명(김승우) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 77,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
