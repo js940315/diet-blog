@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-21",
+  "slot": 3,
+  "celeb": "이지혜",
+  "richness": "thin",
+  "sources": 132,
+  "title": {
+    "title": "\"이게 47세?\" 문재완과 10년째인데 53kg",
+    "score": 66,
+    "reasons": [
+      "제3자 유명인 실명(문재완) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "30자 미달 4자 -4",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 63,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
