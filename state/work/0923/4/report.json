@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-23",
+  "slot": 4,
+  "celeb": "문가영",
+  "richness": "thin",
+  "sources": 316,
+  "title": {
+    "title": "\"안 굶고 뺀다는\" 성시경이 극찬한 데뷔 20년차 30세, 47kg",
+    "score": 80,
+    "reasons": [
+      "제3자 유명인 실명(성시경) +30",
+      "감량폭+기간 동시 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+상식배반+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "상식배반",
+      "수치"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 60,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
