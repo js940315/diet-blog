@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-23",
+  "slot": 6,
+  "celeb": "장나라",
+  "richness": "thin",
+  "sources": 122,
+  "title": {
+    "title": "\"박경림이 다 해줬다\"는 45세 톱스타 6살연하♥, 학창시절 7kg 증량",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(박경림) +30",
+      "금기 소재(연하) +25",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+금기)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기"
+    ]
+  },
+  "cta": "쉬어가는 날도 계획에 넣어야 오래 갑니다.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
