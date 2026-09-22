@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-23",
+  "slot": 1,
+  "celeb": "솔라",
+  "richness": "thin",
+  "sources": 108,
+  "title": {
+    "title": "\"이게 35세 몸매라고?\" 이창섭과도 열애설 났던 리더, 47kg",
+    "score": 80,
+    "reasons": [
+      "제3자 유명인 실명(이창섭) +30",
+      "금기 소재(열애) +25",
+      "나이 불신형 훅 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "나이불신"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 77,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
