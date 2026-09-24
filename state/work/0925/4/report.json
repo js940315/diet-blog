@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-25",
+  "slot": 4,
+  "celeb": "한가인",
+  "richness": "thin",
+  "sources": 120,
+  "title": {
+    "title": "\"6억 줄 수 있다\"는 45세 국민 미모 여배우, 4살 연상과 결혼해 52kg",
+    "score": 62,
+    "reasons": [
+      "금기 소재(연상) +25",
+      "돈 숫자 +20",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 3자 -3",
+      "훅 축 2개(돈+금기)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "금기"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 57,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
