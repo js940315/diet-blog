@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-25",
+  "slot": 10,
+  "celeb": "이경실",
+  "richness": "thin",
+  "sources": 235,
+  "title": {
+    "title": "\"이게 59세?\" 레전드 개그우먼, 재혼 후 3주 만에 4kg 감량했다는",
+    "score": 75,
+    "reasons": [
+      "금기 소재(재혼) +25",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 58,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
