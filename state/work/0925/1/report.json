@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-25",
+  "slot": 1,
+  "celeb": "장혜진",
+  "richness": "thin",
+  "sources": 32,
+  "title": {
+    "title": "\"이게 최우식 엄마?\" '기생충' 출신 50세 여배우, 별거설 넘기고 18kg 사연 밝혔다는",
+    "score": 64,
+    "reasons": [
+      "제3자 유명인 실명(최우식) +30",
+      "금기 소재(별거) +25",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 11자 -11",
+      "훅 축 2개(실명+금기)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 73,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
