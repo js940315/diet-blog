@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-26",
+  "slot": 3,
+  "celeb": "공효진",
+  "richness": "thin",
+  "sources": 206,
+  "title": {
+    "title": "\"이게 46세?\" 172cm 53kg, 유재석도 반한",
+    "score": 64,
+    "reasons": [
+      "제3자 유명인 실명(유재석) +30",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "30자 미달 1자 -1",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 56,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
