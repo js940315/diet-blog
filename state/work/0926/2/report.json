@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-26",
+  "slot": 2,
+  "celeb": "소이현",
+  "richness": "thin",
+  "sources": 135,
+  "title": {
+    "title": "\"이게 46세?\" 라면 먹는데도 인교진과 5kg 감량",
+    "score": 69,
+    "reasons": [
+      "제3자 유명인 실명(인교진) +30",
+      "나이 불신형 훅 +15",
+      "상식 배반(먹었는데 뺐다) +15",
+      "앞20자 안에 훅 완결 +10",
+      "30자 미달 1자 -1",
+      "훅 축 3개(실명+나이불신+상식배반)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "상식배반"
+    ]
+  },
+  "cta": "무리한 하루보다 지치지 않는 한 달이 낫습니다.",
+  "content_lines": 57,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
