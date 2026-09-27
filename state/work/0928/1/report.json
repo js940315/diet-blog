@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-28",
+  "slot": 1,
+  "celeb": "한채영",
+  "richness": "thin",
+  "sources": 123,
+  "title": {
+    "title": "\"프로포즈로 7억\" 46세, 탁재훈 앞 이혼설도 부인한 168cm",
+    "score": 85,
+    "reasons": [
+      "제3자 유명인 실명(탁재훈) +30",
+      "금기 소재(이혼) +25",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+돈+금기)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "금기"
+    ]
+  },
+  "cta": "오늘 저녁 한 끼만 바꿔보는 것도 시작이 됩니다.",
+  "content_lines": 72,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
