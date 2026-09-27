@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-28",
+  "slot": 9,
+  "celeb": "이요원",
+  "richness": "thin",
+  "sources": 92,
+  "title": {
+    "title": "\"65억 빌라에 김종국 이웃\"이라는 44세, 173cm 51kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(김종국) +30",
+      "돈 숫자 +20",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+돈+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "수치"
+    ]
+  },
+  "cta": "완벽한 식단보다 지킬 수 있는 식단이 이깁니다.",
+  "content_lines": 59,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
