@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-28",
+  "slot": 2,
+  "celeb": "최지우",
+  "richness": "thin",
+  "sources": 153,
+  "title": {
+    "title": "\"부동산 차익만 100억이라는\" 51세, 8kg 늘고 김태희와 친분",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(김태희) +30",
+      "돈 숫자 +20",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+돈)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 76,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
