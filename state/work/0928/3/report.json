@@ -1,0 +1,30 @@
+{
+  "date": "2026-09-28",
+  "slot": 3,
+  "celeb": "이민정",
+  "richness": "thin",
+  "sources": 287,
+  "title": {
+    "title": "\"이게 44세 맞아?\" 18kg 쪘다 뺀 이정현 옆 300억 건물주",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(이정현) +30",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+돈+나이불신)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "나이불신"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 69,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
