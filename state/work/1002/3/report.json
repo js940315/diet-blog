@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-02",
+  "slot": 3,
+  "celeb": "김세정",
+  "richness": "thin",
+  "sources": 59,
+  "title": {
+    "title": "\"이게 29세 몸?\" 열애 2년 끝 결혼한 구구단 출신, 23일 5kg",
+    "score": 75,
+    "reasons": [
+      "금기 소재(열애) +25",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(금기+나이불신+수치)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "금기",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "오늘 한 끼를 잘 넘겼다면 그걸로 충분합니다.",
+  "content_lines": 60,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
