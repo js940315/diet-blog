@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-04",
+  "slot": 8,
+  "celeb": "송가인",
+  "richness": "thin",
+  "sources": 161,
+  "title": {
+    "title": "\"이게 39세 몸매?\" 김종국이 이상형인 153cm 44kg",
+    "score": 65,
+    "reasons": [
+      "제3자 유명인 실명(김종국) +30",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "당장 큰 결심보다 이번 주 세 번이 더 오래 갑니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
