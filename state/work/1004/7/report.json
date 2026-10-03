@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-04",
+  "slot": 7,
+  "celeb": "고소영",
+  "richness": "thin",
+  "sources": 155,
+  "title": {
+    "title": "\"이게 54세 몸매?\" 장동건과 300억 자산, 167cm 51kg",
+    "score": 85,
+    "reasons": [
+      "제3자 유명인 실명(장동건) +30",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 4개(실명+돈+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "돈",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 63,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
