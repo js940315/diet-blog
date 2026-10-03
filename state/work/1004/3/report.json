@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-04",
+  "slot": 3,
+  "celeb": "변정수",
+  "richness": "thin",
+  "sources": 65,
+  "title": {
+    "title": "\"이혼 세 번에도 이 몸매\" 174cm 53kg인 52세, 홍석천 친구",
+    "score": 75,
+    "reasons": [
+      "제3자 유명인 실명(홍석천) +30",
+      "금기 소재(이혼) +25",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "수치"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 73,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
