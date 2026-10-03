@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-04",
+  "slot": 4,
+  "celeb": "산다라박",
+  "richness": "thin",
+  "sources": 108,
+  "title": {
+    "title": "\"이게 41세 몸매?\" 이혼 가정 출신, 300억 소문 37→42kg",
+    "score": 80,
+    "reasons": [
+      "금기 소재(이혼) +25",
+      "돈 숫자 +20",
+      "나이 불신형 훅 +15",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(돈+금기+나이불신)"
+    ],
+    "third_party": false,
+    "hook_units": [
+      "돈",
+      "금기",
+      "나이불신"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 68,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
