@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-05",
+  "slot": 7,
+  "celeb": "이미숙",
+  "richness": "thin",
+  "sources": 59,
+  "title": {
+    "title": "\"전지현도 감탄했다는\" 이혼 19년차 66세, 오히려 3kg 쪘다는",
+    "score": 80,
+    "reasons": [
+      "제3자 유명인 실명(전지현) +30",
+      "금기 소재(이혼) +25",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+금기+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기",
+      "수치"
+    ]
+  },
+  "cta": "남의 속도 말고 내 속도로 가면 됩니다.",
+  "content_lines": 53,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
