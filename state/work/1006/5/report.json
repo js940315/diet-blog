@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-06",
+  "slot": 5,
+  "celeb": "손담비",
+  "richness": "thin",
+  "sources": 113,
+  "title": {
+    "title": "\"집이 곧 헬스장\" 이규혁 아내, 진짜 43세? 결혼 5년차 46kg",
+    "score": 70,
+    "reasons": [
+      "제3자 유명인 실명(이규혁) +30",
+      "나이 불신형 훅 +15",
+      "감량폭+기간 동시 +15",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 3개(실명+나이불신+수치)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "나이불신",
+      "수치"
+    ]
+  },
+  "cta": "잘 먹는 것도 관리라는 걸 잊지 마세요.",
+  "content_lines": 63,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
