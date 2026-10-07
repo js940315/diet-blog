@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "slot": 9,
+  "celeb": "문채원",
+  "richness": "thin",
+  "sources": 111,
+  "title": {
+    "title": "\"허경환 母도 탐낸\" 39세 레전드 여배우, 168cm 45kg",
+    "score": 60,
+    "reasons": [
+      "제3자 유명인 실명(허경환) +30",
+      "수식어 특정성 +10",
+      "키+몸무게 동시 +10",
+      "앞20자 안에 훅 완결 +10",
+      "훅 축 2개(실명+수치)",
+      "⚠ §6-1 훅이 팩트시트 발언과 겹치는 부분이 없다 — 지어낸 말인지 확인 필요"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "수치"
+    ]
+  },
+  "cta": "체중계 숫자보다 어제의 나와 비교해보세요.",
+  "content_lines": 64,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
