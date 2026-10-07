@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-08",
+  "slot": 5,
+  "celeb": "김정은",
+  "richness": "thin",
+  "sources": 227,
+  "title": {
+    "title": "\"죽음의 다이어트라는\" 이서진과 열애했던 53세 국민첫사랑 여배우, 55kg",
+    "score": 73,
+    "reasons": [
+      "제3자 유명인 실명(이서진) +30",
+      "금기 소재(열애) +25",
+      "수식어 특정성 +10",
+      "앞20자 안에 훅 완결 +10",
+      "40자 초과 2자 -2",
+      "훅 축 2개(실명+금기)"
+    ],
+    "third_party": true,
+    "hook_units": [
+      "실명",
+      "금기"
+    ]
+  },
+  "cta": "몸이 보내는 신호를 무시하지 않는 게 먼저입니다.",
+  "content_lines": 61,
+  "polished": false,
+  "route": "agent",
+  "final_problems": [],
+  "images": []
+}
